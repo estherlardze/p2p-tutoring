@@ -3,7 +3,7 @@ import { IoIosSearch } from "react-icons/io";
 
 const Header = () => {
   return (
-    <div className='flex flex-col justify-center items-center h-[80vh] max-w-lg mx-[5%] md:mx-auto'>
+    <div className='flex flex-col justify-center items-center h-[80%] sm:h-[95vh] w-[90%] mx-[5%] sm:w-[80%] sm:mx-[10%] md:max-w-md md:mx-auto'>
         <h1 className='font-bold text-3xl sm:text-[35px] md:text-[41px] text-center leading-[1.3]'>
             Book private lessons with an expert colleague
         </h1>

@@ -2,4 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-sidebar-height {
+  height: calc(100vh - 70px);
+}
 
+.custom-children-width {
+  width: calc(100vw - 200px);
+}
+
+
+
+@media (min-width: 768px) {
+  .custom-children-width {
+    width: calc(100vw - 100px);
+  }
+}
