@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Link from "next/link";
 
 const page = () => {
   const [email, setEmail] = useState("");
@@ -24,11 +25,16 @@ const page = () => {
     e.preventDefault();
     console.log("Credentials:", email, password);
   };
-  
+
   return (
     <div className="min-h-screen flex justify-center items-center bg-black/10 ">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-8 text-center">Login</h2>
+      <div className="bg-white p-8 rounded shadow-md w-[90%] mx-[%] sm:mx-auto sm:max-w-md">
+        <div className="flex flex-col items-center justify-center mb-6">
+          <h2 className="text-3xl font-semibold text-center">Login</h2>
+          <small className="text-[12px] mt-3 text-center">
+            Hello, welcome back
+          </small>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -73,11 +79,20 @@ const page = () => {
               </div>
             </div>
           </div>
-          <button
-            className="border border-blue w-full bg-blue font-bold py-2 px-4 rounded text-white hover:bg-white hover:text-black transition-all duration-500"
-          >
+          <button className="border rounded w-full border-blue bg-blue font-bold py-2 px-10  text-white hover:bg-white hover:text-black transition-all duration-500">
             Login
           </button>
+
+          <div className="flex items-center justify-between mt-4">
+            <p className="text-[12px] text-gray-2">
+              Need an account?{" "}
+              <Link href="sign-up" className="text-black hover:underline">
+                Sign up
+              </Link>
+            </p>
+            <Link href='/' className="text-[12px] hover:underline">Forgot password</Link>
+          </div>
+          
         </form>
       </div>
     </div>

@@ -10,12 +10,12 @@ const Header = () => {
         <p className='text-lg text-center my-6'>
             Get started and get the result you want
         </p>
-        <div className='hidden sm:flex justify-between bg-white rounded-l-3xl w-full pl-4'>
+        <div className='hidden sm:flex justify-between bg-white rounded-3xl w-full pl-4'>
             <input 
               type="text" 
               placeholder='Search tutor by course'
               className='outline-none text-black'/>
-            <div className='bg-blue py-2 px-4 flex items-center gap-2'>
+            <div className='bg-blue py-2 px-4 flex items-center gap-2 rounded-r-3xl'>
               <IoIosSearch size={23} className='font-semibold'/>
               <button className='font-semibold'>Search</button>
             </div>

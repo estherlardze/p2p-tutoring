@@ -18,6 +18,11 @@ const SidebarLinks = [
     route: "/tutor-dashboard/profile",
     icon: <FaUser />,
   },
+  {
+    name: "Payment",
+    route: "/tutor-dashboard/payment",
+    icon: <FaUser />,
+  },
 ];
 const Sidebar = () => {
   return (

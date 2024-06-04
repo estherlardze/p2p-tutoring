@@ -9,26 +9,26 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'sm': '450px'
-        },
+        sm: "450px",
+      },
 
       backgroundImage: {
-        "header": "url('/bg.jpg')"
+        header: "url('/bg-3.jpg')",
       },
-      
     },
 
     fontFamily: {
-      custom: ['Poppins', 'sans-serif']
+      custom: ["Poppins", "sans-serif"],
     },
     colors: {
-      'blue': '#042085',
-      'blue-100': '#7091E6',
-      'white': '#fff',
-      'black': '#000000',
-      'gray' : '#808080',
-    }
+      blue: "#042085",
+      "blue-100": "#7091E6",
+      white: "#fff",
+      black: "#000000",
+      green: "#3da635",
+      "gray-2": "#808080",
+      "gray-1": "#505451",
+    },
   },
-  plugins: []
+  plugins: [],
 };
-;

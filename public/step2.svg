@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="165" height="165" viewBox="0 0 165 165">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_145" data-name="Ellipse 145" cx="82.5" cy="82.5" r="82.5" transform="translate(0 0)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Setup-your-store" transform="translate(-72 -73)">
+    <g id="Group_357" data-name="Group 357" transform="translate(72 73)" clip-path="url(#clip-path)">
+      <g id="Group_356" data-name="Group 356" transform="translate(0.362 0.362)">
+        <rect id="Rectangle_188" data-name="Rectangle 188" width="164.638" height="164.638" fill="#71cff4"/>
+        <g id="Group_355" data-name="Group 355" transform="translate(32.398 40.718)">
+          <path id="Path_399" data-name="Path 399" d="M264.6,181.087v91.521H173.078L132.36,231.89v-83.2H232.2Z" transform="translate(-132.358 -148.689)" fill="#59a4cf"/>
+          <rect id="Rectangle_189" data-name="Rectangle 189" width="99.843" height="58.241" transform="translate(0 24.962)" fill="#4a5054"/>
+          <rect id="Rectangle_190" data-name="Rectangle 190" width="99.843" height="4.881" transform="translate(0 78.321)" fill="#fcc153"/>
+          <rect id="Rectangle_191" data-name="Rectangle 191" width="14.264" height="24.962" fill="#fcc153"/>
+          <rect id="Rectangle_192" data-name="Rectangle 192" width="14.263" height="24.962" transform="translate(14.264)" fill="#f7f7f7"/>
+          <rect id="Rectangle_193" data-name="Rectangle 193" width="14.263" height="24.962" transform="translate(28.527)" fill="#fcc153"/>
+          <rect id="Rectangle_194" data-name="Rectangle 194" width="14.262" height="24.962" transform="translate(42.79)" fill="#f7f7f7"/>
+          <rect id="Rectangle_195" data-name="Rectangle 195" width="14.264" height="24.962" transform="translate(57.052)" fill="#fcc153"/>
+          <rect id="Rectangle_196" data-name="Rectangle 196" width="14.263" height="24.962" transform="translate(71.317)" fill="#f7f7f7"/>
+          <rect id="Rectangle_197" data-name="Rectangle 197" width="14.263" height="24.962" transform="translate(85.58)" fill="#fcc153"/>
+          <path id="Path_400" data-name="Path 400" d="M146.621,194.677a7.132,7.132,0,0,1-14.264,0Z" transform="translate(-132.357 -169.716)" fill="#de8d2a"/>
+          <path id="Path_401" data-name="Path 401" d="M172.9,194.677a7.131,7.131,0,0,1-14.263,0Z" transform="translate(-144.374 -169.716)" fill="#ddd"/>
+          <path id="Path_402" data-name="Path 402" d="M199.179,194.677a7.132,7.132,0,0,1-14.263,0Z" transform="translate(-156.389 -169.716)" fill="#de8d2a"/>
+          <path id="Path_403" data-name="Path 403" d="M225.457,194.677a7.131,7.131,0,0,1-14.262,0Z" transform="translate(-168.405 -169.716)" fill="#ddd"/>
+          <path id="Path_404" data-name="Path 404" d="M251.736,194.677a7.132,7.132,0,0,1-14.264,0Z" transform="translate(-180.419 -169.716)" fill="#de8d2a"/>
+          <path id="Path_405" data-name="Path 405" d="M278.015,194.677a7.132,7.132,0,0,1-14.263,0Z" transform="translate(-192.436 -169.716)" fill="#ddd"/>
+          <path id="Path_406" data-name="Path 406" d="M304.294,194.677a7.132,7.132,0,0,1-14.263,0Z" transform="translate(-204.451 -169.716)" fill="#de8d2a"/>
+          <rect id="Rectangle_198" data-name="Rectangle 198" width="14.264" height="2.665" fill="#de8d2a"/>
+          <rect id="Rectangle_199" data-name="Rectangle 199" width="14.263" height="2.665" transform="translate(14.264)" fill="#ddd"/>
+          <rect id="Rectangle_200" data-name="Rectangle 200" width="14.263" height="2.665" transform="translate(28.527)" fill="#de8d2a"/>
+          <rect id="Rectangle_201" data-name="Rectangle 201" width="14.262" height="2.665" transform="translate(42.79)" fill="#ddd"/>
+          <rect id="Rectangle_202" data-name="Rectangle 202" width="14.264" height="2.665" transform="translate(57.052)" fill="#de8d2a"/>
+          <rect id="Rectangle_203" data-name="Rectangle 203" width="14.263" height="2.665" transform="translate(71.317)" fill="#ddd"/>
+          <rect id="Rectangle_204" data-name="Rectangle 204" width="14.263" height="2.665" transform="translate(85.58)" fill="#de8d2a"/>
+          <rect id="Rectangle_205" data-name="Rectangle 205" width="27.149" height="46.26" transform="translate(7.13 36.942)" fill="#20262d"/>
+          <rect id="Rectangle_206" data-name="Rectangle 206" width="49.922" height="30.119" transform="translate(42.79 36.942)" fill="#20262d"/>
+          <rect id="Rectangle_207" data-name="Rectangle 207" width="45.101" height="25.302" transform="translate(45.201 39.351)" fill="#f7f7f7"/>
+          <rect id="Rectangle_208" data-name="Rectangle 208" width="45.101" height="3.138" transform="translate(45.201 61.515)" fill="#fcc153"/>
+          <rect id="Rectangle_209" data-name="Rectangle 209" width="22.326" height="18.651" transform="translate(9.54 39.351)" fill="#f7f7f7"/>
+          <rect id="Rectangle_210" data-name="Rectangle 210" width="22.326" height="20.383" transform="translate(9.54 60.409)" fill="#f7f7f7"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

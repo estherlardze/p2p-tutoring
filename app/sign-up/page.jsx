@@ -24,7 +24,7 @@ const page = () => {
     e.preventDefault();
     console.log("Credentials:", email, password);
   };
-  
+
   return (
     <div className="min-h-screen flex justify-center items-center bg-black/10">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
@@ -35,12 +35,28 @@ const page = () => {
               htmlFor="email"
               className="block text-gray-700 font-bold mb-2"
             >
-              Email:
+              first Name:
             </label>
             <input
               type="text"
-              id="email"
-              name="email"
+              id="firstname"
+              name="firstname"
+              value={email}
+              onChange={handleEmailChange}
+              placeholder="Enter your student email"
+              className="w-full px-3 py-2 border border-black/35 rounded-md outline-blue/70"
+              required
+            />
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
               value={email}
               onChange={handleEmailChange}
               placeholder="Enter your student email"
@@ -48,6 +64,26 @@ const page = () => {
               required
             />
           </div>
+
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Email
+            </label>
+            <input
+              type="text"
+              id="email"
+              name="emal"
+              value={email}
+              onChange={handleEmailChange}
+              placeholder="Enter your student email"
+              className="w-full px-3 py-2 border border-black/35 rounded-md outline-blue/70"
+              required
+            />
+          </div>
+
           <div className="mb-6">
             <label
               htmlFor="password"
@@ -72,10 +108,14 @@ const page = () => {
                 </div>
               </div>
             </div>
+
+            <select name="" id="" className="w-full mt-3 px-3 py-2 border border-black/35 rounded-md outline-blue/70">
+              <option value="">select option</option>
+              <option value="">Student</option>
+              <option value="">Tutor</option>
+            </select>
           </div>
-          <button
-            className="border border-blue w-full bg-blue font-bold py-2 px-4 rounded text-white hover:bg-white hover:text-black transition-all duration-500"
-          >
+          <button className="border border-blue w-full bg-blue font-bold py-2 px-4 rounded text-white hover:bg-white hover:text-black transition-all duration-500">
             Sign up
           </button>
         </form>
