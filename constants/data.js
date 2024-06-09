@@ -42,3 +42,5 @@ export const features = [
   "Allows students to rate and review tutors, helping others make informed decisions based on the experiences of their peers. This builds trust and enhances the overall quality of the tutoring services",
   "This platform fosters a peer-to-peer learning community. Students can connect with others who excel in their desired subjects, creating a valuable network for academic support and potentially even friendships.",
 ];
+
+

@@ -28,9 +28,9 @@ const Navbar = () => {
     <nav
       className={`${
         changebg ? "bg-white text-black" : ""
-      } fixed top-0 left-0 w-full transition-all duration-300 h-[68px]`}
+      } fixed top-0 left-0 w-full transition-all duration-300 h-[68px] `}
     >
-      <section className="flex justify-between py-5 px-8">
+      <section className="flex justify-between py-5 px-8 2xl:w-[1500px] 2xl:mx-auto z-50">
         <h1 className="text-2xl font-bold">LoGo</h1>
         <div className="hidden md:flex gap-8">
           <Link href="/" className="text-[17px] font-semibold cursor-pointer">
@@ -42,8 +42,8 @@ const Navbar = () => {
           <Link href="/" className="text-[17px] font-semibold cursor-pointer">
             Features
           </Link>
-          <Link href="/" className="text-[17px] font-semibold cursor-pointer">
-            Contact
+          <Link href="/tutors" className="text-[17px] font-semibold cursor-pointer">
+            Tutors
           </Link>
         </div>
 
@@ -62,7 +62,7 @@ const Navbar = () => {
       </section>
 
       {menu && (
-        <div className="bg-black/95 w-full h-[100vh] fixed md:hidden top-0 left-0 justify-center items-center">
+        <div className="bg-black/95 w-full h-[100vh] fixed text-white md:hidden top-0 left-0 justify-center items-center">
           {menu && (
             <IoMdClose
               size={25}
@@ -94,11 +94,11 @@ const Navbar = () => {
               Features
             </Link>
             <Link
-              href="/"
+              href="/tutors"
               className="font-semibold cursor-pointer"
               onClick={() => setMenu(false)}
             >
-              Contact
+              Tutors
             </Link>
 
             <Link

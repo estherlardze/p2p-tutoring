@@ -3,14 +3,14 @@ import { IoIosSearch } from "react-icons/io";
 
 const Header = () => {
   return (
-    <div className='flex flex-col justify-center items-center h-[80%] sm:h-[95vh] w-[90%] mx-[5%] sm:w-[80%] sm:mx-[10%] md:max-w-md md:mx-auto'>
-        <h1 className='font-bold text-3xl sm:text-[35px] md:text-[41px] text-center leading-[1.3]'>
+    <div className='flex items-start  justify-center flex-col h-[80%] sm:h-[95vh] w-[90%] mx-[5%] sm:w-[50%] sm:mx-[25%]'>
+        <h1 className='font-bold text-3xl sm:text-[35px] md:text-[41px] leading-[1.3]'>
             Book private lessons with an expert colleague
         </h1>
         <p className='text-lg text-center my-6'>
             Get started and get the result you want
         </p>
-        <div className='hidden sm:flex justify-between bg-white rounded-3xl w-full pl-4'>
+        {/* <div className='hidden sm:flex justify-between bg-white rounded-3xl w-full pl-4'>
             <input 
               type="text" 
               placeholder='Search tutor by course'
@@ -19,7 +19,7 @@ const Header = () => {
               <IoIosSearch size={23} className='font-semibold'/>
               <button className='font-semibold'>Search</button>
             </div>
-        </div>
+        </div> */}
     </div>
   )
 }

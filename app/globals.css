@@ -10,7 +10,30 @@
   width: calc(100vw - 200px);
 }
 
+scrollable-container::-webkit-scrollbar {
+  display: none;
+}
 
+.scrollable-container {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.scrollable-container {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
 
 @media (min-width: 768px) {
   .custom-children-width {

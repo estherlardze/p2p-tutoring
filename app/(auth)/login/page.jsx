@@ -39,7 +39,7 @@ const page = () => {
           <div className="mb-4">
             <label
               htmlFor="email"
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-1 font-bold mb-2"
             >
               Email:
             </label>
@@ -50,19 +50,19 @@ const page = () => {
               value={email}
               onChange={handleEmailChange}
               placeholder="Enter your student email"
-              className="w-full px-3 py-2 border border-black/35 rounded-md outline-blue/70"
+              className="w-full px-3 py-2 border border-black/35 rounded-md outline-blue/40"
               required
             />
           </div>
           <div className="mb-6">
             <label
               htmlFor="password"
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-1 font-bold mb-2"
             >
               Password:
             </label>
-            <div className="w-full px-3 py-2 border  outline:border-blue/70 border-black/35 rounded-md">
-              <div className=" flex justify-between items-center">
+            <div className="outline-blue/40 py-2 border  outline:border-blue/70 border-gray-2 px-4 rounded-md">
+              <div className=" flex justify-between items-center ">
                 <input
                   type={`${showPassword ? "text" : "password"}`}
                   id="password"
