@@ -14,6 +14,7 @@ const page = () => {
     )
   );
 
+ 
   return (
     <div>
       <Navbar />
@@ -31,9 +32,9 @@ const page = () => {
           </div>
 
           <div className="flex flex-col gap-7">
-            {filteredTutors.map((tutor) => (
+            {filteredTutors.length ? filteredTutors.map((tutor) => (
               <TutorCard key={tutor.id} tutor={tutor} />
-            ))}
+            )) : (<h1 className="text-center font-bold text-3xl text-red-500">No Tutors Found</h1>)}
           </div>
         </div>
       </section>

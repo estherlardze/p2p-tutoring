@@ -15,6 +15,8 @@ module.exports = {
 
       backgroundImage: {
         header: "url('/bg-3.jpg')",
+        goal: "url('/goal2.jpg')",
+
       },
     },
 
@@ -29,6 +31,7 @@ module.exports = {
       green: "#3da635",
       "gray-2": "#808080",
       "gray-1": "#505451",
+      yellow: "#faa81b"
     },
   },
   plugins: [],
