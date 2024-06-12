@@ -16,6 +16,8 @@ module.exports = {
       backgroundImage: {
         header: "url('/bg-3.jpg')",
         goal: "url('/goal2.jpg')",
+        hero: "url('/hero.png')",
+
 
       },
     },

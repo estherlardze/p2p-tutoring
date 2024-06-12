@@ -42,7 +42,10 @@ const Navbar = () => {
           <Link href="/" className="text-[17px] font-semibold cursor-pointer">
             Features
           </Link>
-          <Link href="/tutors" className="text-[17px] font-semibold cursor-pointer">
+          <Link
+            href="/tutors"
+            className="text-[17px] font-semibold cursor-pointer"
+          >
             Tutors
           </Link>
         </div>
@@ -56,68 +59,63 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="md:hidden" onClick={() => setMenu(true)}>
-          {<IoMdMenu size={25} />}
+        <div className="md:hidden" onClick={() => setMenu(!menu)}>
+          <IoMdMenu size={25} />
         </div>
       </section>
 
-      {menu && (
-        <div className="bg-black/95 w-full h-[100vh] fixed text-white md:hidden top-0 left-0 justify-center items-center">
-          {menu && (
-            <IoMdClose
-              size={25}
-              onClick={() => setMenu(false)}
-              className="absolute top-8 right-8"
-            />
-          )}
+      <div
+        className={`fixed left-0 top-0 px-8 py-4 z-50 h-full w-fit bg-white shadow-md transform transition-transform duration-500 ${
+          menu ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
 
-          <div className="flex justify-center items-center flex-col h-screen text-lg sm:text-xl gap-y-4">
-            <Link
-              href="/"
-              className="font-semibold cursor-pointer"
-              onClick={() => setMenu(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/"
-              className="font-semibold cursor-pointer"
-              onClick={() => setMenu(false)}
-            >
-              How it works
-            </Link>
-            <Link
-              href="/"
-              className="font-semibold cursor-pointer"
-              onClick={() => setMenu(false)}
-            >
-              Features
-            </Link>
-            <Link
-              href="/tutors"
-              className="font-semibold cursor-pointer"
-              onClick={() => setMenu(false)}
-            >
-              Tutors
-            </Link>
+        <div className="flex flex-col h-screen text-lg sm:text-xl gap-y-4">
+          <Link
+            href="/"
+            className="font-semibold cursor-pointer"
+            onClick={() => setMenu(false)}
+          >
+            Home
+          </Link>
+          <Link
+            href="/"
+            className="font-semibold cursor-pointer"
+            onClick={() => setMenu(false)}
+          >
+            How it works
+          </Link>
+          <Link
+            href="/"
+            className="font-semibold cursor-pointer"
+            onClick={() => setMenu(false)}
+          >
+            Features
+          </Link>
+          <Link
+            href="/tutors"
+            className="font-semibold cursor-pointer"
+            onClick={() => setMenu(false)}
+          >
+            Tutors
+          </Link>
 
-            <Link
-              href="/login"
-              className="font-semibold text-[17px]"
-              onClick={() => setMenu(false)}
-            >
-              Login
-            </Link>
-            <Link
-              href="/sign-up"
-              className="font-semibold text-[17px]"
-              onClick={() => setMenu(false)}
-            >
-              Sign up
-            </Link>
-          </div>
+          <Link
+            href="/login"
+            className="font-semibold text-[17px]"
+            onClick={() => setMenu(false)}
+          >
+            Login
+          </Link>
+          <Link
+            href="/sign-up"
+            className="font-semibold text-[17px]"
+            onClick={() => setMenu(false)}
+          >
+            Sign up
+          </Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

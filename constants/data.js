@@ -1,4 +1,8 @@
 import { step1, step2, step3 } from "@/public";
+import { FaPlus } from "react-icons/fa6";
+import { TbUserPlus } from "react-icons/tb";
+import { MdDateRange } from "react-icons/md";
+import { CiVideoOn } from "react-icons/ci";
 
 export const howitworks = [
   {
@@ -42,5 +46,36 @@ export const features = [
   "Allows students to rate and review tutors, helping others make informed decisions based on the experiences of their peers. This builds trust and enhances the overall quality of the tutoring services",
   "This platform fosters a peer-to-peer learning community. Students can connect with others who excel in their desired subjects, creating a valuable network for academic support and potentially even friendships.",
 ];
+
+export const meetingdata = [
+  {
+    id:1,
+    title: "New meeting",
+    content:"Start an instant meeting",
+    icon:FaPlus,
+    color:"#f56042"
+  },
+  {
+    id:2,
+    title: "Join meeting",
+    content:"Via invitation link",
+    icon:TbUserPlus,
+    color:"#28a0eb"
+  },
+  {
+    id:3,
+    title: "Schedule meeting",
+    content:"Plan your meeting",
+    icon:MdDateRange,
+    color:"#630791"
+  },
+  {
+    id:4,
+    title: "View Recording",
+    content:"Meeting recordings",
+    icon:CiVideoOn,
+    color:"#d1b204"
+  }
+]
 
 
