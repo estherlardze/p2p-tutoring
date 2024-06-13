@@ -39,7 +39,7 @@ const Sidebar = ({ menu, closeMenu }) => {
           <Link
             href={link.route}
             key={link.name}
-            className="flex text-black/70 py-2 gap-4 pl-4 my-8 hover:bg-blue/80"
+            className="flex text-black/70 py-2 gap-4 pl-4 my-8 hover:bg-blue/80 hover:text-white transition-all duration-300"
           >
             <p className="text-2xl text-gray/60">{link.icon}</p>
             <p className="hidden lg:block text-lg font-bold ">
