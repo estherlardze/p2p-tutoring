@@ -30,7 +30,7 @@ const Navbar = () => {
         changebg ? "bg-white text-black" : ""
       } fixed top-0 left-0 w-full transition-all duration-300 h-[68px] `}
     >
-      <section className="flex justify-between py-5 px-8 2xl:w-[1500px] 2xl:mx-auto z-50">
+      <section className="flex justify-between py-5 px-[4px] sm:px-8 2xl:w-[1500px] 2xl:mx-auto z-50">
         <h1 className="text-2xl font-bold">LoGo</h1>
         <div className="hidden md:flex gap-8">
           <Link href="/" className="text-[17px] font-semibold cursor-pointer">
@@ -60,7 +60,7 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden" onClick={() => setMenu(!menu)}>
-          <IoMdMenu size={25} />
+         {menu ? <IoMdClose size={25} /> : <IoMdMenu size={25}/>}
         </div>
       </section>
 

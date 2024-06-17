@@ -8,10 +8,10 @@ const Hiw = () => {
       <div className="text-center py-[70px] w-[90%] mx-[5%] 2xl:w-[1500px] 2xl:mx-auto">
         <h1 className="text-3xl font-bold">How it Works</h1>
 
-        <div className="grid grid-cols-12 lg:grid-cols-12 gap-6 mt-16">
+        <div className="sm:grid flex flex-col grid-cols-12 gap-6 mt-16">
           {howitworks.map((howitwork, index) => (
             <div
-              className="text-black col-span-12 sm:col-span-6 lg:col-span-3 flex flex-col items-center"
+              className="text-black flex-col flex-wrap  sm:col-span-6 lg:col-span-3 flex flex-col items-center"
               key={index}
             >
               <Image
@@ -24,7 +24,7 @@ const Hiw = () => {
                 {howitwork.step}
               </h1>
               <h1 className="font-bold mb-4">{howitwork.title}</h1>
-              <p className="text-[12px] text-gray-1/90 leading-6">
+              <p className="text-[12px] text-gray-1/90 flex flex-wrap flex-col sm:leading-6">
                 {howitwork.content}
               </p>
             </div>

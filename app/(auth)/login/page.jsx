@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 
-const page = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +32,7 @@ const page = () => {
         <div className="flex flex-col items-center justify-center mb-6">
           <h2 className="text-3xl font-semibold text-center">Login</h2>
           <small className="text-[12px] mt-3 text-center">
-            Hello, welcome back
+            Hello, welcome 
           </small>
         </div>
         <form onSubmit={handleSubmit}>
@@ -50,7 +50,7 @@ const page = () => {
               value={email}
               onChange={handleEmailChange}
               placeholder="Enter your student email"
-              className="w-full px-3 py-2 border border-black/35 rounded-md outline-blue/40"
+              className="w-full px-3 py-[6px] border border-black/35 rounded-md outline-blue/40"
               required
             />
           </div>
@@ -61,7 +61,7 @@ const page = () => {
             >
               Password:
             </label>
-            <div className="outline-blue/40 py-2 border  outline:border-blue/70 border-gray-2 px-4 rounded-md">
+            <div className="outline-blue/40 py-[6px] border  outline:border-blue/70 border-gray-2 px-4 rounded-md">
               <div className=" flex justify-between items-center ">
                 <input
                   type={`${showPassword ? "text" : "password"}`}
@@ -79,7 +79,7 @@ const page = () => {
               </div>
             </div>
           </div>
-          <button className="border rounded w-full border-blue bg-blue font-bold py-2 px-10  text-white hover:bg-white hover:text-black transition-all duration-500">
+          <button className="border-2 rounded w-full border-blue bg-blue font-bold py-[6px] px-10  text-white hover:bg-white hover:text-black transition-all duration-500">
             Login
           </button>
 
@@ -90,7 +90,7 @@ const page = () => {
                 Sign up
               </Link>
             </p>
-            <Link href='/' className="text-[12px] hover:underline">Forgot password</Link>
+            <Link href='/forget-password' className="text-[12px] hover:underline">Forgot password</Link>
           </div>
           
         </form>
@@ -99,4 +99,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Login;

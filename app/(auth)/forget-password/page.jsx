@@ -12,6 +12,7 @@ function ForgotPassword() {
     setMessage(
       `If an account with ${email} exists, a password reset link has been sent.`
     );
+    setEmail("");
   };
 
   return (
@@ -19,22 +20,27 @@ function ForgotPassword() {
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Forgot Password</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="email">
-              Email Address
+        <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="block text-gray-1 font-bold mb-2"
+            >
+              Email:
             </label>
             <input
-              type="email"
+              type="text"
               id="email"
-              className="w-full px-3 py-2 border rounded"
+              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your student email"
+              className="w-full px-3 py-[6px] border border-black/35 rounded-md outline-blue/40"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white border-2 border-blue py-2 px-4 rounded bg-blue hover:bg-white hover:text-black"
+            className="w-full bg-blue-500 text-white border-2 border-blue py-[6px] px-4 rounded bg-blue hover:bg-white hover:text-black transition-all duration-500"
           >
             Send Reset Link
           </button>

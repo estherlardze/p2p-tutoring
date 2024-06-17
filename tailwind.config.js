@@ -24,6 +24,7 @@ module.exports = {
 
     fontFamily: {
       custom: ["Poppins", "sans-serif"],
+      slang: ["Playwrite ZA", "cursive"],
     },
     colors: {
       blue: "#042085",
