@@ -7,7 +7,7 @@ import { Footer, Navbar, Reviews, Availability, Ratings } from "@/components";
 import Image from "next/image";
 import Popup from "@/components/tutorpage/Modal";
 
-const page = () => {
+const TutorDetail = () => {
   const { tutorId } = useParams();
   const tutor = tutors.find((tutor) => tutor.id === parseInt(tutorId));
 
@@ -102,4 +102,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default TutorDetail;

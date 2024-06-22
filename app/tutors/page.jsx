@@ -5,7 +5,7 @@ import { Navbar, Footer } from "@/components";
 import { tutors } from "../../constants/tutor";
 import TutorCard from "@/components/tutorpage/TutorCard";
 
-const page = () => {
+const Tutors = () => {
   const [search, setSearch] = useState("");
 
   const filteredTutors = tutors.filter((tutor) =>
@@ -46,4 +46,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Tutors;
