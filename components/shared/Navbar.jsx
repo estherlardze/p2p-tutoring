@@ -86,11 +86,11 @@ const Navbar = () => {
             How it works
           </Link>
           <Link
-            href="/"
+            href="/apply-as-tutor"
             className="font-semibold cursor-pointer"
             onClick={() => setMenu(false)}
           >
-            Features
+            Become a tutor
           </Link>
           <Link
             href="/tutors"
