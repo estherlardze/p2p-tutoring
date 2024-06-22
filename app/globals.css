@@ -23,6 +23,56 @@ scrollable-container::-webkit-scrollbar {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
+.custom-min-h {
+  min-height: calc(100vh - 70px);
+}
+
+/* ================step indicator=============== */
+.step-item:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #d1d5db; /* Tailwind color class 'bg-gray-300' */
+  right: 50%;
+  top: 33.33%; /* Approximation of 'top-1/3' */
+  transform: translateY(-50%);
+}
+
+.step {
+  width: 2rem; /* Tailwind class 'w-8' */
+  height: 2rem; /* Tailwind class 'h-8' */
+  display: flex;
+  position: relative;
+  font-size: 0.875rem; /* Tailwind class 'text-sm' */
+  z-index: 10; /* Tailwind class 'z-10' */
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px; /* Tailwind class 'rounded-full' */
+  background-color: #d1d5db; /* Tailwind class 'bg-gray-300' */
+  color: #ffffff; /* Tailwind class 'text-white' */
+  font-weight: 600; /* Tailwind class 'font-semibold' */
+}
+
+.active .step {
+  background-color: #1e40af; /* Tailwind class 'bg-blue' (for example, using 'bg-blue-900' as the blue color) */
+}
+
+.complete .step {
+  background-color: #1e40af; /* Tailwind class 'bg-blue' (for example, using 'bg-blue-900' as the blue color) */
+}
+
+.complete small {
+  color: #000000; /* Tailwind class 'text-black' */
+}
+
+.complete:not(:first-child)::before,
+.active:not(:first-child)::before {
+  background-color: #1e40af; /* Tailwind class 'bg-blue' (for example, using 'bg-blue-900' as the blue color) */
+}
+
+
+
 
 
 @media (min-width: 768px) {

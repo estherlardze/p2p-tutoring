@@ -110,7 +110,7 @@ const SignUp = () => {
               name="department"
               value={department}
               onChange={handleEmailChange}
-              placeholder="Enter your student email"
+              placeholder="Enter your department"
               className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
               required
             />
@@ -144,7 +144,7 @@ const SignUp = () => {
             <select
               name=""
               id=""
-              className="w-full px-3 py-1 font-semibold border text-black/80 border-black/35 rounded-md outline-blue/40 mt-4"
+              className="w-full px-3 py-[6px] font-semibold border text-black/80 border-black/35 rounded-md outline-blue/40 mt-4"
             >
               <option value="">select role</option>
               <option value="">Student</option>

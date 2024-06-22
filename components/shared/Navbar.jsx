@@ -39,8 +39,8 @@ const Navbar = () => {
           <Link href="/" className="text-[17px] font-semibold cursor-pointer">
             How it works
           </Link>
-          <Link href="/" className="text-[17px] font-semibold cursor-pointer">
-            Features
+          <Link href="/apply-as-tutor" className="text-[17px] font-semibold cursor-pointer">
+            Become a tutor
           </Link>
           <Link
             href="/tutors"

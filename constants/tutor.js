@@ -4,7 +4,7 @@ export const tutors = [
   {
     id: 1,
     name: "David Wilson",
-    contact: "david.wilson@example.com",
+    contact: "+233 551 123 456",
     image: tuto5,
     courses: ["Computer Science", "Mathematics"],
     programme: "Computer Engineering",
@@ -74,7 +74,7 @@ export const tutors = [
   {
     id: 2,
     name: "Sarah Johnson",
-    contact: "sarah.johnson@example.com",
+    contact: "+233 551 123 456",
     image: tuto1,
     courses: ["Economics", "Statistics"],
     availability: [
@@ -144,7 +144,7 @@ export const tutors = [
   {
     id: 3,
     name: "Chris Lee",
-    contact: "chris.lee@example.com",
+    contact: "+233 551 123 456",
     availability: [
       {
         day: "Mon",
@@ -214,7 +214,7 @@ export const tutors = [
   {
     id: 4,
     name: "Anna Taylor",
-    contact: "anna.taylor@example.com",
+    contact: "+233 551 123 456",
     availability: [
       {
         day: "Mon",
@@ -284,7 +284,7 @@ export const tutors = [
   {
     id: 5,
     name: "Mark Robinson",
-    contact: "mark.robinson@example.com",
+    contact: "+233 551 123 456",
     availability: [
       {
         day: "Mon",

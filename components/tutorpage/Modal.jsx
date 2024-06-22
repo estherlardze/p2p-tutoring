@@ -20,9 +20,36 @@ const Popup = ({ tutor }) => {
         <form action="" className="">
           <MultiSelect
             label="Course"
-            placeholder="Select a course"
+            placeholder="Select a course you want to learn"
             data={tutor.courses}
           />
+         
+         
+         <div className="mt-2">
+            <label htmlFor="email" className="font-semibold">
+              Date
+            </label>
+            <input
+              type="date"
+              name=""
+              id=""
+              placeholder="Enter your student email"
+              className="w-full px-3 py-1  border text-black/80 border-black/35 rounded-md outline-blue/40"
+            />
+          </div>
+
+          <div className="mt-2">
+            <label htmlFor="email" className="font-semibold">
+              Time
+            </label>
+            <input
+              type="time"
+              name=""
+              id=""
+              placeholder="Enter your student email"
+              className="w-full px-3 py-1  border text-black/80 border-black/35 rounded-md outline-blue/40"
+            />
+          </div>
 
           <div className="mt-4">
             <h1 className="font-semibold">
@@ -40,18 +67,18 @@ const Popup = ({ tutor }) => {
 
           <div className="my-4">
             <h3 className="mb-2 font-semibold">
-             Tell your tutor what you like to learn. Do not include any personal details.
+             Tell your tutor what you like to learn.
             </h3>
             <textarea
               name=""
               rows={4}
               id=""
-              placeholder="Type here"
+              placeholder="What is your challenge in the course"
               className="w-full px-3 py-2 border text-black/80 border-black/25 rounded-md outline-blue/40"
             >
-              Write your message here
             </textarea>
           </div>
+
 
           <div>
             <label htmlFor="email" className="font-semibold">
@@ -75,8 +102,8 @@ const Popup = ({ tutor }) => {
         </form>
       </Modal>
 
-      <button onClick={open} styles={{ color: "#042085" }}>
-        Message me
+      <button onClick={open} styles={{ color: "#042085", fontWeight: "bold" }}>
+        Book me
       </button>
     </section>
   );

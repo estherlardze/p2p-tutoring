@@ -10,8 +10,8 @@ const SidebarLinks = [
     icon: <FaHome />,
   },
   {
-    name: "Lessons",
-    route: "/dashboard/lessons",
+    name: "Bookings",
+    route: "/dashboard/bookings",
     icon: <FaBook />,
   },
   {
@@ -24,22 +24,17 @@ const SidebarLinks = [
     route: "/dashboard/support",
     icon: <FaUser />,
   },
-  {
-    name: "Profile",
-    route: "/dashboard/profile",
-    icon: <FaUser />,
-  },
 ];
 
 const Sidebar = ({ menu, closeMenu }) => {
   return (
     <section>
-      <div className="sticky hidden sm:block w-[250px] top-0 left-0 z-10  bg-white custom-sidebar-height shadow-md">
+      <div className="sticky hidden sm:block w-[250px] 2xl:w-[400px] top-0 left-0 z-10  bg-white custom-sidebar-height shadow-md">
         {SidebarLinks.map((link) => (
           <Link
             href={link.route}
             key={link.name}
-            className="flex text-black/70 py-2 gap-4 pl-4 my-8 hover:bg-blue/80 hover:text-white transition-all duration-300"
+            className="flex text-black/70 py-2 gap-4 pl-4 my-8 hover:bg-blue/80 hover:text-white transition-all duration-200"
           >
             <p className="text-2xl text-gray/60">{link.icon}</p>
             <p className="hidden lg:block text-lg font-bold ">

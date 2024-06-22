@@ -10,7 +10,7 @@ export const howitworks = [
     image: step1,
     step: "step 1",
     title: "Register",
-    content: "Sign up with your student email and set up your profile",
+    content: "Sign up with your student email and set up your profile either as a student or tutor",
   },
   {
     id: 2,
@@ -77,5 +77,54 @@ export const meetingdata = [
     color:"#d1b204"
   }
 ]
+
+
+export const bookings = [
+  {
+    id: 1,
+    course: "Mathematics",
+    date: "2024-06-25",
+    time: "10:00",
+    lessonType: "Online",
+    learningGoals: "I want to improve my understanding of calculus.",
+    studentEmail: "student1@example.com"
+  },
+  {
+    id: 2,
+    course: "Physics",
+    date: "2024-06-26",
+    time: "14:00",
+    lessonType: "In-person",
+    learningGoals: "I need help with quantum mechanics.",
+    studentEmail: "student2@example.com"
+  },
+  {
+    id: 3,
+    course: "Chemistry",
+    date: "2024-06-27",
+    time: "11:00",
+    lessonType: "Online",
+    learningGoals: "I'm struggling with organic chemistry reactions.",
+    studentEmail: "student3@example.com"
+  },
+  {
+    id: 4,
+    course: "Biology",
+    date: "2024-06-28",
+    time: "09:00",
+    lessonType: "In-person",
+    learningGoals: "I want to learn more about genetics.",
+    studentEmail: "student4@example.com"
+  },
+  {
+    id: 5,
+    course: "English",
+    date: "2024-06-29",
+    time: "15:00",
+    lessonType: "Online",
+    learningGoals: "I need help improving my essay writing skills.",
+    studentEmail: "student5@example.com"
+  }
+];
 
 

@@ -19,7 +19,7 @@ const page = () => {
         <Navbar />
       </div>
 
-      <section className="bg-black/10 w-full mt-[70px] pb-[70px] overflow-y-scroll scrollable-container pt-3">
+      <section className="bg-black/10 w-full mt-[70px] pb-[70px] overflow-y-scroll min-h-screen scrollable-container pt-3">
         <div className="mx-auto w-[90%]  2xl:w-[1500px] 2xl:mx-auto">
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
             <Image
@@ -41,13 +41,21 @@ const page = () => {
                 </div>
               </div>
 
-              <div className="flex gap-3 items-center mt-3">
-                <p className="text-blue text-xl font-bold mb-3">
+              <div className="flex items-center gap-2 mt-1">
+                <p className="text-text/90 font-semibold">Contact</p>{" "}
+                <p className="text-gray-1">
+                  {tutor.contact}
+                </p>
+              </div> 
+
+              <p className="text-blue text-xl font-bold my-1">
                   ₵{tutor.price} <span className="text-[16px]">/ hour</span>
                 </p>
-                <div className="bg-blue/90 text-white px-4 py-1 rounded-sm cursor-pointer">
+
+              
+               
+                <div className="bg-transparent border-2 border-blue w-fit rounded-md text-black hover:bg-blue/90 hover:text-white px-4 py-1 transition-all duration-300 cursor-pointer">
                   <Popup tutor={tutor} />
-                </div>
               </div>
             </div>
           </div>
