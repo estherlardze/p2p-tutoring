@@ -65,7 +65,7 @@ const Navbar = () => {
       </section>
 
       <div
-        className={`fixed left-0 top-0 px-6 py-4 z-50 h-full w-fit bg-white shadow-md transform transition-transform duration-500 ${
+        className={`fixed left-0 top-0 px-6 py-4 z-50 h-full w-fit bg-white text-black shadow-md transform transition-transform duration-500 ${
           menu ? "translate-x-0" : "-translate-x-full"
         }`}
       >
