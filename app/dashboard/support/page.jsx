@@ -25,7 +25,8 @@ const ReportForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
+    <section className='min-h-screen'>
+    <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md mt-10">
       <h2 className="text-2xl font-bold mb-4">Report an Issue</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -86,6 +87,7 @@ const ReportForm = () => {
         </button>
       </form>
     </div>
+    </section>
   );
 };
 

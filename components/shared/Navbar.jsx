@@ -30,7 +30,7 @@ const Navbar = () => {
         changebg ? "bg-white text-black" : ""
       } fixed top-0 left-0 w-full transition-all duration-300 h-[68px] `}
     >
-      <section className="flex justify-between py-5 px-[4px] sm:px-8 2xl:w-[1500px] 2xl:mx-auto z-50">
+      <section className="flex justify-between py-5 px-4 sm:px-8 2xl:w-[1500px] 2xl:mx-auto z-50">
         <h1 className="text-2xl font-bold">LoGo</h1>
         <div className="hidden md:flex gap-8">
           <Link href="/" className="text-[17px] font-semibold cursor-pointer">
@@ -65,7 +65,7 @@ const Navbar = () => {
       </section>
 
       <div
-        className={`fixed left-0 top-0 px-8 py-4 z-50 h-full w-fit bg-white shadow-md transform transition-transform duration-500 ${
+        className={`fixed left-0 top-0 px-6 py-4 z-50 h-full w-fit bg-white shadow-md transform transition-transform duration-500 ${
           menu ? "translate-x-0" : "-translate-x-full"
         }`}
       >

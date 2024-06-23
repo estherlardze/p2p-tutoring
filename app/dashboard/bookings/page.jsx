@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Container, Table, Button, Title, Modal } from '@mantine/core';
+import { Modal, Button as MantineButton } from '@mantine/core';
 import BookingDetail from '../../../components/BookingDetail';
 import { bookings } from '@/constants/data';
 
@@ -15,43 +15,49 @@ const TutorDashboard = () => {
   };
 
   return (
-    <Container>
-      <Title align="center" my="lg" striped>Bookings</Title>
-      <div className='overflow-x-scroll flex items-center'>
-        <Table striped highlightOnHover>
-          <thead>
-            <tr>
-              <th>Course</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Lesson Type</th>
-              <th>Actions</th>
+    <div className="container mx-auto p-4 min-h-screen">
+      <h1 className="text-center my-4 text-2xl font-bold">Requests from students</h1>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white ">
+          <thead className='bg-blue/20'>
+            <tr className="bg-gray-200">
+              <th className="py-2 px-4 border-b border-gray-2">Course</th>
+              <th className="py-2 px-4 border-b border-gray-2">Date</th>
+              <th className="py-2 px-4 border-b border-gray-2">Time</th>
+              <th className="py-2 px-4 border-b border-gray-2">Lesson Type</th>
+              <th className="py-2 px-4 border-b border-gray-2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {bookings?.map((booking) => (
-              <tr key={booking.id}>
-                <td>{booking.course}</td>
-                <td>{booking.date}</td>
-                <td>{booking.time}</td>
-                <td>{booking.lessonType}</td>
-                <td>
-                  <Button variant="outline" onClick={() => handleViewDetails(booking)}>View Details</Button>
+            {bookings?.map((booking, index) => (
+              <tr key={booking.id} className={index % 2 === 0 ? 'bg-gray-2/20' : 'bg-white'}>
+                <td className="py-2 px-4 border-b border-gray-2">{booking.course}</td>
+                <td className="py-2 px-4 border-b border-gray-2">{booking.date}</td>
+                <td className="py-2 px-4 border-b border-gray-2">{booking.time}</td>
+                <td className="py-2 px-4 border-b border-gray-2">{booking.lessonType}</td>
+                <td className="py-2 px-4 border-b border-gray-2 text-center">
+                  <button
+                    className="bg-blue/70 text-white py-1 px-3 rounded-md hover:bg-blue-600"
+                    onClick={() => handleViewDetails(booking)}
+                  >
+                    View Details
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
-        </Table>
+        </table>
       </div>
 
       <Modal
         opened={detailModalOpen}
         onClose={() => setDetailModalOpen(false)}
         title="Booking Details"
+        centered
       >
         {selectedBooking && <BookingDetail booking={selectedBooking} />}
       </Modal>
-    </Container>
+    </div>
   );
 };
 

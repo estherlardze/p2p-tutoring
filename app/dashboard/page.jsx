@@ -13,7 +13,7 @@ const Dashboard = () => {
   );
 
   return (
-    <main className="py-8 custom-min-h flex flex-col items-center justify-center">
+    <main className="py-8  flex flex-col items-center justify-center">
       <section className="h-[200px] w-full 2xl:max-w-[1500px] rounded-[20px] bg-hero bg-cover">
         <div className="flex h-full text-white flex-col justify-between max-md:px-5 max-md:py-8 lg:p-11">
           <h2 className="glassmorphism max-w-[273px] rounded py-2 text-center text-base font-normal">
@@ -26,12 +26,12 @@ const Dashboard = () => {
         </div>
       </section>
 
-      <section className="gap-4 grid grid-cols-4 mt-10 text-white">
+      <section className="gap-4 w-full grid grid-cols-4 mt-10 text-white">
         {meetingdata.map((meeting) => (
           <div
             key={meeting.id}
             style={{ backgroundColor: `${meeting.color}` }}
-            className="px-4 py-6 flex flex-col justify-between col-span-4 sm:col-span-2 lg:col-span-1 w-full xl:max-w-[300px] min-h-[240px] rounded-[14px] cursor-pointer"
+            className="px-4 py-6 flex flex-col justify-between  col-span-4 sm:col-span-2 lg:col-span-1 xl:max-w-[300px] min-h-[240px] rounded-[14px] cursor-pointer"
           >
             <div className="text-center w-fit bg-white/20 p-2 rounded-[10px]">
               <meeting.icon size={32} />

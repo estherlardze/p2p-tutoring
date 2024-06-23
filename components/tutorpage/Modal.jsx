@@ -18,6 +18,32 @@ const Popup = ({ tutor }) => {
         }}
       >
         <form action="" className="">
+        <div className="">
+            <label htmlFor="name" className="font-semibold">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter your name"
+              className="w-full px-3 py-1  border text-black/80 border-black/35 rounded-md outline-blue/40"
+            />
+          </div>
+
+          <div className="my-2">
+            <label htmlFor="email" className="font-semibold">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter your student email"
+              className="w-full px-3 py-1  border text-black/80 border-black/35 rounded-md outline-blue/40"
+            />
+          </div>
+
           <MultiSelect
             label="Course"
             placeholder="Select a course you want to learn"
@@ -26,13 +52,13 @@ const Popup = ({ tutor }) => {
          
          
          <div className="mt-2">
-            <label htmlFor="email" className="font-semibold">
-              Date
+            <label htmlFor="date" className="font-semibold">
+              Date 
             </label>
             <input
               type="date"
-              name=""
-              id=""
+              name="date"
+              id="datew"
               placeholder="Enter your student email"
               className="w-full px-3 py-1  border text-black/80 border-black/35 rounded-md outline-blue/40"
             />
@@ -77,20 +103,6 @@ const Popup = ({ tutor }) => {
               className="w-full px-3 py-2 border text-black/80 border-black/25 rounded-md outline-blue/40"
             >
             </textarea>
-          </div>
-
-
-          <div>
-            <label htmlFor="email" className="font-semibold">
-              Email
-            </label>
-            <input
-              type="email"
-              name=""
-              id=""
-              placeholder="Enter your student email"
-              className="w-full px-3 py-1  border text-black/80 border-black/35 rounded-md outline-blue/40"
-            />
           </div>
 
           <button

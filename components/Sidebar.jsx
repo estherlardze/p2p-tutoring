@@ -15,11 +15,6 @@ const SidebarLinks = [
     icon: <FaBook />,
   },
   {
-    name: "Payment",
-    route: "/dashboard/payment",
-    icon: <FaUser />,
-  },
-  {
     name: "Support",
     route: "/dashboard/support",
     icon: <FaUser />,
