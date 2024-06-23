@@ -39,7 +39,7 @@ const TutorForm = () => {
       <Navbar />
       </div>
       <h1 className='text-center pt-4 font-bold text-2xl mt-[70px]'>Apply to be a tutor</h1>
-      <div className='w-[90%] sm:max-w-lg mx-auto p-6 my-8 bg-white shadow-md rounded-lg mt-5 h-[80vh] overflow-y-scroll'>
+      <div className='w-[90%] sm:max-w-lg mx-auto p-6 my-8 bg-white shadow-md rounded-lg mt-5 h-[80vh] scrollable-container overflow-y-scroll'>
         <form onSubmit={handleSubmit} className=''>
           <div className="mb-4">
             <label htmlFor="bio" className="block text-gray-2 font-medium mb-2">Bio</label>
@@ -153,7 +153,7 @@ const TutorForm = () => {
           </div>
         </form>
 </div>
-      <div className='fixed bottom-0 left-0 right-0 w-full'>
+      <div className=''>
       <Footer />
       </div>
 </div>
