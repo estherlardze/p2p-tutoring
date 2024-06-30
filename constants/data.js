@@ -39,6 +39,41 @@ export const howitworks = [
   },
 ];
 
+export const whychooseus = [
+  {
+    id: 1,
+    image: step1,
+    step: "step 1",
+    title: "Sign up",
+    content: "Create an account on our platform or log in if you already have one",
+  },
+  {
+    id: 2,
+    image: step2,
+    step: "step 2",
+    title: "Profile Setup",
+    content:
+      "Fill out your profile with detailed information about your academic background, courses of expertise, availability and transcript",
+  },
+
+  {
+    id: 3,
+    image: step3,
+    step: "step 3",
+    title: "Verification",
+    content: "Our team will review your profile and verify your credentials",
+  },
+
+  {
+    id: 4,
+    image: step2,
+    step: "step 4",
+    title: "Start Tutoring",
+    content:
+      "Once approved, students can find and book sessions with you based on your availability",
+  },
+];
+
 export const features = [
   "Enables students to easily find tutors based on specific subjects, availability, and ratings, ensuring they can connect with the most suitable tutor for their needs.",
   "The platform provides an accessible way for students to find help when they need it, regardless of their location, making academic support more inclusive",

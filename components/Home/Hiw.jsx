@@ -2,16 +2,16 @@ import React from "react";
 import { howitworks } from "@/constants/data";
 import Image from "next/image";
 
-const Hiw = () => {
+const Hiw = ({heading, data}) => {
   return (
-    <section className=" bg-black/5">
+   
       <div className="text-center py-[70px] w-[90%] mx-[5%] 2xl:w-[1500px] 2xl:mx-auto">
-        <h1 className="text-3xl font-bold">How it Works</h1>
+        <h1 className="text-3xl font-bold">{heading}</h1>
 
         <div className="sm:grid flex flex-col grid-cols-12 gap-6 mt-16">
-          {howitworks.map((howitwork, index) => (
+          {data.map((howitwork, index) => (
             <div
-              className="text-black flex-col flex-wrap  sm:col-span-6 lg:col-span-3 flex flex-col items-center"
+              className="text-black flex-wrap  sm:col-span-6 lg:col-span-3 flex flex-col items-center"
               key={index}
             >
               <Image
@@ -31,7 +31,6 @@ const Hiw = () => {
           ))}
         </div>
       </div>
-    </section>
   );
 };
 
