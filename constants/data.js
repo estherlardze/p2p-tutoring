@@ -3,6 +3,8 @@ import { FaPlus } from "react-icons/fa6";
 import { TbUserPlus } from "react-icons/tb";
 import { MdDateRange } from "react-icons/md";
 import { CiVideoOn } from "react-icons/ci";
+import { FaHome, FaBook, FaUser } from "react-icons/fa";
+
 
 export const howitworks = [
   {
@@ -167,4 +169,59 @@ export const bookings = [
   }
 ];
 
+
+export const adminLinks = [
+  {
+    name: "Tutor",
+    route: "/dashboard/tutor-request",
+    icon: <FaHome />,
+  },
+  {
+    name: "Admin-support",
+    route: "/dashboard/admin-support",
+    icon: <FaBook />
+  }
+]
+
+
+export const studentLinks = [
+  {
+    name: "Home",
+    route: "/dashboard",
+    icon: <FaHome />,
+  },
+  {
+    name: "Bookings",
+    route: "/dashboard/bookings",
+    icon: <FaBook />,
+  },
+  {
+    name: "Support",
+    route: "/dashboard/support",
+    icon: <FaUser />,
+  },
+]
+
+export const tutorLink = [
+  {
+    name: "Home",
+    route: "/dashboard",
+    icon: <FaHome />,
+  },
+  {
+    name: "Student-tutor",
+    route: "/dashboard/student-tutor",
+    icon: <FaUser />,
+  },
+  {
+    name: "Tutor-requests",
+    route: "/dashboard/tutor-requests",
+    icon: <FaBook />
+  },
+  {
+    name: "Student-feedback",
+    route: "/dashboard/student-feedback",
+    icon: <FaUser />
+  },
+]
 

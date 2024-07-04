@@ -17,10 +17,8 @@ export default function RootLayout({ children }) {
       <head>
         <ColorSchemeScript />
       </head>
-      <body className={`${inter.className} `}>
-        <Navbar />
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
         <MantineProvider className="flex-grow">{children}</MantineProvider>
-        <Footer />
       </body>
     </html>
   );

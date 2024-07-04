@@ -3,7 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { tutors } from "@/constants/tutor";
-import { Reviews, Availability, Ratings } from "@/components";
+import { Reviews, Availability, Ratings, Navbar, Footer } from "@/components";
 import Image from "next/image";
 import Popup from "@/components/tutorpage/Modal";
 
@@ -14,7 +14,10 @@ const TutorDetail = () => {
   if (!tutor) return <div>Tutor not found</div>;
 
   return (
-    <main className="bg-black/10 w-full mt-[70px] pb-[70px] overflow-y-scroll min-h-screen scrollable-container pt-3">
+    <main>
+      <Navbar/>
+
+    <section className="bg-black/10 w-full mt-[70px] pb-[70px] overflow-y-scroll min-h-screen scrollable-container pt-3">
       <div className="mx-auto w-[90%]  2xl:w-[1500px] 2xl:mx-auto">
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
           <Image src={tutor.image} alt={tutor.name} width={200} height={170} />
@@ -80,6 +83,9 @@ const TutorDetail = () => {
           </div>
         </section>
       </div>
+    </section>
+
+    <Footer/>
     </main>
   );
 };

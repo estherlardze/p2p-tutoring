@@ -1,25 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { FaHome, FaBook, FaUser } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import { auth } from "@/config/firebase";
 
-const SidebarLinks = [
-  {
-    name: "Home",
-    route: "/dashboard",
-    icon: <FaHome />,
-  },
-  {
-    name: "Bookings",
-    route: "/dashboard/bookings",
-    icon: <FaBook />,
-  },
-  {
-    name: "Support",
-    route: "/dashboard/support",
-    icon: <FaUser />,
-  },
-];
 
 const Sidebar = ({ menu, closeMenu }) => {
   return (

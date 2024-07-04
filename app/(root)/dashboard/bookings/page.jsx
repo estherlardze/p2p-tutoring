@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Modal, Button as MantineButton } from '@mantine/core';
-import BookingDetail from '../../../components/BookingDetail';
+import BookingDetail from '../../../../components/BookingDetail';
 import { bookings } from '@/constants/data';
 
 const TutorDashboard = () => {

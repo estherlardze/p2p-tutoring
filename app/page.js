@@ -7,6 +7,7 @@ import {
   Hiw,
   Features,
   Goal,
+  Footer,
 } from "@/components/index";
 import { howitworks } from "@/constants/data";
 
@@ -24,6 +25,7 @@ export default function Home() {
       </section>
       <Goal />
       <Features />
+      <Footer/>
     </main>
   );
 }

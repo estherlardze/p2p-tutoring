@@ -24,6 +24,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Credentials:", email, password);
+    // Navigate to the dashboard after successful login
+
+    
   };
 
   return (

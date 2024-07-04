@@ -3,6 +3,12 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "@/config/firebase";
+import {setDoc, doc} from 'firebase/firestore'
+import { useRouter } from "next/navigation";
+
+
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,27 +18,50 @@ const SignUp = () => {
     email: "",
     password: "",
     department: "",
+    role: "",
   });
+  const router = useRouter();
+  const { firstName, lastName, email, password, department, role } = signUp;
 
-  const {firstName, lastName, email, password, department} = signUp
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
 
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    setSignUp((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Credentials:", email, password);
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (user) {
+        const userData = {
+          email: user.email,
+          firstName,
+          lastName,
+          department,
+          role,
+        };
+
+        // Store user data in the respective Firestore collection based on their role
+        const userCollection = role === "Student" ? "Students" : "Tutors";
+        await setDoc(doc(db, userCollection, user.uid), userData);
+
+        console.log("User created and data stored:", userData);
+        alert("Success");
+
+        if (role === "Tutor") {
+          router.push("/onboarding");
+        }
+      }
+    } catch (err) {
+      console.log(err.message);
+      return;
+    }
   };
+
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-black/10">
@@ -42,17 +71,17 @@ const SignUp = () => {
           <div className="mb-2 flex flex-col sm:flex-row gap-2">
             <div>
               <label
-                htmlFor="email"
+                htmlFor="firstName"
                 className="block text-gray-700 text-gray-1 font-bold mb-2"
               >
                 First Name
               </label>
               <input
                 type="text"
-                id="firstname"
-                name="firstname"
+                id="firstName"
+                name="firstName"
                 value={firstName}
-                onChange={handleEmailChange}
+                onChange={handleFormChange}
                 placeholder="first name"
                 className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
                 required
@@ -60,17 +89,17 @@ const SignUp = () => {
             </div>
             <div>
               <label
-                htmlFor="email"
+                htmlFor="lastName"
                 className="block text-gray-2 font-bold mb-2"
               >
                 Last Name
               </label>
               <input
                 type="text"
-                id="lastname"
-                name="lastname"
+                id="lastName"
+                name="lastName"
                 value={lastName}
-                onChange={handleEmailChange}
+                onChange={handleFormChange}
                 placeholder="lastname"
                 className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
                 required
@@ -88,18 +117,18 @@ const SignUp = () => {
             <input
               type="text"
               id="email"
-              name="emal"
+              name="email"
               value={email}
-              onChange={handleEmailChange}
+              onChange={handleFormChange}
               placeholder="Enter your student email"
               className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
               required
             />
           </div>
-          
+
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="department"
               className="block text-gray-700 font-bold text-gray-1 mb-2"
             >
               Department
@@ -109,7 +138,7 @@ const SignUp = () => {
               id="department"
               name="department"
               value={department}
-              onChange={handleEmailChange}
+              onChange={handleFormChange}
               placeholder="Enter your department"
               className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
               required
@@ -130,45 +159,49 @@ const SignUp = () => {
                   id="password"
                   name="password"
                   value={password}
-                  onChange={handlePasswordChange}
+                  onChange={handleFormChange}
                   placeholder="Enter your password"
                   className="focus:outline-none border-0"
                   required
                 />
-                <div onClick={handleShowPassword} className="cursor-pointer">
+                <div  className="cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
                   {showPassword ? <FaEye /> : <FaEyeSlash />}
                 </div>
               </div>
             </div>
 
             <select
-              name=""
-              id=""
+              name="role"
+              id="role"
+              value={role}
+              onChange={handleFormChange}
               className="w-full px-3 py-[6px] font-semibold border text-black/80 border-black/35 rounded-md outline-blue/40 mt-4"
+              required
             >
-              <option value="">select role</option>
-              <option value="">Student</option>
-              <option value="">Tutor</option>
+              <option value="">Select role</option>
+              <option value="Student">Student</option>
+              <option value="Tutor">Tutor</option>
             </select>
           </div>
-          <button className="border-2 border-blue w-full bg-blue font-bold py-1 px-4 rounded text-white hover:bg-white hover:text-black transition-all duration-500">
+          <button
+            type="submit"
+            className="border-2 border-blue w-full bg-blue font-bold py-1 px-4 rounded text-white hover:bg-white hover:text-black transition-all duration-500"
+          >
             Sign up
           </button>
         </form>
 
         <div className="flex items-start mt-3">
-            <p className="text-[12px] text-gray-2">
-             Already have an account ?{" "}
-              <Link href="login" className="text-black hover:underline">
-                Login
-              </Link>
-            </p>
-          </div>
+          <p className="text-[12px] text-gray-2">
+            Already have an account ?{" "}
+            <Link href="login" className="text-black hover:underline">
+              Login
+            </Link>
+          </p>
+        </div>
       </div>
-
     </div>
   );
 };
 
-export default  SignUp
-;
+export default SignUp;
