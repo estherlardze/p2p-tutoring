@@ -202,7 +202,7 @@ export const studentLinks = [
   },
 ]
 
-export const tutorLink = [
+export const tutorLinks = [
   {
     name: "Home",
     route: "/dashboard",

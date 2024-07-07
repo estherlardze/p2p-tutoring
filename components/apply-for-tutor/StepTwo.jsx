@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Stepper from "./Stepper";
 import { MdUpload } from "react-icons/md";
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 const StepTwo = ({
   currentStep,
@@ -12,25 +12,23 @@ const StepTwo = ({
   steps,
   formInfo,
   handleFileChange,
-  handleChange,
   handleSelectChange,
   onPrevious,
   onNext,
 }) => {
-
   const availabilityOptions = [
-    { value: 'monday', label: 'Monday' },
-    { value: 'tuesday', label: 'Tuesday' },
-    { value: 'wednesday', label: 'Wednesday' },
-    { value: 'thursday', label: 'Thursday' },
-    { value: 'friday', label: 'Friday' },
-    { value: 'saturday', label: 'Saturday' },
-    { value: 'sunday', label: 'Sunday' },
+    { value: "monday", label: "Monday" },
+    { value: "tuesday", label: "Tuesday" },
+    { value: "wednesday", label: "Wednesday" },
+    { value: "thursday", label: "Thursday" },
+    { value: "friday", label: "Friday" },
+    { value: "saturday", label: "Saturday" },
+    { value: "sunday", label: "Sunday" },
   ];
 
   const tutorialTypeOptions = [
-    { value: 'online', label: 'Online' },
-    { value: 'in-person', label: 'In-person' },
+    { value: "online", label: "Online" },
+    { value: "in-person", label: "In-person" },
   ];
 
   const animatedComponents = makeAnimated();
@@ -43,7 +41,10 @@ const StepTwo = ({
       </div>
 
       <div className="my-3 w-full 2xl:my-6">
-        <label htmlFor="availability" className="text-sm font-semibold text-gray-500">
+        <label
+          htmlFor="availability"
+          className="text-sm font-semibold text-gray-500"
+        >
           Availability
         </label>
         <Select
@@ -52,15 +53,15 @@ const StepTwo = ({
           isMulti
           options={availabilityOptions}
           value={formInfo.availability}
-          onChange={(value) => handleSelectChange('availability', value)}
+          onChange={(value) => handleSelectChange("availability", value)}
           classNamePrefix="react-select"
           theme={(theme) => ({
             ...theme,
             borderRadius: 0,
             colors: {
               ...theme.colors,
-              primary25: 'primary75',
-              primary: 'neutral50',
+              primary25: "primary75",
+              primary: "neutral50",
             },
           })}
           placeholder="Select options..."
@@ -68,7 +69,10 @@ const StepTwo = ({
       </div>
 
       <div className="my-4 w-full 2xl:my-6">
-        <label htmlFor="tutorialType" className="text-sm font-semibold text-gray-500">
+        <label
+          htmlFor="tutorialType"
+          className="text-sm font-semibold text-gray-500"
+        >
           Tutorial Type
         </label>
         <Select
@@ -77,15 +81,15 @@ const StepTwo = ({
           isMulti
           options={tutorialTypeOptions}
           value={formInfo.tutorialType}
-          onChange={(value) => handleSelectChange('tutorialType', value)}
+          onChange={(value) => handleSelectChange("tutorialType", value)}
           classNamePrefix="react-select"
           theme={(theme) => ({
             ...theme,
             borderRadius: 0,
             colors: {
               ...theme.colors,
-              primary25: 'primary75',
-              primary: 'neutral50',
+              primary25: "primary75",
+              primary: "neutral50",
             },
           })}
           placeholder="Select options..."
@@ -114,7 +118,10 @@ const StepTwo = ({
       </div>
 
       <div className="my-6 w-full">
-        <label htmlFor="transcript" className="block text-gray-2 font-medium mb-2">
+        <label
+          htmlFor="transcript"
+          className="block text-gray-2 font-medium mb-2"
+        >
           Upload Transcript
         </label>
         <input

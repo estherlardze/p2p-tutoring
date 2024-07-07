@@ -5,10 +5,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "@/config/firebase";
-import {setDoc, doc} from 'firebase/firestore'
+import { setDoc, doc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-
-
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,15 +26,25 @@ const SignUp = () => {
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
-
     setSignUp((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const emailPattern = /^[a-z]+@st\.knust\.edu\.gh$/;
+
+    if (!emailPattern.test(email)) {
+      toast.error("Use a valid KNUST student email address.");
+      return;
+    }
+
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
       if (user) {
@@ -45,7 +56,6 @@ const SignUp = () => {
           role,
         };
 
-        // Store user data in the respective Firestore collection based on their role
         const userCollection = role === "Student" ? "Students" : "Tutors";
         await setDoc(doc(db, userCollection, user.uid), userData);
 
@@ -54,17 +64,20 @@ const SignUp = () => {
 
         if (role === "Tutor") {
           router.push("/onboarding");
+        }else if(role === "Student") {
+          router.push("/dashboard");
         }
       }
     } catch (err) {
-      console.log(err.message);
+      toast.error(err.message);
       return;
     }
   };
 
-
   return (
     <div className="min-h-screen flex justify-center items-center bg-black/10">
+      <ToastContainer position="top-center" draggable />
+
       <div className="bg-white p-4 rounded shadow-md sm:mx-auto sm:max-w-md max-w-md w-[90%] mx-[5%]">
         <h2 className="text-2xl font-bold mb-8 text-center">Sign Up</h2>
         <form onSubmit={handleSubmit}>
@@ -82,7 +95,7 @@ const SignUp = () => {
                 name="firstName"
                 value={firstName}
                 onChange={handleFormChange}
-                placeholder="first name"
+                placeholder="First name"
                 className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
                 required
               />
@@ -100,7 +113,7 @@ const SignUp = () => {
                 name="lastName"
                 value={lastName}
                 onChange={handleFormChange}
-                placeholder="lastname"
+                placeholder="Last name"
                 className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
                 required
               />
@@ -152,8 +165,8 @@ const SignUp = () => {
             >
               Password
             </label>
-            <div className="w-full px-3 py-1  border  outline:border-blue/70 border-black/35 rounded-md">
-              <div className=" flex justify-between items-center">
+            <div className="w-full px-3 py-1 border outline:border-blue/70 border-black/35 rounded-md">
+              <div className="flex justify-between items-center">
                 <input
                   type={`${showPassword ? "text" : "password"}`}
                   id="password"
@@ -164,7 +177,10 @@ const SignUp = () => {
                   className="focus:outline-none border-0"
                   required
                 />
-                <div  className="cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+                <div
+                  className="cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
                   {showPassword ? <FaEye /> : <FaEyeSlash />}
                 </div>
               </div>
@@ -193,7 +209,7 @@ const SignUp = () => {
 
         <div className="flex items-start mt-3">
           <p className="text-[12px] text-gray-2">
-            Already have an account ?{" "}
+            Already have an account?{" "}
             <Link href="login" className="text-black hover:underline">
               Login
             </Link>
