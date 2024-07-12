@@ -1,18 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
-import { tutors } from "../../constants/tutor";
+import React, { useState, useEffect } from "react";
 import TutorCard from "@/components/tutorpage/TutorCard";
 import { Navbar, Footer } from "@/components";
+import { db } from "@/config/firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const Tutors = () => {
   const [search, setSearch] = useState("");
+  const [tutors, setTutors] = useState([]);
 
-  const handleInputChange = (e) => {
-    // Remove numeric characters from input
-    const filteredValue = e.target.value.replace(/[0-9]/g, "");
-    setSearch(filteredValue);
-  };
+  useEffect(() => {
+    const fetchTutors = async () => {
+      try {
+        const q = query(collection(db, "Students"), where("isTutor", "==", true));
+        const querySnapshot = await getDocs(q);
+
+        const tutorsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setTutors(tutorsList);
+        console.log(tutorsList);
+      } catch (error) {
+        console.error("Error fetching tutors: ", error);
+      }
+    };
+
+    fetchTutors();
+  }, []);
 
   const filteredTutors = tutors.filter((tutor) =>
     tutor.courses.some((course) =>
@@ -25,27 +38,22 @@ const Tutors = () => {
       <Navbar />
 
       <section className="w-full bg-black/10 mt-[70px] pb-[70px] h-screen overflow-y-scroll scrollable-container pt-3">
-        <div className=" w-[90%] mx-[5%] 2xl:w-[1500px] 2xl:mx-auto">
+        <div className="w-[90%] mx-[5%] 2xl:w-[1500px] 2xl:mx-auto">
           <div className="my-6 w-[100%] sm:w-[40%]">
             <input
               value={search}
-              onChange={handleInputChange}
+              onChange={(e) => setSearch(e.target.value)}
               type="text"
               placeholder="search for a course"
               className="outline-none border border-gray-2/65 rounded-lg py-2 px-4 w-full"
             />
           </div>
 
-          <div className="flex flex-col gap-7 flex-1">
-            {filteredTutors.length ? (
-              filteredTutors.map((tutor) => (
+          <div className="grid grid-cols-2 gap-7 flex-1"> 
+            {tutors.length  && ( 
+              tutors.map((tutor) => (
                 <TutorCard key={tutor.id} tutor={tutor} />
-              ))
-            ) : (
-              <h1 className="text-center font-bold text-3xl text-red-500">
-                No Tutors for {search}
-              </h1>
-            )}
+              )))}
           </div>
         </div>
       </section>

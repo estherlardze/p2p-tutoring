@@ -7,8 +7,7 @@ const Availability = ({tutor}) => {
       <div>
          {tutor.availability?.map((day, index) => (
              <article key={index} className="flex items-center gap-4 text-gray-1">
-                 <p>{day.day}</p>
-                 <p className="text-sm">{day.time.join(",")}</p>
+                 <p>{day.label}</p>
              </article>
          ))}
       </div>

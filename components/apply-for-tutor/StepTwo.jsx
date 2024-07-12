@@ -8,10 +8,11 @@ import makeAnimated from "react-select/animated";
 
 const StepTwo = ({
   currentStep,
+  setProfileImage,
+  setCurrentResult,
   complete,
   steps,
   formInfo,
-  handleFileChange,
   handleSelectChange,
   onPrevious,
   onNext,
@@ -104,7 +105,7 @@ const StepTwo = ({
           type="file"
           id="picture"
           name="picture"
-          onChange={handleFileChange}
+          onChange={event => setProfileImage(event.target.files)}
           className="hidden"
           required
         />
@@ -128,7 +129,7 @@ const StepTwo = ({
           type="file"
           id="transcript"
           name="transcript"
-          onChange={handleFileChange}
+          onChange={event => setCurrentResult(event.target.files)}
           className="hidden"
           required
         />

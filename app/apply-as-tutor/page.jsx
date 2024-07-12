@@ -15,9 +15,7 @@ const Page = () => {
           <Hiw heading="How to get started?" data={whychooseus} />
         </div>
       </div>
-
-      <Requirement />
-    
+      <Requirement />   
     </section>
     <Footer />
     </main>

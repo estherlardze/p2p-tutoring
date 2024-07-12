@@ -209,7 +209,7 @@ export const tutorLinks = [
     icon: <FaHome />,
   },
   {
-    name: "Student-tutor",
+    name: "Tutors",
     route: "/dashboard/student-tutor",
     icon: <FaUser />,
   },

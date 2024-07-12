@@ -2,23 +2,25 @@
 
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Link from "next/link";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { auth } from "@/config/firebase";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
+import { db } from "@/config/firebase";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [studentId, setStudentId] = useState();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+  };
+
+  const handleStudentIdChange = (event) => {
+    setStudentId(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -29,38 +31,64 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        toast.success("User logged in:");
-        router.push("/dashboard"); 
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("Login error:", errorMessage);
-        toast.error(errorMessage);
-      });
+    if (!email || !studentId || !password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    try {
+      console.log("Fetching user document...");
+      const q = query(collection(db, "Students"), where("studentId", "==", studentId));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        const userData = userDoc.data();
+        console.log("User document found:", userData);
+
+        if (userData.password) {
+          // User has logged in before
+          if (userData.password === password) {
+            // Password matches
+            if (userData.email !== email) {
+              // Update email if it has changed
+              await updateDoc(userDoc.ref, { email: userData.email });
+            }
+            router.push("/dashboard");
+          } else {
+            // Password doesn't match
+            toast.error("Incorrect password");
+          }
+        } else {
+          // User logging in for the first time, save password
+          await updateDoc(userDoc.ref, { password });
+          if (userData.email !== email) {
+            await updateDoc(userDoc.ref, { email: userData.email });
+          }
+          router.push("/dashboard");
+        }
+      } else {
+        // Student ID does not exist
+        toast.error("Student ID does not exist");
+      }
+    } 
+    catch (err) {
+      console.error("Error logging in:", err);
+      toast.error("Error logging in, please try again");
+    }
   };
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-black/10">
-            <ToastContainer position="top-center" draggable />
+      <ToastContainer position="top-center" draggable />
 
       <div className="bg-white p-8 rounded shadow-md w-[90%] mx-[5%] sm:mx-auto sm:max-w-md">
         <div className="flex flex-col items-center justify-center mb-6">
           <h2 className="text-3xl font-semibold text-center">Login</h2>
-          <small className="text-[12px] mt-3 text-center">Hello, welcome</small>
         </div>
-        {error && (
-          <div className="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
-            {error}
-          </div>
-        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-1 font-bold mb-2">
@@ -72,11 +100,28 @@ const Login = () => {
               name="email"
               value={email}
               onChange={handleEmailChange}
-              placeholder="Enter your student email"
+              placeholder="Enter your email"
               className="w-full px-3 py-[6px] border border-black/35 rounded-md outline-blue/40"
               required
             />
           </div>
+
+          <div className="mb-4">
+            <label htmlFor="studentId" className="block text-gray-1 font-bold mb-2">
+              Student ID:
+            </label>
+            <input
+              type="text"
+              id="studentId"
+              name="studentId"
+              value={studentId}
+              onChange={handleStudentIdChange}
+              placeholder="Enter your student ID"
+              className="w-full px-3 py-[6px] border border-black/35 rounded-md outline-blue/40"
+              required
+            />
+          </div>
+
           <div className="mb-6">
             <label htmlFor="password" className="block text-gray-1 font-bold mb-2">
               Password:
@@ -99,20 +144,10 @@ const Login = () => {
               </div>
             </div>
           </div>
+
           <button className="border-2 rounded w-full border-blue bg-blue font-bold py-[6px] px-10 text-white hover:bg-white hover:text-black transition-all duration-500">
             Login
           </button>
-          <div className="flex items-center justify-between mt-4">
-            <p className="text-[12px] text-gray-2">
-              Need an account?{" "}
-              <Link href="/sign-up" className="text-black hover:underline">
-                Sign up
-              </Link>
-            </p>
-            <Link href="/forget-password" className="text-[12px] hover:underline">
-              Forgot password
-            </Link>
-          </div>
         </form>
       </div>
     </div>

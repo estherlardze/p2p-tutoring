@@ -1,43 +1,14 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
-import { auth, db } from "@/config/firebase";
-import { adminLinks, tutorLinks, studentLinks } from "@/constants/data";
-import { doc, getDoc } from "firebase/firestore";
 
-const Sidebar = ({ menu, closeMenu }) => {
-  const [role, setRole] = useState(null);
 
-  useEffect(() => {
-    const fetchUserRole = async () => {
-      const user = auth.currentUser;
-      if (user) {
-        try {
-          const userDoc = await getDoc(doc(db, "Users", user.uid));
-          if (userDoc.exists()) {
-            setRole(userDoc.data().role);
-          }
-        } catch (err) {
-          console.error("Error fetching user role:", err);
-        }
-      }
-    };
+const Sidebar = ({ menu, closeMenu, sidebarLinks }) => {
 
-    fetchUserRole();
-  }, []);
-
-  let sidebarLinks = [];
-  if (role === "Admin") {
-    sidebarLinks = adminLinks;
-  } else if (role === "Tutor") {
-    sidebarLinks = tutorLinks;
-  } else if (role === "Student") {
-    sidebarLinks = studentLinks;
-  }
 
   return (
     <section>
-      <div className="sticky hidden sm:block w-[250px] 2xl:w-[400px] top-0 left-0 z-10 bg-white custom-sidebar-height shadow-md">
+      <div className="sticky hidden sm:block w-[250px] 2xl:w-[400px] top-0 left-0 z-10 bg-white custom-sidebar-height text-black/70 shadow-md">
         {sidebarLinks.map((link) => (
           <Link
             href={link.route}

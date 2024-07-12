@@ -20,7 +20,21 @@ const StepOne = ({
       <div className="max-w-md">
         <Stepper currentStep={currentStep} complete={complete} steps={steps} />
       </div>
-
+      <div className="my-1 w-full">
+        <label htmlFor="studentId" className="block text-gray-2 font-medium mb-1">
+          Student id
+        </label>
+        <input 
+          type="text" 
+          id="studentId"
+          name="studentId"
+          value={formInfo.studentId}
+          onChange={handleChange}
+          placeholder="Enter your student id"
+          className="w-full p-2 border border-gray-2/30 outline-blue/25 rounded-sm"
+          required
+        />
+      </div>
       <div className="my-1 w-full">
         <label htmlFor="bio" className="block text-gray-2 font-medium mb-1">
           Bio

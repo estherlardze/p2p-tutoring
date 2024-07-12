@@ -24,7 +24,7 @@ const Header = () => {
         Sign Up now and complete your tutor profile
         today!
       </p>
-      <Link href="/sign-up" className="bg-blue/90 flex w-fit text-white font-bold py-2 px-4">
+      <Link href="/onboarding" className="bg-blue/90 flex w-fit text-white font-bold py-2 px-4">
         Get Started
       </Link>
     </div>

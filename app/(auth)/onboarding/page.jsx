@@ -1,16 +1,19 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { db, auth, storage } from "@/config/firebase";
-import { setDoc, doc } from "firebase/firestore";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { db } from "@/config/firebase";
+import { collection, query, where, getDocs, updateDoc, doc } from "firebase/firestore";
+import { uploadFileToFirebase } from "@/config/utils";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { StepOne, StepTwo, StepThree } from "@/components";
 
 const TutorForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
-  const [progress, setProgress] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const [currentResult, setCurrentResult] = useState(null);
   const steps = ["personal", "career", "finish"];
   const [formInfo, setFormInfo] = useState({
     bio: "",
@@ -19,20 +22,13 @@ const TutorForm = () => {
     amount: "",
     tutorialType: [],
     availability: [],
-    picture: null,
-    transcript: null,
+    studentId: "",
   });
   const router = useRouter();
-  const { bio, courses, contact, amount, tutorialType, availability, picture, transcript } = formInfo;
 
   const handleChange = (e) => {
-    const { name, value, files, type } = e.target;
-
-    if (type === "file") {
-      setFormInfo((prev) => ({ ...prev, [name]: files[0] }));
-    } else {
-      setFormInfo((prev) => ({ ...prev, [name]: value }));
-    }
+    const { name, value } = e.target;
+    setFormInfo((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSelectChange = (name, value) => {
@@ -43,24 +39,36 @@ const TutorForm = () => {
     setFormInfo((prev) => ({ ...prev, courses: value }));
   };
 
- 
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    const profileImageToUpload = profileImage && profileImage[0];
+    const resultToUpload = currentResult && currentResult[0];
 
     try {
-      const userId = auth.currentUser.uid;
-      const tutorData = {
-        ...formInfo,
-      };
+      const q = query(collection(db, "Students"), where("studentId", "==", formInfo.studentId));
+      const querySnapshot = await getDocs(q);
 
-      await setDoc(doc(db, "Tutors", userId), tutorData, { merge: true });
-      setComplete(true);
-      console.log("Tutor data updated:", tutorData);
-      alert("Onboarding Complete");
-      router.push("/dashboard");
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        const userDocRef = userDoc.ref;
+
+        const tutorData = { ...formInfo, isTutor: true };
+        const uploadedProfileUrl = await uploadFileToFirebase("profile", profileImageToUpload);
+        const uploadedResultUrl = await uploadFileToFirebase("result", resultToUpload);
+        tutorData.profile = uploadedProfileUrl;
+        tutorData.result = uploadedResultUrl;
+
+        await updateDoc(userDocRef, tutorData);
+
+        setComplete(true);
+        toast.success("Onboarding Complete");
+        router.push("/dashboard");
+      } else {
+        toast.error("Student ID does not exist");
+      }
     } catch (err) {
       console.log(err.message);
+      toast.error("Error submitting form, please try again");
     }
   };
 
@@ -74,6 +82,8 @@ const TutorForm = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
+      <ToastContainer position="top-center" draggable />
+
       {currentStep === 1 && (
         <StepOne
           onNext={handleNext}
@@ -90,6 +100,8 @@ const TutorForm = () => {
           onNext={handleNext}
           onPrevious={handlePrevious}
           handleChange={handleChange}
+          setProfileImage={setProfileImage}
+          setCurrentResult={setCurrentResult}
           handleSelectChange={handleSelectChange}
           formInfo={formInfo}
           complete={complete}

@@ -3,9 +3,13 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth, db } from "@/config/firebase";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
@@ -32,45 +36,45 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const emailPattern = /^[a-z]+@st\.knust\.edu\.gh$/;
-
-    if (!emailPattern.test(email)) {
-      toast.error("Use a valid KNUST student email address.");
-      return;
-    }
-
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
 
       if (user) {
+        await updateProfile(user, { displayName: `${firstName} ${lastName}` });
+
         const userData = {
           email: user.email,
           firstName,
           lastName,
           department,
           role,
+          timestamps: serverTimestamp(),
         };
 
         const userCollection = role === "Student" ? "Students" : "Tutors";
         await setDoc(doc(db, userCollection, user.uid), userData);
 
-        console.log("User created and data stored:", userData);
-        alert("Success");
-
-        if (role === "Tutor") {
+        if(role === "Tutor") {
           router.push("/onboarding");
-        }else if(role === "Student") {
-          router.push("/dashboard");
         }
+        setSignUp({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          department: "",
+          role: "",
+        });
+
+        if(role === "Student") {
+          await sendEmailVerification(user);
+          toast.success("Verification email sent. Please verify your email address.");
+        } 
+
+      //  router.push("/login");
       }
     } catch (err) {
       toast.error(err.message);
-      return;
     }
   };
 
@@ -128,7 +132,7 @@ const SignUp = () => {
               Email
             </label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               value={email}
