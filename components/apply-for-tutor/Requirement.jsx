@@ -29,7 +29,7 @@ const Requirement = () => {
     </div>
 
     <div className="w-full md:w-1/2">
-      <Image src={tutor5} className="w-full md:w-1/2" />
+      <Image src={tutor5} className="w-full md:w-1/2" alt="tutor"/>
     </div>
   </div>
   )

@@ -15,7 +15,7 @@ const Header = () => {
       <p className="text-[14px] text-gray-1 my-4">
         Are you excelling in your courses? Do you have a passion for
         teaching and helping others succeed? Join our Peer-to-Peer
-        Tutoring Platform as a tutor and make a difference in your peers'
+        Tutoring Platform as a tutor and make a difference in your peers&apos;
         academic journeys while earning income.
       </p>
       <p className="text-[14px] text-gray-1 my-4">
