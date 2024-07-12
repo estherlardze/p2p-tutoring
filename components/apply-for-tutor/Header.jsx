@@ -6,7 +6,7 @@ import Image from 'next/image'
 const Header = () => {
   return (
     <div className="flex flex-col md:flex-row gap-12 md:items-center mx-auto w-[90%]">
-    <Image src={feature} className="w-full md:w-1/2" />
+    <Image src={feature} className="w-full md:w-1/2" alt="feature"/>
 
     <div className="w-full md:w-1/2">
       <h1 className="text-3xl font-bold md:text-center">

@@ -23,7 +23,7 @@ const Requirement = () => {
         timely communication with students.
       </p>
       <p>
-        <strong>Empathy and Patience:</strong> Understanding of students'
+        <strong>Empathy and Patience:</strong> Understanding of students&apos;
         needs and a supportive approach to teaching
       </p>
     </div>
