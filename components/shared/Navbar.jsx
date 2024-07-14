@@ -51,9 +51,9 @@ const Navbar = () => {
           <Link href="/login" className="font-semibold text-[17px]">
             Login
           </Link>
-          {/* <Link href="/sign-up" className="font-semibold text-[17px]">
+          <Link href="/sign-up" className="font-semibold text-[17px]">
             Sign up
-          </Link> */}
+          </Link>
         </div>
 
         <div className="md:hidden" onClick={() => setMenu(!menu)}>
@@ -97,13 +97,13 @@ const Navbar = () => {
           >
             Login
           </Link>
-          {/* <Link
+          <Link
             href="/sign-up"
             className="font-semibold my-2 text-[17px]"
             onClick={() => setMenu(false)}
           >
             Sign up
-          </Link> */}
+          </Link>
         </div>
       </div>
     </nav>

@@ -31,7 +31,7 @@ const StepOne = ({
           value={formInfo.studentId}
           onChange={handleChange}
           placeholder="Enter your student id"
-          className="w-full p-2 border border-gray-2/30 outline-blue/25 rounded-sm"
+          className="w-full px-2 py-1 border border-gray-2/30 outline-blue/25 rounded-sm text-sm"
           required
         />
       </div>
@@ -45,8 +45,8 @@ const StepOne = ({
           value={formInfo.bio}
           onChange={handleChange}
           placeholder="Tell us about yourself and why you will be a great tutor"
-          rows="3"
-          className="w-full p-2 border border-gray-2/30 outline-blue/25 rounded-sm"
+          rows="2"
+          className="w-full p-2 border border-gray-2/30 outline-blue/25 rounded-sm text-sm"
           required
         />
       </div>
@@ -69,13 +69,13 @@ const StepOne = ({
           Amount per hour
         </label>
         <input
-          type="number"
+          type="text"
           id="amount"
           name="amount"
           value={formInfo.amount}
           placeholder="Amount per hour for the tutor"
           onChange={handleChange}
-          className="w-full px-2 py-[6px] border border-gray-2/50 outline-blue/25 rounded-sm"
+          className="w-full px-2 py-[6px] border border-gray-2/50 outline-blue/25 rounded-sm text-sm"
           required
         />
       </div>
@@ -91,7 +91,7 @@ const StepOne = ({
           name="contact"
           value={formInfo.contact}
           onChange={handleChange}
-          className="w-full px-2 py-[6px] border border-gray-2/40 outline-blue/25 rounded-sm"
+          className="w-full px-2 py-1 border border-gray-2/40 outline-blue/25 rounded-sm text-sm"
           required
         />
       </div>

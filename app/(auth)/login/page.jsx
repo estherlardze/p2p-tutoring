@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [studentId, setStudentId] = useState();
+  const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
@@ -40,42 +40,22 @@ const Login = () => {
     }
 
     try {
-      console.log("Fetching user document...");
       const q = query(collection(db, "Students"), where("studentId", "==", studentId));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
-        console.log("User document found:", userData);
 
-        if (userData.password) {
-          // User has logged in before
-          if (userData.password === password) {
-            // Password matches
-            if (userData.email !== email) {
-              // Update email if it has changed
-              await updateDoc(userDoc.ref, { email: userData.email });
-            }
-            router.push("/dashboard");
-          } else {
-            // Password doesn't match
-            toast.error("Incorrect password");
-          }
-        } else {
-          // User logging in for the first time, save password
-          await updateDoc(userDoc.ref, { password });
-          if (userData.email !== email) {
-            await updateDoc(userDoc.ref, { email: userData.email });
-          }
+        if (userData.password === password && userData.email === email) {
           router.push("/dashboard");
+        } else {
+          toast.error("Incorrect credentials");
         }
       } else {
-        // Student ID does not exist
         toast.error("Student ID does not exist");
       }
-    } 
-    catch (err) {
+    } catch (err) {
       console.error("Error logging in:", err);
       toast.error("Error logging in, please try again");
     }

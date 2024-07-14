@@ -106,16 +106,11 @@ const StepTwo = ({
           id="picture"
           name="picture"
           onChange={event => setProfileImage(event.target.files)}
-          className="hidden"
+          accept="image/*"
+          className="cursor-pointer border border-gray-2/50 w-full"
           required
         />
-        <label
-          htmlFor="picture"
-          className="flex items-center justify-center w-full px-3 py-[6px] border border-gray-2/30 rounded-sm outline-blue/40 text-black/70 cursor-pointer"
-        >
-          <MdUpload className="h-6 w-6 mr-2" />
-          Upload Profile Picture
-        </label>
+        
       </div>
 
       <div className="my-6 w-full">
@@ -123,23 +118,18 @@ const StepTwo = ({
           htmlFor="transcript"
           className="block text-gray-2 font-medium mb-2"
         >
-          Upload Transcript
+          Upload Current result (pdf formart only)
         </label>
         <input
           type="file"
           id="transcript"
           name="transcript"
+          accept=".pdf"
           onChange={event => setCurrentResult(event.target.files)}
-          className="hidden"
+          className="cursor-pointer border border-gray-2/50 w-full"
           required
         />
-        <label
-          htmlFor="transcript"
-          className="flex items-center justify-center w-full px-3 py-[6px] border border-gray-2/30 rounded-sm outline-blue/40 bg-blue-50 text-black/70 cursor-pointer"
-        >
-          <MdUpload className="h-6 w-6 mr-2" />
-          Only .pdf
-        </label>
+        
       </div>
 
       <div className="flex justify-between items-center gap-8 w-full">

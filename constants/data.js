@@ -117,56 +117,56 @@ export const meetingdata = [
 
 
 export const bookings = [
-  {
-    id: 1,
-    course: "Mathematics",
-    name:'John Doe',
-    date: "2024-06-25",
-    time: "10:00",
-    lessonType: "Online",
-    learningGoals: "I want to improve my understanding of calculus.",
-    studentEmail: "student1@example.com"
-  },
-  {
-    id: 2,
-    course: "Physics",
-    date: "2024-06-26",
-    name:'John Doe',
-    time: "14:00",
-    lessonType: "In-person",
-    learningGoals: "I need help with quantum mechanics.",
-    studentEmail: "student2@example.com"
-  },
-  {
-    id: 3,
-    course: "Chemistry",
-    date: "2024-06-27",
-    name:'John Doe',
-    time: "11:00",
-    lessonType: "Online",
-    learningGoals: "I'm struggling with organic chemistry reactions.",
-    studentEmail: "student3@example.com"
-  },
-  {
-    id: 4,
-    course: "Biology",
-    date: "2024-06-28",
-    name:'John Doe',
-    time: "09:00",
-    lessonType: "In-person",
-    learningGoals: "I want to learn more about genetics.",
-    studentEmail: "student4@example.com"
-  },
-  {
-    id: 5,
-    course: "English",
-    date: "2024-06-29",
-    name:'John Doe',
-    time: "15:00",
-    lessonType: "Online",
-    learningGoals: "I need help improving my essay writing skills.",
-    studentEmail: "student5@example.com"
-  }
+  // {
+  //   id: 1,
+  //   course: "Mathematics",
+  //   name:'John Doe',
+  //   date: "2024-06-25",
+  //   time: "10:00",
+  //   lessonType: "Online",
+  //   learningGoals: "I want to improve my understanding of calculus.",
+  //   studentEmail: "student1@example.com"
+  // },
+  // {
+  //   id: 2,
+  //   course: "Physics",
+  //   date: "2024-06-26",
+  //   name:'John Doe',
+  //   time: "14:00",
+  //   lessonType: "In-person",
+  //   learningGoals: "I need help with quantum mechanics.",
+  //   studentEmail: "student2@example.com"
+  // },
+  // {
+  //   id: 3,
+  //   course: "Chemistry",
+  //   date: "2024-06-27",
+  //   name:'John Doe',
+  //   time: "11:00",
+  //   lessonType: "Online",
+  //   learningGoals: "I'm struggling with organic chemistry reactions.",
+  //   studentEmail: "student3@example.com"
+  // },
+  // {
+  //   id: 4,
+  //   course: "Biology",
+  //   date: "2024-06-28",
+  //   name:'John Doe',
+  //   time: "09:00",
+  //   lessonType: "In-person",
+  //   learningGoals: "I want to learn more about genetics.",
+  //   studentEmail: "student4@example.com"
+  // },
+  // {
+  //   id: 5,
+  //   course: "English",
+  //   date: "2024-06-29",
+  //   name:'John Doe',
+  //   time: "15:00",
+  //   lessonType: "Online",
+  //   learningGoals: "I need help improving my essay writing skills.",
+  //   studentEmail: "student5@example.com"
+  // }
 ];
 
 
@@ -184,7 +184,7 @@ export const adminLinks = [
 ]
 
 
-export const studentLinks = [
+export const  tutorLinks = [
   {
     name: "Home",
     route: "/dashboard",
@@ -202,26 +202,21 @@ export const studentLinks = [
   },
 ]
 
-export const tutorLinks = [
+export const studentLinks = [
   {
     name: "Home",
     route: "/dashboard",
     icon: <FaHome />,
   },
   {
-    name: "Tutors",
+    name: "Requests",
     route: "/dashboard/student-tutor",
     icon: <FaUser />,
   },
   {
-    name: "Tutor-requests",
+    name: "Support",
     route: "/dashboard/tutor-requests",
     icon: <FaBook />
-  },
-  {
-    name: "Student-feedback",
-    route: "/dashboard/student-feedback",
-    icon: <FaUser />
   },
 ]
 

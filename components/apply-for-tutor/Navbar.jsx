@@ -9,7 +9,7 @@ import { signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
-const Navbar = ({ openMenu }) => {
+const Navbar = ({ openMenu, userRole }) => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -61,18 +61,12 @@ const Navbar = ({ openMenu }) => {
           />
           {open && (
             <div className="absolute right-0 mt-2 w-fit bg-white rounded-lg shadow-lg py-2">
-              <h1 className="text-lg font-bold px-4 py-2">
-                {userData ? userData.firstName : "Name"}
-              </h1>
-              <h1 className="text-lg font-bold px-4 py-2">
-                {user ? user.email : "Email"}
-              </h1>
-              <h1 className="text-lg font-bold px-4 py-2">
-                {userData ? userData.role : "Role"}
+              <h1 className="text-lg hover: px-4 py-2">
+                {userRole}
               </h1>
               <button
                 onClick={handleSignOut}
-                className="text-lg font-bold text-red-600 px-4 py-2 hover:bg-gray-100 w-full text-left"
+                className="text-lg  text-red-600 px-4 py-2 hover:bg-gray-100 w-full text-left"
               >
                 Logout
               </button>

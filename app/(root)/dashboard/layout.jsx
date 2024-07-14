@@ -10,6 +10,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 const RootLayout = ({children}) => {
   const [menu, setMenu] = useState(false)
   const [sidebarLinks, setSidebarLinks] = useState([]);
+  const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -19,9 +20,11 @@ const RootLayout = ({children}) => {
         console.log(querySnapshot)
 
         if (!querySnapshot.empty) {
-          setSidebarLinks(studentLinks);
-        } else {
           setSidebarLinks(tutorLinks);
+          setUserRole("Tutor");
+        } else {
+          setSidebarLinks(studentLinks);
+          setUserRole("Student");
         }
       } catch (error) {
         console.error("Error fetching user role: ", error);
@@ -41,7 +44,7 @@ const RootLayout = ({children}) => {
 
   return (
     <div className='relative'>
-       <Navbar openMenu={openMenu}/>
+       <Navbar openMenu={openMenu} userRole={userRole}/>
        <div className='flex'>
          <div className='overflow-hidden '>
             <Sidebar menu={menu} closeMenu={closeMenu} sidebarLinks={sidebarLinks}/>

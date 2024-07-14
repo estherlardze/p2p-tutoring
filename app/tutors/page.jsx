@@ -9,16 +9,19 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 const Tutors = () => {
   const [search, setSearch] = useState("");
   const [tutors, setTutors] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchTutors = async () => {
       try {
+        setLoading(true);
         const q = query(collection(db, "Students"), where("isTutor", "==", true));
         const querySnapshot = await getDocs(q);
 
         const tutorsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setTutors(tutorsList);
         console.log(tutorsList);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching tutors: ", error);
       }
@@ -32,6 +35,10 @@ const Tutors = () => {
       course.toLowerCase().includes(search.toLowerCase())
     )
   );
+
+  if(!tutors.length) {
+    return 'No tutors found'
+  }
 
   return (
     <main>
@@ -50,10 +57,13 @@ const Tutors = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-7 flex-1"> 
-            {tutors.length  && ( 
-              tutors.map((tutor) => (
-                <TutorCard key={tutor.id} tutor={tutor} />
-              )))}
+            {
+              loading ? "loadigate" : filteredTutors && ( 
+                filteredTutors.map((tutor) => (
+                  <TutorCard key={tutor.id} tutor={tutor} />
+                )))
+            }
+            
           </div>
         </div>
       </section>
