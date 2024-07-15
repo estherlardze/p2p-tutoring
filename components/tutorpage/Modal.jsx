@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, MultiSelect } from "@mantine/core";
 import { db } from "@/config/firebase";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { doc, getDocs, updateDoc, arrayUnion, collection, query, where} from "firebase/firestore";
+
 
 const Popup = ({ tutor }) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -32,9 +35,18 @@ const Popup = ({ tutor }) => {
 
     try {
       if (!studentId || !email || !name || !tutorialType || !course.length || !date || !time || !message) {
-        alert("Please fill out all fields");
+        toast.error("Please fill out all fields");
         return;
       }
+
+      const q = query(collection(db, "Students"), where("studentId", "==", studentId));
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        toast.error("Student ID does not exist");
+        return;
+      }
+      const studentDoc = querySnapshot.docs[0];
+      const studentRef = doc(db, "Students", studentDoc.id);
 
       console.log("Booking Info:", bookingInfo);
 
@@ -52,21 +64,20 @@ const Popup = ({ tutor }) => {
         })
       });
 
-      // const studentRef = doc(db, "Students", studentId);
-      // await updateDoc(studentRef, {
-      //   tutorials: arrayUnion({
-      //     tutorId: tutor.id,
-      //     tutorName: tutor.name,
-      //     tutorialType,
-      //     course,
-      //     date,
-      //     time,
-      //     message
-      //   })
-      // });
+      await updateDoc(studentRef, {
+        tutorials: arrayUnion({
+          tutorId: tutor.id,
+          tutorName: tutor.name,
+          tutorialType,
+          course,
+          date,
+          time,
+          message
+        })
+      });
 
       close();
-      alert("Booking successful!");
+      toast.success("Booking successful!");
 
     } catch (error) {
       console.error("Error booking tutorial: ", error);
@@ -76,6 +87,7 @@ const Popup = ({ tutor }) => {
 
   return (
     <section className="h-fit">
+      <ToastContainer position="top-center" draggable />
       <Modal
         opened={opened}
         onClose={close}

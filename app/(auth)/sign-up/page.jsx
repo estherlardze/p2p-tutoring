@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
 
 const SignUp = () => {
@@ -61,7 +62,7 @@ const SignUp = () => {
       }
     } 
     catch (err) {
-      console.error("Error logging in:", err);
+      console.error("Error signing up in:", err);
       toast.error("Error logging in, please try again");
     }
   };
@@ -72,7 +73,7 @@ const SignUp = () => {
 
       <div className="bg-white p-8 rounded shadow-md w-[90%] mx-[5%] sm:mx-auto sm:max-w-md">
         <div className="flex flex-col items-center justify-center mb-6">
-          <h2 className="text-3xl font-semibold text-center">Login</h2>
+          <h2 className="text-3xl font-semibold text-center">Sign up</h2>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -131,8 +132,9 @@ const SignUp = () => {
           </div>
 
           <button className="border-2 rounded w-full border-blue bg-blue font-bold py-[6px] px-10 text-white hover:bg-white hover:text-black transition-all duration-500">
-            Login
+            Sign up
           </button>
+          <div className="text-sm mt-2">Already have an account ? <Link href="/login">Login</Link></div>
         </form>
       </div>
     </div>

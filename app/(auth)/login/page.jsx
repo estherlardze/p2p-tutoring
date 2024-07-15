@@ -7,6 +7,8 @@ import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import Link from "next/link";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,7 +42,10 @@ const Login = () => {
     }
 
     try {
-      const q = query(collection(db, "Students"), where("studentId", "==", studentId));
+      const q = query(
+        collection(db, "Students"),
+        where("studentId", "==", studentId)
+      );
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
@@ -48,6 +53,7 @@ const Login = () => {
         const userData = userDoc.data();
 
         if (userData.password === password && userData.email === email) {
+          Cookies.set("studentId", studentId, {expires: 1/24});
           router.push("/dashboard");
         } else {
           toast.error("Incorrect credentials");
@@ -87,7 +93,10 @@ const Login = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="studentId" className="block text-gray-1 font-bold mb-2">
+            <label
+              htmlFor="studentId"
+              className="block text-gray-1 font-bold mb-2"
+            >
               Student ID:
             </label>
             <input
@@ -103,7 +112,10 @@ const Login = () => {
           </div>
 
           <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-1 font-bold mb-2">
+            <label
+              htmlFor="password"
+              className="block text-gray-1 font-bold mb-2"
+            >
               Password:
             </label>
             <div className="outline-blue/40 py-[6px] border outline:border-blue/70 border-gray-2 px-4 rounded-md">
@@ -128,6 +140,9 @@ const Login = () => {
           <button className="border-2 rounded w-full border-blue bg-blue font-bold py-[6px] px-10 text-white hover:bg-white hover:text-black transition-all duration-500">
             Login
           </button>
+          <div className="text-sm mt-2">
+            Don't have an account? <Link href="/sign-up">Sign up</Link>
+          </div>
         </form>
       </div>
     </div>
