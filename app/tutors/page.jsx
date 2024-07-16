@@ -37,7 +37,7 @@ const Tutors = () => {
   );
 
   if(!tutors.length) {
-    return <div>No tutors found</div>
+    return <div>Loading...</div>
   }
 
   return (

@@ -6,6 +6,7 @@ import Navbar from '@/components/apply-for-tutor/Navbar'
 import { db } from "@/config/firebase";
 import { tutorLinks, studentLinks } from "@/constants/data";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import cookies from "js-cookie";
 
 const RootLayout = ({children}) => {
   const [menu, setMenu] = useState(false)
@@ -13,21 +14,21 @@ const RootLayout = ({children}) => {
   const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
-    const fetchUserRole = async () => {
-      try {
-        const q = query(collection(db, "Students"), where("isTutor", "==", true));
-        const querySnapshot = await getDocs(q);
-        console.log(querySnapshot)
 
-        if (!querySnapshot.empty) {
-          setSidebarLinks(tutorLinks);
-          setUserRole("Tutor");
-        } else {
+    const id = cookies.get("studentId", {expires: 2/24});
+    const fetchUserRole = async () => {
+      const q = query(collection(db, "Students"), where("studentId", "==", id));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        const userData = userDoc.data();
+        if(userData.isTutor === false){
           setSidebarLinks(studentLinks);
           setUserRole("Student");
-        }
-      } catch (error) {
-        console.error("Error fetching user role: ", error);
+        }else {
+          setSidebarLinks(tutorLinks);
+          setUserRole("Tutor");}
       }
     };
 

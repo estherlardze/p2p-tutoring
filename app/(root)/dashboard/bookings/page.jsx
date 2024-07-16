@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { Modal, Select } from "@mantine/core";
 import BookingDetail from "../../../../components/BookingDetail";
 import { db } from "@/config/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cookies from "js-cookie";
@@ -79,7 +78,7 @@ const TutorDashboard = () => {
      <div className="w-[70%]">
      <Select
         label=""
-        placeholder="Pick value"
+        placeholder="search by date"
         data={["Today", "Yesterday"]}
       />
      </div>

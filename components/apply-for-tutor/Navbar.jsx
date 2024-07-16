@@ -11,8 +11,6 @@ import cookies from "js-cookie";
 
 const Navbar = ({ openMenu, userRole }) => {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  const [userData, setUserData] = useState(null);
   const router = useRouter();
 
 

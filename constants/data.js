@@ -209,13 +209,18 @@ export const studentLinks = [
     icon: <FaHome />,
   },
   {
-    name: "Requests",
-    route: "/dashboard/student-tutor",
+    name: "Bookings",
+    route: "/dashboard/tutor-request",
+    icon: <FaUser />,
+  },
+  {
+    name: "Ratings",
+    route: "/dashboard/ratings",
     icon: <FaUser />,
   },
   {
     name: "Support",
-    route: "/dashboard/tutor-requests",
+    route: "/dashboard/support",
     icon: <FaBook />
   },
 ]

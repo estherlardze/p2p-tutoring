@@ -4,8 +4,15 @@ import { Modal, MultiSelect } from "@mantine/core";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { doc, getDocs, updateDoc, arrayUnion, collection, query, where} from "firebase/firestore";
-
+import {
+  doc,
+  getDocs,
+  updateDoc,
+  arrayUnion,
+  collection,
+  query,
+  where,
+} from "firebase/firestore";
 
 const Popup = ({ tutor }) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -15,31 +22,55 @@ const Popup = ({ tutor }) => {
     name: "",
     tutorialType: "",
     course: [],
+    contact: "",
     date: "",
     time: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setBookingInfo((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { studentId, email, name, tutorialType, course, date, time, message } = bookingInfo;
+    const {
+      studentId,
+      email,
+      name,
+      tutorialType,
+      course,
+      date,
+      time,
+      message,
+      contact,
+    } = bookingInfo;
 
     try {
-      if (!studentId || !email || !name || !tutorialType || !course.length || !date || !time || !message) {
+      if (
+        !studentId ||
+        !email ||
+        !name ||
+        !tutorialType ||
+        !course.length ||
+        !date ||
+        !time ||
+        !contact ||
+        !message
+      ) {
         toast.error("Please fill out all fields");
         return;
       }
 
-      const q = query(collection(db, "Students"), where("studentId", "==", studentId));
+      const q = query(
+        collection(db, "Students"),
+        where("studentId", "==", studentId)
+      );
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
         toast.error("Student ID does not exist");
@@ -58,27 +89,27 @@ const Popup = ({ tutor }) => {
           name,
           tutorialType,
           course,
+          contact,
           date,
           time,
-          message
-        })
+          message,
+        }),
       });
 
       await updateDoc(studentRef, {
         tutorials: arrayUnion({
-          tutorId: tutor.id,
           tutorName: tutor.name,
           tutorialType,
           course,
           date,
           time,
-          message
-        })
+          contact,
+          message,
+        }),
       });
 
       close();
       toast.success("Booking successful!");
-
     } catch (error) {
       console.error("Error booking tutorial: ", error);
       alert("Failed to book tutorial. Please try again.");
@@ -99,8 +130,7 @@ const Popup = ({ tutor }) => {
         }}
       >
         <form onSubmit={handleSubmit}>
-          <h1>{tutor.id}</h1>
-          <div className="">
+          <div className="mb-2">
             <label htmlFor="studentId" className="font-semibold">
               Student id
             </label>
@@ -150,8 +180,24 @@ const Popup = ({ tutor }) => {
             placeholder="Select a course you want to learn"
             data={tutor.courses}
             value={bookingInfo.course}
-            onChange={(value) => setBookingInfo({ ...bookingInfo, course: value })}
+            onChange={(value) =>
+              setBookingInfo({ ...bookingInfo, course: value })
+            }
           />
+          
+          <div className="mt-2">
+            <label htmlFor="contact" className="font-semibold">
+              Contact
+            </label>
+            <input
+              type="text"
+              name="contact"
+              id="contact"
+              className="w-full px-3 py-1 border text-black/80 border-black/35 rounded-md outline-blue/40"
+              value={bookingInfo.contact}
+              onChange={handleChange}
+            />
+          </div>
 
           <div className="mt-2">
             <label htmlFor="date" className="font-semibold">
@@ -182,35 +228,32 @@ const Popup = ({ tutor }) => {
           </div>
 
           <div className="mt-4">
-            <h1 className="font-semibold">How would you like to take a lesson?</h1>
-            <div className="flex gap-3">
-              <label htmlFor="online">
-                <input
-                  type="radio"
-                  name="tutorialType"
-                  id="online"
-                  value="Online"
-                  checked={bookingInfo.tutorialType === "Online"}
-                  onChange={handleChange}
-                />{" "}
-                Online
-              </label>
-              <label htmlFor="in-person">
-                <input
-                  type="radio"
-                  name="tutorialType"
-                  id="in-person"
-                  value="In-person"
-                  checked={bookingInfo.tutorialType === "In-person"}
-                  onChange={handleChange}
-                />{" "}
-                In-person
-              </label>
-            </div>
+            <h1 className="font-semibold">
+              How would you like to take a lesson?
+            </h1>
+            {
+              <div className="text-gray-1 flex gap-2 text-sm">
+                {tutor.tutorialType?.map((item, index) => (
+                  <div className="flex gap-2">
+                    <input
+                      type="radio"
+                      name="tutorialType"
+                      id="online"
+                      value={item.value}
+                      checked={bookingInfo.tutorialType === `${item.value}`}
+                      onChange={handleChange}
+                    />
+                    <h1 key={index}>{item.label}</h1>
+                  </div>
+                ))}
+              </div>
+            }
           </div>
 
           <div className="my-4">
-            <h3 className="mb-2 font-semibold">Tell your tutor what you like to learn.</h3>
+            <h3 className="mb-2 font-semibold">
+              Tell your tutor what you like to learn.
+            </h3>
             <textarea
               name="message"
               rows={4}
