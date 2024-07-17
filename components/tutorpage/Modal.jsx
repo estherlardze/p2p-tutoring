@@ -234,7 +234,7 @@ const Popup = ({ tutor }) => {
             {
               <div className="text-gray-1 flex gap-2 text-sm">
                 {tutor.tutorialType?.map((item, index) => (
-                  <div className="flex gap-2">
+                  <div className="flex gap-2" key="index">
                     <input
                       type="radio"
                       name="tutorialType"
