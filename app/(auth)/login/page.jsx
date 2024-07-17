@@ -141,7 +141,7 @@ const Login = () => {
             Login
           </button>
           <div className="text-sm mt-2">
-            Don't have an account? <Link href="/sign-up">Sign up</Link>
+            Don&apos;t have an account? <Link href="/sign-up">Sign up</Link>
           </div>
         </form>
       </div>
