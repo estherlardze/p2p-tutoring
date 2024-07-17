@@ -39,12 +39,12 @@ const Navbar = () => {
           <Link href="/apply-as-tutor" className="text-[17px] font-semibold cursor-pointer">
             Become a tutor
           </Link>
-          <Link
+          {/* <Link
             href="/tutors"
             className="text-[17px] font-semibold cursor-pointer"
           >
             Tutors
-          </Link>
+          </Link>*/}
         </div>
 
         <div className="hidden md:flex gap-4">
@@ -82,13 +82,13 @@ const Navbar = () => {
           >
             Become a tutor
           </Link>
-          <Link
+          {/*   <Link
             href="/tutors"
             className="font-semibold cursor-pointer my-2 border-b border-gray-2/70"
             onClick={() => setMenu(false)}
           >
             Tutors
-          </Link>
+          </Link>*/}
 
           <Link
             href="/login"
