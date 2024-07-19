@@ -82,7 +82,7 @@ const Navbar = () => {
           >
             Become a tutor
           </Link>
-          <Link
+            <Link
             href="/tutors"
             className="font-semibold cursor-pointer my-2 border-b border-gray-2/70"
             onClick={() => setMenu(false)}
