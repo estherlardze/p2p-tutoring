@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Modal, Select } from "@mantine/core";
-import BookingDetail from "../../../../components/BookingDetail";
+import BookingDetail from "../../../../components/dashboard/BookingDetail";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,6 @@ const TutorDashboard = () => {
 
   useEffect(() => {
     const fetchTutorials = async () => {
-
       try {
         const tutorId = cookies.get("studentId");
         if (!tutorId) {
@@ -26,14 +25,16 @@ const TutorDashboard = () => {
           return;
         }
 
-        const q = query(collection(db, "Students"), where("studentId", "==", tutorId));
+        const q = query(
+          collection(db, "Students"),
+          where("studentId", "==", tutorId)
+        );
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
           const userDoc = querySnapshot.docs[0];
           const userData = userDoc.data();
           setTutorials(userData.tutorials);
-
         } else {
           toast.error("Tutor not found or not authorized.");
         }
@@ -75,13 +76,13 @@ const TutorDashboard = () => {
       <ToastContainer position="top-center" draggable />
       <h1 className=" mt-2 text-2xl font-bold">Requests from students</h1>
 
-     <div className="w-[70%]">
-     <Select
-        label=""
-        placeholder="search by date"
-        data={["Today", "Yesterday"]}
-      />
-     </div>
+      <div className="w-[70%]">
+        <Select
+          label=""
+          placeholder="search by date"
+          data={["Today", "Yesterday"]}
+        />
+      </div>
       <div className="overflow-x-auto mt-4">
         <table className="min-w-full bg-white ">
           <thead className="bg-blue/20">
@@ -100,7 +101,9 @@ const TutorDashboard = () => {
                 className={index % 2 === 0 ? "bg-gray-2/20" : "bg-white"}
               >
                 <td className="py-2 px-4 border-b border-gray-2">
-                  {booking.course?.map((course, index) => (<p key={index}>{course}</p>))}
+                  {booking.course?.map((course, index) => (
+                    <p key={index}>{course}</p>
+                  ))}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-2">
                   {booking.date}

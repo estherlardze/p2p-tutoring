@@ -53,7 +53,7 @@ const Login = () => {
         const userData = userDoc.data();
 
         if (userData.password === password && userData.email === email) {
-          Cookies.set("studentId", studentId, {expires: 2/24});
+          Cookies.set("studentId", studentId);
           router.push("/dashboard");
         } else {
           toast.error("Incorrect credentials");

@@ -16,6 +16,7 @@
     "@mantine/hooks": "^7.10.1",
     "@mantine/modals": "^7.10.1",
     "@mantine/notifications": "^7.10.1",
+    "@stream-io/video-react-sdk": "^1.2.15",
     "@tanstack/react-table": "^8.17.3",
     "aos": "^2.3.4",
     "dayjs": "^1.11.11",

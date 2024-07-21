@@ -1,5 +1,41 @@
-import React from "react";
-import { meetingdata } from "@/constants/data";
+
+// import VideoLayout from "@/components/dashboard/VideoLayout";
+// import {
+//   StreamCall,
+//   StreamVideo,
+//   StreamVideoClient,
+// } from "@stream-io/video-react-sdk";
+// import '@stream-io/video-react-sdk/dist/css/styles.css';
+ import MeetingTyprList from "@/components/dashboard/MeetingTyprList";
+
+
+// const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
+// const token = process.env.NEXT_PUBLIC_STREAM_TOKEN;
+// const userId = process.env.NEXT_PUBLIC_STREAM_USER_ID;
+// const callId = process.env.NEXT_PUBLIC_STREAM_CALL_ID;
+
+// const user = {
+//   id: userId,
+//   name: "Oliver",
+//   image: "https://getstream.io/random_svg/?id=oliver&name=Oliver",
+// };
+
+// const client = new StreamVideoClient({ apiKey, user, token });
+
+// export default function Dashboard() {
+//   const call = client.call("default", callId);
+//   call.join({ create: true });
+
+//   return (
+//     <StreamVideo client={client}>
+//       <StreamCall call={call}>
+//         <VideoLayout />
+//       </StreamCall>
+//     </StreamVideo>
+//   );
+// }
+
+
 
 const Dashboard = () => {
   const now = new Date();
@@ -26,24 +62,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      <section className="gap-4 w-full grid grid-cols-4 mt-10 text-white">
-        {meetingdata.map((meeting) => (
-          <div
-            key={meeting.id}
-            style={{ backgroundColor: `${meeting.color}` }}
-            className="px-4 py-6 flex flex-col justify-between  col-span-4 sm:col-span-2 lg:col-span-1 xl:max-w-[300px] min-h-[240px] rounded-[14px] cursor-pointer"
-          >
-            <div className="text-center w-fit bg-white/20 p-2 rounded-[10px]">
-              <meeting.icon size={32} />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <h1 className="text-2xl font-bold">{meeting.title}</h1>
-              <p className="text-lg font-normal">{meeting.content}</p>
-            </div>
-          </div>
-        ))}
-      </section>
+     <MeetingTyprList/>
     </main>
   );
 };

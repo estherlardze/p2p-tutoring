@@ -1,8 +1,8 @@
 'use client'
 
 import React, {useState, useEffect} from 'react'
-import Sidebar from '@/components/Sidebar'
-import Navbar from '@/components/apply-for-tutor/Navbar'
+import Sidebar from '@/components/dashboard/Sidebar'
+import Navbar from '@/components/dashboard/Navbar'
 import { db } from "@/config/firebase";
 import { tutorLinks, studentLinks } from "@/constants/data";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -15,7 +15,7 @@ const RootLayout = ({children}) => {
 
   useEffect(() => {
 
-    const id = cookies.get("studentId", {expires: 2/24});
+    const id = cookies.get("studentId");
     const fetchUserRole = async () => {
       const q = query(collection(db, "Students"), where("studentId", "==", id));
       const querySnapshot = await getDocs(q);

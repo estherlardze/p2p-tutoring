@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Modal, Select } from "@mantine/core";
-import BookingDetail from "../../../../components/BookingDetail";
+import BookingDetail from "../../../../components/dashboard/BookingDetail";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

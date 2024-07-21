@@ -9,7 +9,7 @@ export {default as Reviews} from './tutorpage/Reviews'
 export {default as Ratings} from './tutorpage/Ratings'
 
 // become a tutor
-export {default as ApplyHeader} from './apply-for-tutor/Header'
+export {default as ApplyHeader} from './dashboard/Header'
 export {default as Requirement} from './apply-for-tutor/Requirement'
 export {default as StepOne} from './apply-for-tutor/StepOne'
 export {default as StepTwo} from './apply-for-tutor/StepTwo'

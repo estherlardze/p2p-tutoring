@@ -34,8 +34,8 @@ This web application aims to alleviate academic challenges faced by students by 
 
 
 ## Technologies Used
-- **Front-end**: React, HTML, CSS
-- **Back-end**: Firebase
+- **Front-end**: Next Js, TailwindCSS
+- **Back-end**: Firebase, NodeJS
 
 
 
