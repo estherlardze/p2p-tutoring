@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import React, {useState, useEffect} from 'react'
-import Sidebar from '@/components/dashboard/Sidebar'
-import Navbar from '@/components/dashboard/Navbar'
+import React, { useState, useEffect } from 'react';
+import Sidebar from '@/components/dashboard/Sidebar';
+import Navbar from '@/components/dashboard/Navbar';
 import { db } from "@/config/firebase";
-import { tutorLinks, studentLinks } from "@/constants/data";
+import { tutorLinks, studentLinks, adminLinks } from "@/constants/data";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import cookies from "js-cookie";
 
-const RootLayout = ({children}) => {
-  const [menu, setMenu] = useState(false)
+const RootLayout = ({ children }) => {
+  const [menu, setMenu] = useState(false);
   const [sidebarLinks, setSidebarLinks] = useState([]);
   const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
-
     const id = cookies.get("studentId");
+
     const fetchUserRole = async () => {
       const q = query(collection(db, "Students"), where("studentId", "==", id));
       const querySnapshot = await getDocs(q);
@@ -23,12 +23,17 @@ const RootLayout = ({children}) => {
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
-        if(userData.isTutor === false){
+
+        if (userData.isAdmin === true) {
+          setSidebarLinks(adminLinks);
+          setUserRole("Admin");
+        } else if (userData.isTutor === true) {
+          setSidebarLinks(tutorLinks);
+          setUserRole("Tutor");
+        } else {
           setSidebarLinks(studentLinks);
           setUserRole("Student");
-        }else {
-          setSidebarLinks(tutorLinks);
-          setUserRole("Tutor");}
+        }
       }
     };
 
@@ -36,27 +41,26 @@ const RootLayout = ({children}) => {
   }, []);
 
   const openMenu = () => {
-   setMenu(true)
-  }
+    setMenu(true);
+  };
 
   const closeMenu = () => {
-    setMenu(false)
-   }
+    setMenu(false);
+  };
 
   return (
     <div className='relative'>
-       <Navbar openMenu={openMenu} userRole={userRole}/>
-       <div className='flex'>
-         <div className='overflow-hidden '>
-            <Sidebar menu={menu} closeMenu={closeMenu} sidebarLinks={sidebarLinks}/>
+      <Navbar openMenu={openMenu} userRole={userRole} />
+      <div className='flex'>
+        <div className='overflow-hidden '>
+          <Sidebar menu={menu} closeMenu={closeMenu} sidebarLinks={sidebarLinks} />
         </div>
-
-         <div className='w-full px-8 bg-black/5 overflow-y-scroll'>
-            <div>{children}</div>
-         </div>
-       </div>
+        <div className='w-full px-8 bg-black/5 overflow-y-scroll'>
+          <div>{children}</div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;

@@ -90,13 +90,18 @@ export const features = [
 
 export const adminLinks = [
   {
-    name: "Tutor",
-    route: "/dashboard/tutor-request",
+    name: "Tutors",
+    route: "/dashboard/tutors",
     icon: <FaHome />,
   },
   {
-    name: "Admin-support",
-    route: "/dashboard/admin-support",
+    name: "Students",
+    route: "/dashboard/students",
+    icon: <FaHome />,
+  },
+  {
+    name: "Issues",
+    route: "/dashboard/issues",
     icon: <FaBook />
   }
 ]

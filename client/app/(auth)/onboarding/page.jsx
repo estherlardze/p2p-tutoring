@@ -14,7 +14,6 @@ import { getCWA, uploadFileToFirebase } from "@/config/utils";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { StepOne, StepTwo, StepThree } from "@/components";
-import cookies from 'js-cookie'
 
 const TutorForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -153,7 +152,7 @@ const TutorForm = () => {
       setComplete(true);
       toast.success("Onboarding Complete");
       Cookies.set("studentId", studentId, {expires: 1/24});
-      router.push("/dashboard");
+      router.push("/login");
       
     } catch (err) {
       console.error(err.message);

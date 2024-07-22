@@ -16,7 +16,7 @@ const Sidebar = ({ menu, closeMenu, sidebarLinks }) => {
           <Link
             href={link.route}
             key={link.name}
-            className={` ${isActive ? "bg-blue/20 border-r-8 border-blue text-blue" : "text-black/70"} flex py-2 gap-4 my-8`}
+            className={` ${isActive ? "bg-blue/20 border-r-8 border-blue text-blue" : "text-black/70"} flex px-3 py-2 gap-4 my-8`}
           >
             <p className="text-2xl text-gray/60">{link.icon}</p>
             <p className="hidden lg:block text-lg font-bold ">{link.name}</p>

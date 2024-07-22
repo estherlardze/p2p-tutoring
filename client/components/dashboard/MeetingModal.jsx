@@ -7,6 +7,7 @@ const MeetingModal = ({
   title,
   buttonText,
   handleClick,
+  image
 }) => {
   return (
     <Modal opened={isOpened} onClose={onClose} title={title} centered>

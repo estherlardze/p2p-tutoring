@@ -1,40 +1,4 @@
-
-// import VideoLayout from "@/components/dashboard/VideoLayout";
-// import {
-//   StreamCall,
-//   StreamVideo,
-//   StreamVideoClient,
-// } from "@stream-io/video-react-sdk";
-// import '@stream-io/video-react-sdk/dist/css/styles.css';
- import MeetingTyprList from "@/components/dashboard/MeetingTyprList";
-
-
-// const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
-// const token = process.env.NEXT_PUBLIC_STREAM_TOKEN;
-// const userId = process.env.NEXT_PUBLIC_STREAM_USER_ID;
-// const callId = process.env.NEXT_PUBLIC_STREAM_CALL_ID;
-
-// const user = {
-//   id: userId,
-//   name: "Oliver",
-//   image: "https://getstream.io/random_svg/?id=oliver&name=Oliver",
-// };
-
-// const client = new StreamVideoClient({ apiKey, user, token });
-
-// export default function Dashboard() {
-//   const call = client.call("default", callId);
-//   call.join({ create: true });
-
-//   return (
-//     <StreamVideo client={client}>
-//       <StreamCall call={call}>
-//         <VideoLayout />
-//       </StreamCall>
-//     </StreamVideo>
-//   );
-// }
-
+import MeetingTyprList from "@/components/dashboard/MeetingTyprList";
 
 
 const Dashboard = () => {
