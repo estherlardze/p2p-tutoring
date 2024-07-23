@@ -7,6 +7,7 @@ const MeetingModal = ({
   title,
   buttonText,
   handleClick,
+  buttonIcon,
   image
 }) => {
   return (
@@ -18,7 +19,8 @@ const MeetingModal = ({
           onClick={handleClick}
           className="w-full bg-blue text-white font-semibold py-1 text-center"
         >
-          {buttonText}
+          {buttonIcon && <Image src={image} alt="image" width={100} height={100}/>} &nbsp;
+          {buttonText || "Shcedule meeting..."}
         </button>
       </div>
     </Modal>

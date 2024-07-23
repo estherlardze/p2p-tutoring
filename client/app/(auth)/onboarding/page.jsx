@@ -151,7 +151,7 @@ const TutorForm = () => {
 
       setComplete(true);
       toast.success("Onboarding Complete");
-      Cookies.set("studentId", studentId, {expires: 1/24});
+    //  Cookies.set("studentId", studentId, {expires: 1/24});
       router.push("/login");
       
     } catch (err) {

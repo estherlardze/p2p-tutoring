@@ -63,7 +63,7 @@ const TutorRequest = () => {
     );
   }
 
-  if (!tutorials.length) {
+  if (!tutorials) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
         No bookings for teachers
