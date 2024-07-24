@@ -7,6 +7,7 @@ import { db } from "@/config/firebase";
 import { tutorLinks, studentLinks, adminLinks } from "@/constants/data";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import cookies from "js-cookie";
+import StreamVideoProvider from '@/Provider/StreamClient';
 
 const RootLayout = ({ children }) => {
   const [menu, setMenu] = useState(false);
@@ -50,6 +51,7 @@ const RootLayout = ({ children }) => {
 
   return (
     <div className='relative'>
+      <StreamVideoProvider>
       <Navbar openMenu={openMenu} userRole={userRole} />
       <div className='flex'>
         <div className='overflow-hidden '>
@@ -59,6 +61,7 @@ const RootLayout = ({ children }) => {
           <div>{children}</div>
         </div>
       </div>
+      </StreamVideoProvider>
     </div>
   );
 };

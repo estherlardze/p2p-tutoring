@@ -1,3 +1,4 @@
+"use client"
 import {
     StreamCall,
     StreamVideo,
@@ -5,28 +6,41 @@ import {
     User,
   } from '@stream-io/video-react-sdk';
 import { useState, useEffect } from 'react';
+import cookies from 'js-cookie';
+import { tokenProvider } from '@/actions/stream.actions';
+
   
   const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY
-//   const userId = 'user-id';
-//   const token = 'authentication-token';
-//   const user= { id: userId };
-  
-//   const client = new StreamVideoClient({ apiKey, user, token });
-//   const call = client.call('default', 'my-first-call');
-//   call.join({ create: true });
+
   
  const StreamVideoProvider = ({ children }) => {
     const [videoClient, setVideoClient] = useState()
+    const userId = cookies.get("studentId");
+
 
     useEffect(() => {
-      const client = new StreamVideoClient({ apiKey });
+      if(!userId) return;
+      if(!apiKey) throw new Error ("Stream API key missing")
+
+      const client = new StreamVideoClient({
+        apiKey,
+        user: {
+          id: userId, 
+        },
+        tokenProvider,
+      })
+
       setVideoClient(client);
-    }, []);
+
+
+    }, [userId]);
+
+    if(!videoClient) return "Loading..."
 
 
     return (
       <StreamVideo client={videoClient}>
-        
+        {children}
       </StreamVideo>
     );
   };
