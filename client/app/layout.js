@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import { Navbar, Footer } from "@/components";
+import '@stream-io/video-react-sdk/dist/css/styles.css';
 
 const inter = Inter({ subsets: ["latin"] });
 

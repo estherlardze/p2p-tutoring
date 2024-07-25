@@ -1,48 +1,53 @@
 "use client"
 import {
-    StreamCall,
-    StreamVideo,
-    StreamVideoClient,
-    User,
-  } from '@stream-io/video-react-sdk';
+  StreamCall,
+  StreamVideo,
+  StreamVideoClient,
+  User,
+} from '@stream-io/video-react-sdk';
 import { useState, useEffect } from 'react';
 import cookies from 'js-cookie';
 import { tokenProvider } from '@/actions/stream.actions';
+import { tuto1 } from '../public/index';
 
-  
-  const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY
+const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
 
-  
- const StreamVideoProvider = ({ children }) => {
-    const [videoClient, setVideoClient] = useState()
-    const userId = cookies.get("studentId");
+const StreamVideoProvider = ({ children }) => {
+  const [videoClient, setVideoClient] = useState(null);
+  const userId = cookies.get("studentId");
+  console.log(userId)
 
+  useEffect(() => {
+    if (!apiKey) {
+      console.error("Stream API key missing");
+      return;
+    }
 
-    useEffect(() => {
-      if(!userId) return;
-      if(!apiKey) throw new Error ("Stream API key missing")
+    if (!userId) {
+      console.error("User ID missing");
+      return;
+    }
 
-      const client = new StreamVideoClient({
-        apiKey,
-        user: {
-          id: userId, 
-        },
-        tokenProvider,
-      })
+    const client = new StreamVideoClient({
+      apiKey,
+      user: {
+        id: userId,
+        name: userId,
+        imageUrl: tuto1,
+      },
+      tokenProvider,
+    });
 
-      setVideoClient(client);
+    setVideoClient(client);
+  }, [userId]);
 
+  if (!videoClient) return <div>Loading...</div>;
 
-    }, [userId]);
+  return (
+    <StreamVideo client={videoClient}>
+      {children}
+    </StreamVideo>
+  );
+};
 
-    if(!videoClient) return "Loading..."
-
-
-    return (
-      <StreamVideo client={videoClient}>
-        {children}
-      </StreamVideo>
-    );
-  };
-
-  export default StreamVideoProvider
+export default StreamVideoProvider;
