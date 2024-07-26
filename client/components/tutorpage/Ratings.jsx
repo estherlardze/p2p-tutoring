@@ -1,14 +1,28 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-const Ratings = ({ tutor }) => {
-  // Calculate the number of ratings for each star level
+
+const ratings = [
+  {
+    id: 1,
+    star:5
+    },
+  {
+    id: 2,
+      star:4
+    },
+  {
+    id: 3,
+      star:5
+    },
+]
+
+const Ratings = () => {
   const starCounts = [1, 2, 3, 4, 5].map(
-    (star) => tutor.ratings.filter((rating) => rating.star === star).length
+    (star) => ratings.filter((rating) => rating.star === star).length
   );
 
-  // Total number of ratings
-  const totalRatings = tutor.ratings.length;
+  const totalRatings = ratings.length;
 
   return (
     <section>
@@ -29,7 +43,7 @@ const Ratings = ({ tutor }) => {
             const percentage = (count / totalRatings) * 100;
 
             return (
-              <article key={index} className="flex gap-2 w-full items-center">
+              <article key={index} className="flex gap-2 w-full items-center z-20">
                 <p className="font-semibold text-sm">{star} star</p>
                 <div className="h-4 w-[50%] bg-black/10 relative">
                   <div

@@ -92,7 +92,7 @@ const TutorDetail = () => {
                 <p className="text-black/80 text-sm">{tutor.bio}</p>
               </article>
 
-              <div className="flex flex-col mt-8 gap-2">
+              <div className="flex flex-col my-8 gap-2">
                 <p className="text-black/90 text-xl uppercase font-bold">
                   Courses
                 </p>
@@ -110,7 +110,7 @@ const TutorDetail = () => {
 
             <div className="col-span-5 lg:col-span-2 flex flex-col md:flex-row lg:flex-col gap-8">
             {ratings  && <Reviews tutor={tutor} />}
-              {ratings && <Ratings tutor={tutor} />}
+               <Ratings  />
             </div>
           </section>
         </div>

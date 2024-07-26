@@ -106,6 +106,7 @@ const TutorForm = () => {
 
     if (weightedAverage < 70) {
       toast.error("Your average is below 70. You do not qualify to be a tutor.");
+      
       router.push("/");
       return;
     }

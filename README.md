@@ -35,6 +35,7 @@ This web application aims to alleviate academic challenges faced by students by 
 
 ## Technologies Used
 - **Front-end**: Next Js, TailwindCSS
+- **UI Library**: Mantine UI
 - **Back-end**: Firebase, NodeJS
 
 
