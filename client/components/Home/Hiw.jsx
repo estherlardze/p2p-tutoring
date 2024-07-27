@@ -1,5 +1,4 @@
 import React from "react";
-import { howitworks } from "@/constants/data";
 import Image from "next/image";
 
 const Hiw = ({heading, data}) => {

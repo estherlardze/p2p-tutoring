@@ -1,4 +1,3 @@
-"use client";
 
 import React from "react";
 import {
@@ -16,7 +15,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col">
       <div className="bg-header bg-cover bg-center bg-no-repeat flex-grow">
         <div className="h-[50vh] sm:h-[95vh] bg-black/75 text-white font-custom">
-          <Navbar />
+         <div className="text-white"> <Navbar /></div>
           <Header />
         </div>
       </div>
@@ -25,7 +24,8 @@ export default function Home() {
       </section>
       <Goal />
       <Features />
-      <Footer/>
+
+      <Footer />
     </main>
   );
 }

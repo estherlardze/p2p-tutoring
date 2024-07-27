@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaEye } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { query, where, collection, getDocs } from "firebase/firestore";
+import Loader from "@/components/Loader";
 
 const Tutors = () => {
   const [tutors, setTutors] = useState([]);
@@ -45,9 +46,9 @@ const Tutors = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-[70vh]">
-        Loading...
-      </div>
+      <div className="flex justify-center items-center h-full bg-gray-100">
+      <div className="w-12 h-12 border-l-2 border-r-2 border-b-2 border-blue border-t-transparent border-solid rounded-full animate-spin"></div>
+    </div>
     );
   }
 

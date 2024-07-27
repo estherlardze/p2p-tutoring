@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const TutorCard = ({ tutor }) => {
   return (
-    <main className="flex flex-col sm:flex-row bg-white gap-6 col-span-6 md:col-span-3  h-[250px] rounded-md shadow-md">
+    <main className="flex flex-col sm:flex-row bg-white gap-6 col-span-6 lg:col-span-3 h-fit lg:min-h-[250px] rounded-md shadow-md">
       <Image
         src={tutor.profile}
         alt={tutor.name}

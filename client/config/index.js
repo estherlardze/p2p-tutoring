@@ -1,6 +1,6 @@
-const functions = require("firebase-functions");
-const admin = require("firebase-admin");
-const nodemailer = require("nodemailer");
+import functions from "firebase-functions";
+import admin from "firebase-admin";
+import nodemailer from "nodemailer";
 
 admin.initializeApp();
 

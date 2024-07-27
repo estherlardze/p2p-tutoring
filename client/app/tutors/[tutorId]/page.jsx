@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { db } from "@/config/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { Reviews, Availability, Ratings, Navbar, Footer } from "@/components";
+import { Reviews, Availability, Ratings } from "@/components";
 import Image from "next/image";
+import Loader from "@/components/Loader";
 import Popup from "@/components/tutorpage/Modal";
+import { Navbar, Footer } from "@/components";
 
 const TutorDetail = () => {
   const { tutorId } = useParams();
@@ -41,23 +43,28 @@ const TutorDetail = () => {
     fetchTutor();
   }, [tutorId]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
   if (error) return <div>{error}</div>;
   if (!tutor) return <div>Tutor not found</div>;
 
   return (
     <main>
       <Navbar />
-
       <section className="bg-black/10 w-full mt-[70px] pb-[70px] overflow-y-scroll min-h-screen scrollable-container pt-3">
         <div className="mx-auto w-[90%] 2xl:w-[1500px] 2xl:mx-auto ">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-            <Image src={tutor.profile} alt={tutor.name} width={200} height={170} />
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-8">
+            <Image
+              src={tutor.profile}
+              alt={tutor.name}
+              width={200}
+              height={170}
+            />
 
             <div>
               <h1 className="font-bold text-2xl text-black">{tutor.name}</h1>
               <h3 className="text-lg font-semibold  my-2">
-              <span>Department: </span>  <span className="">{tutor.department}</span>
+                <span>Department: </span>{" "}
+                <span className="">{tutor.department}</span>
               </h3>
               <div className="flex items-center gap-2 mtext-black/90t-2">
                 <p className="text-text/90 font-semibold">Tutoring Type:</p>{" "}
@@ -83,39 +90,35 @@ const TutorDetail = () => {
             </div>
           </div>
 
-          <section className="grid grid-cols-5 gap-10 my-10">
-            <div className="col-span-5 lg:col-span-3 mb-4">
-              <article className="">
-                <h1 className="font-bold text-xl uppercase">
-                  About me
-                </h1>
-                <p className="text-black/80 text-sm">{tutor.bio}</p>
-              </article>
+          <div className="col-span-5 lg:col-span-3 mb-4">
+            <article className="">
+              <h1 className="font-bold text-xl uppercase">About me</h1>
+              <p className="text-black/80 text-sm">{tutor.bio}</p>
+            </article>
 
-              <div className="flex flex-col my-8 gap-2">
-                <p className="text-black/90 text-xl uppercase font-bold">
-                  Courses
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {tutor.courses?.map((course, index) => (
-                    <p key={index} className="text-white bg-blue/70 py-1 px-3 rounded-md">
-                      {course}
-                    </p>
-                  ))}
-                </div>
+            <div className="flex flex-col my-8 gap-2">
+              <p className="text-black/90 text-xl uppercase font-bold">
+                Courses
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {tutor.courses?.map((course, index) => (
+                  <p
+                    key={index}
+                    className="text-white bg-blue/70 py-1 px-3 rounded-md"
+                  >
+                    {course}
+                  </p>
+                ))}
               </div>
-
-              <Availability tutor={tutor} />
             </div>
 
-            <div className="col-span-5 lg:col-span-2 flex flex-col md:flex-row lg:flex-col gap-8">
-            {ratings  && <Reviews tutor={tutor} />}
-               <Ratings  />
+            <Availability tutor={tutor} />
+            <div className="mt-8">
+              <Ratings />
             </div>
-          </section>
+          </div>
         </div>
       </section>
-
       <Footer />
     </main>
   );

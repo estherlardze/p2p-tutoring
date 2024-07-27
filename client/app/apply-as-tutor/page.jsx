@@ -1,4 +1,4 @@
-"use client";
+
 
 import React from "react";
 import { Hiw, ApplyHeader, Requirement, Navbar, Footer } from "@/components";

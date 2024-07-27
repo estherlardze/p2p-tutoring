@@ -2,6 +2,7 @@
 
 import React from "react";
 import { meetingdata } from "@/constants/data";
+import Loader from "../Loader";
 
 import {
   CallControls,
@@ -21,7 +22,7 @@ const VideoLayout = () => {
   const callingState = useCallCallingState();
 
   if (callingState !== CallingState.JOINED) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

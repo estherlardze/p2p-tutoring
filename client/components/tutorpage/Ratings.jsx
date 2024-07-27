@@ -43,7 +43,7 @@ const Ratings = () => {
             const percentage = (count / totalRatings) * 100;
 
             return (
-              <article key={index} className="flex gap-2 w-full items-center z-20">
+              <article key={index} className="flex gap-2 items-center sm:w-[70%] lg:w-[50%]">
                 <p className="font-semibold text-sm">{star} star</p>
                 <div className="h-4 w-[50%] bg-black/10 relative">
                   <div
