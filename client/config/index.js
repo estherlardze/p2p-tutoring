@@ -19,7 +19,7 @@ exports.sendBookingEmail = functions.firestore
     const bookingData = snap.data();
     const tutorId = context.params.tutorId;
 
-    // Fetch tutor email
+    // Fetch tutor email 
     const tutorDoc = await admin.firestore().collection("Tutors").doc(tutorId).get();
     const tutorEmail = tutorDoc.data().email;
 

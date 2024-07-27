@@ -1,5 +1,8 @@
 import React from "react";
 import { Modal } from "@mantine/core";
+import Image from "next/image";
+
+
 
 const MeetingModal = ({
   isOpened,

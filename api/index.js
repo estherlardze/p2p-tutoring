@@ -1,7 +1,7 @@
-import express from "express";
-import fileUpload from "express-fileupload"
-import pdfParse from "pdf-parse"
-import cors from "cors"
+const express = require("express");
+const fileUpload = require("express-fileupload")
+const pdfParse = require("pdf-parse")
+const cors = require("cors")
 
 const app = express()
 
@@ -26,6 +26,10 @@ app.post("/extract-text", (request, response) => {
      .then(result => {
         response.send(result.text)
      })
+})
+
+app.get("/trace", (request, response) =>{
+    response.json("hello");
 })
 
 app.listen(4000, () => {

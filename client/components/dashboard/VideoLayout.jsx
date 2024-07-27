@@ -41,10 +41,10 @@ export const ParticipantsList = (props) => {
   return (
     <div className="flex flex-row w-screen gap-2">
       {participants.map((participant) => (
-        <div className="w-full">
+        <div className="w-full" key={participant.sessionId}>
           <ParticipantView
             muteAudio
-            participant={participant}
+            participant={participant} 
             key={participant.sessionId}
           />
         </div>
