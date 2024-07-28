@@ -30,14 +30,13 @@ const Popup = ({ tutor }) => {
   });
 
   const handleChange = async (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setBookingInfo((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
 
-    // Fetch student data when studentId field changes
-    if (name === "studentId" && value) {
+    if (name === "studentId") {
       try {
         const q = query(
           collection(db, "Students"),
@@ -57,11 +56,9 @@ const Popup = ({ tutor }) => {
             name: "",
             email: "",
           }));
-          toast.error("Student ID does not exist");
         }
       } catch (error) {
-        console.error("Error fetching student data: ", error);
-        toast.error("Failed to fetch student data");
+        console.error("Error fetching student details: ", error);
       }
     }
   };
@@ -109,9 +106,8 @@ const Popup = ({ tutor }) => {
         return;
       }
       const studentDoc = querySnapshot.docs[0];
-      const studentRef = doc(db, "Students", studentDoc.id);
 
-      console.log("Booking Info:", bookingInfo);
+      const studentRef = doc(db, "Students", studentDoc.id);
 
       const tutorRef = doc(db, "Students", tutor.id);
       await updateDoc(tutorRef, {
@@ -142,16 +138,19 @@ const Popup = ({ tutor }) => {
         }),
       });
 
+      toast.success("Booking was successful, tutor will be in touch");
       close();
-      toast.success("Booking successful!");
     } catch (error) {
-      console.error("Error booking tutorial: ", error);
-      alert("Failed to book tutorial. Please try again.");
+      console.error("Error submitting booking: ", error);
+      toast.error("Failed to submit booking");
     }
   };
 
   return (
-    <section className="h-fit">
+    <div>
+      <button onClick={open} className="text-blue">
+        Book Session
+      </button>
       <ToastContainer position="top-center" draggable />
       <Modal
         opened={opened}
@@ -220,8 +219,8 @@ const Popup = ({ tutor }) => {
               setBookingInfo({ ...bookingInfo, course: value })
             }
           />
-
-          <div className="mt-2">
+         
+         <div className="mt-2">
             <label htmlFor="contact" className="font-semibold">
               Contact
             </label>
@@ -229,6 +228,7 @@ const Popup = ({ tutor }) => {
               type="text"
               name="contact"
               id="contact"
+              placeholder="active call number"
               className="w-full px-3 py-1 border text-black/80 border-black/35 rounded-md outline-blue/40"
               value={bookingInfo.contact}
               onChange={handleChange}
@@ -262,8 +262,7 @@ const Popup = ({ tutor }) => {
               onChange={handleChange}
             />
           </div>
-
-          <div className="mt-4">
+           <div className="mt-4">
             <h1 className="font-semibold">
               How would you like to take a lesson?
             </h1>
@@ -324,11 +323,7 @@ const Popup = ({ tutor }) => {
           </button>
         </form>
       </Modal>
-
-      <button onClick={open} style={{ color: "#042085", fontWeight: "bold" }}>
-        Book me
-      </button>
-    </section>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import Stepper from "./Stepper";
@@ -13,7 +13,6 @@ const StepOne = ({
   handleCoursesChange,
   onNext,
 }) => {
-
   return (
     <section className="flex flex-col justify-center items-center min-h-screen w-[90%] sm:max-w-lg lg:max-w-2xl 2xl:max-w-[1200px] mx-auto">
       <h1 className="font-bold text-3xl mb-4">Onboarding</h1>
@@ -21,11 +20,14 @@ const StepOne = ({
         <Stepper currentStep={currentStep} complete={complete} steps={steps} />
       </div>
       <div className="my-1 w-full">
-        <label htmlFor="studentId" className="block text-gray-2 font-medium mb-1">
+        <label
+          htmlFor="studentId"
+          className="block text-gray-2 font-medium mb-1"
+        >
           Student id
         </label>
-        <input 
-          type="text" 
+        <input
+          type="text"
           id="studentId"
           name="studentId"
           value={formInfo.studentId}
@@ -53,13 +55,13 @@ const StepOne = ({
 
       <div className="my-1 w-full">
         <label htmlFor="courses" className="block text-gray-2 font-medium">
-          Courses
+          Course or courses you want to teach
         </label>
         <TagsInput
           data={[]}
           value={formInfo.courses}
           onChange={handleCoursesChange}
-          placeholder="Type the courses you want to teach and press enter"
+          placeholder="Type course name and press enter"
           className="py-2"
         />
       </div>
@@ -85,7 +87,7 @@ const StepOne = ({
           Amount per hour
         </label>
         <input
-          type="text"
+          type="number"
           id="amount"
           name="amount"
           value={formInfo.amount}
@@ -93,6 +95,8 @@ const StepOne = ({
           onChange={handleChange}
           className="w-full px-2 py-1 border border-gray-2/50 outline-blue/25 rounded-sm text-sm"
           required
+          min="1"
+          max="20"
         />
       </div>
 

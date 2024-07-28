@@ -60,7 +60,7 @@ const Navbar = () => {
     >
       <section className="flex justify-between py-5 px-4 sm:px-8 2xl:w-[1500px] 2xl:mx-auto z-50">
         <h1 className={`text-2xl font-bold ${router === "/" ? (changebg ? "text-black" : "text-white") : "text-white"}`}>
-          LoGo
+          connected
         </h1>
         <div className="hidden md:flex gap-8">
           <Link
@@ -98,13 +98,13 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className={`lg:hidden ${getMenuIconColor()}`} onClick={() => setMenu(!menu)}>
+        <div className={`md:hidden ${getMenuIconColor()}`} onClick={() => setMenu(!menu)}>
           {menu ? <IoMdClose size={25} /> : <IoMdMenu size={25} />}
         </div>
       </section>
 
       {menu && (
-        <div className="w-full bg-white z-50 text-black fixed lg:hidden top-[70px] h-full left-0 right-0 justify-center items-center transition-transform duration-700">
+        <div className="w-full bg-white z-50 text-black fixed top-[70px] h-full left-0 right-0 justify-center items-center transition-transform duration-700">
           <div className="flex justify-center items-left pl-6 py-8 flex-col h-fit text-lg sm:text-xl gap-y-4">
             <Link
               href="/"

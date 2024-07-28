@@ -4,7 +4,6 @@ import nodemailer from "nodemailer";
 
 admin.initializeApp();
 
-// Configure the email transporter using your email service credentials
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -24,7 +23,7 @@ exports.sendBookingEmail = functions.firestore
     const tutorEmail = tutorDoc.data().email;
 
     const mailOptions = {
-      from: "your-email@gmail.com",
+      from: "odzaoe@gmail.com",
       to: tutorEmail,
       subject: "New Booking Alert",
       text: `You have a new booking from ${bookingData.name} for ${bookingData.course}.`,

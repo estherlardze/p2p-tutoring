@@ -20,6 +20,7 @@
     "@stream-io/video-react-sdk": "^1.2.15",
     "@tanstack/react-table": "^8.17.3",
     "aos": "^2.3.4",
+    "axios": "^1.7.2",
     "cookie": "^0.6.0",
     "dayjs": "^1.11.11",
     "embla-carousel-autoplay": "^8.1.3",

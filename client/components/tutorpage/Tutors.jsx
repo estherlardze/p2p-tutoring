@@ -45,7 +45,7 @@ const Tutors = () => {
     <main>
       <Navbar />
 
-      <section className="w-full bg-black/10 mt-[70px] pb-[70px] h-screen overflow-y-scroll scrollable-container pt-3">
+      <section className="w-full bg-black/10 mt-[70px] pb-[70px] min-h-screen overflow-y-scroll scrollable-container pt-3">
         <div className="w-[90%] mx-[5%] 2xl:w-[1500px] 2xl:mx-auto">
           <div className="my-6 w-[100%] sm:w-[40%]">
             <input

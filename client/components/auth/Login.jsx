@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { ImSpinner8 } from "react-icons/im";
 import { useRouter } from "next/navigation";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
@@ -9,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import Cookies from "js-cookie";
-import Loader from "../Loader";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -43,9 +43,9 @@ const Login = () => {
       return;
     }
 
-    setLoading(true);
 
     try {
+      setLoading(true);
       const q = query(
         collection(db, "Students"),
         where("studentId", "==", studentId)
@@ -57,6 +57,8 @@ const Login = () => {
         const userData = userDoc.data();
 
         if (userData.password === password && userData.email === email) {
+          setLoading(false);
+          toast.success("Login successful");
           Cookies.set("studentId", studentId);
           router.push("/dashboard");
         } else {
@@ -68,18 +70,13 @@ const Login = () => {
     } catch (err) {
       console.error("Error logging in:", err);
       toast.error("Error logging in, please try again");
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-black/10">
       <ToastContainer position="top-center" draggable />
 
-      {loading ? (
-        <Loader />
-      ) : (
         <div className={`bg-white p-8 rounded shadow-md w-[90%] mx-[5%] sm:mx-auto sm:max-w-md`}>
           <div className="flex flex-col items-center justify-center mb-6">
             <h2 className="text-3xl font-semibold text-center">Login</h2>
@@ -146,15 +143,15 @@ const Login = () => {
               </div>
             </div>
 
-            <button className="border-2 rounded w-full border-blue bg-blue font-bold py-[6px] px-10 text-white hover:bg-white hover:text-black transition-all duration-500">
-              Login
+            <button className="border-2 rounded w-full border-blue bg-blue flex items-center justify-center font-bold py-[6px] px-10 text-white hover:bg-white hover:text-black transition-all duration-500">
+              {loading ? <ImSpinner8 className="animate-spin text-blue" /> : "Login"}
             </button>
             <div className="text-sm mt-2">
               Don&apos;t have an account? <Link href="/sign-up">Sign up</Link>
             </div>
           </form>
         </div>
-      )}
+    
     </div>
   );
 };

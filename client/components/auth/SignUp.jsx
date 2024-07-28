@@ -14,13 +14,15 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import Loader from "../Loader";
+import { ImSpinner8 } from "react-icons/im";
+
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -48,9 +50,9 @@ const SignUp = () => {
       return;
     }
 
-    setLoading(true);
 
     try {
+      setLoading(true);
       const q = query(
         collection(db, "Students"),
         where("studentId", "==", studentId)
@@ -59,25 +61,24 @@ const SignUp = () => {
 
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0];
-        await updateDoc(userDoc.ref, { email, password });
-        toast.success("Sign up was successful");
-        router.push("/");
+        setData(userDoc.data());
+        await updateDoc(userDoc.ref, { email, password }); 
+
+        setLoading(false);
+        toast.success("Sign was successful");
+        router.push("/login");
       } else {
         toast.error("Student ID does not exist");
       }
     } catch (err) {
       console.error("Error signing up:", err);
-      toast.error("Error signing up, please try again");
-    } finally {
-      setLoading(false);
-    }
+      toast.error("Error signing up, please try again");}
   };
 
-  if(loading) return <Loader/>
-
+console.log(data)
   return (
     <div className="min-h-screen flex justify-center items-center bg-black/10">
-      <ToastContainer position="top-center" draggable />
+      <ToastContainer position="top-center" draggable duration={9000} />
 
       <div
         className={`bg-white p-8 rounded shadow-md w-[90%] mx-[5%] sm:mx-auto sm:max-w-md`}
@@ -141,14 +142,14 @@ const SignUp = () => {
                   required
                 />
                 <div onClick={handleShowPassword} className="cursor-pointer">
-                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  {showPassword ? <FaEye /> : <FaEyeSlash />} 
                 </div>
               </div>
             </div>
           </div>
 
-          <button className="border-2 rounded w-full border-blue bg-blue font-bold py-[6px] px-10 text-white hover:bg-white hover:text-black transition-all duration-500">
-            Sign up
+          <button className="border-2 rounded w-full border-blue flex justify-center items-center bg-blue font-bold py-[6px] px-10 text-white hover:bg-white hover:text-black transition-all duration-500">
+          {loading ? <ImSpinner8 className="animate-spin text-blue font-bold" /> : "Sign up"}
           </button>
           <div className="text-sm mt-2">
             Already have an account? <Link href="/login">Login</Link>

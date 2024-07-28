@@ -2,6 +2,7 @@ const express = require("express");
 const fileUpload = require("express-fileupload")
 const pdfParse = require("pdf-parse")
 const cors = require("cors")
+const sendmail = require("./sendail")
 
 const app = express()
 
@@ -13,6 +14,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(express.json());
 
 app.use(fileUpload())
 
@@ -27,10 +29,9 @@ app.post("/extract-text", (request, response) => {
         response.send(result.text)
      })
 })
+app.use("/", sendmail)
 
-app.get("/trace", (request, response) =>{
-    response.json("hello");
-})
+
 
 app.listen(4000, () => {
     console.log("server is running on port 4000")

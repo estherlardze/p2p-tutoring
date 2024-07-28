@@ -8,6 +8,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cookies from "js-cookie";
 import { query, where, collection, getDocs } from "firebase/firestore";
+import { ImSpinner8 } from "react-icons/im";
+
 
 const TutorDashboard = () => {
   const [tutorials, setTutorials] = useState([]);
@@ -58,7 +60,7 @@ const TutorDashboard = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        Loading...
+        <ImSpinner8 className="animate-spin text-blue"/>
       </div>
     );
   }
@@ -134,7 +136,7 @@ const TutorDashboard = () => {
         title="Booking Details"
         centered
       >
-        {selectedBooking && <BookingDetail booking={selectedBooking} />}
+        {selectedBooking && <BookingDetail tutor={selectedBooking} />}
       </Modal>
     </div>
   );

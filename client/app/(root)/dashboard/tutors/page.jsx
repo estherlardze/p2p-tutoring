@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
-import { Modal, Select } from "@mantine/core";
-import BookingDetail from "../../../../components/dashboard/BookingDetail";
+import { Modal } from "@mantine/core";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,6 +9,7 @@ import { FaEye } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { query, where, collection, getDocs } from "firebase/firestore";
 import Loader from "@/components/Loader";
+import ViewDetails from "@/components/dashboard/ViewDetails";
 
 const Tutors = () => {
   const [tutors, setTutors] = useState([]);
@@ -39,16 +39,16 @@ const Tutors = () => {
     fetchTutors();
   }, []);
 
-  const handleViewDetails = (booking) => {
-    setSelectedBooking(booking);
+  const handleViewDetails = (tutor) => {
+    setSelectedBooking(tutor);
     setDetailModalOpen(true);
   };
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-full bg-gray-100">
-      <div className="w-12 h-12 border-l-2 border-r-2 border-b-2 border-blue border-t-transparent border-solid rounded-full animate-spin"></div>
-    </div>
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="w-12 h-12 border-l-2 border-r-2 border-b-2 border-blue border-t-transparent border-solid rounded-full animate-spin"></div>
+      </div>
     );
   }
 
@@ -71,7 +71,7 @@ const Tutors = () => {
             <tr className="bg-gray-200">
               <th className="py-2 px-4 border-b border-gray-200">Name</th>
               <th className="py-2 px-4 border-b border-gray-200">Email</th>
-              <th className="py-2 px-4 border-b border-gray-200">contact</th>
+              <th className="py-2 px-4 border-b border-gray-200">Contact</th>
               <th className="py-2 px-4 border-b border-gray-200">Actions</th>
             </tr>
           </thead>
@@ -79,7 +79,7 @@ const Tutors = () => {
             {tutors.map((tutor, index) => (
               <tr
                 key={tutor.id}
-                className={index % 2 === 0 ? "bg-gray-200/20" : "bg-white"}
+                className={index % 2 === 0 ? "bg-gray-2/20" : "bg-white"}
               >
                 <td className="py-2 px-4 border-b border-gray-200">
                   {tutor.name}
@@ -93,12 +93,12 @@ const Tutors = () => {
                 <td className="py-2 px-4 border-b border-gray-200 text-center">
                   <button
                     className="bg-blue-700 text-blue py-1 px-3 rounded-md hover:bg-blue-600"
-                    onClick={() => {}}
+                    onClick={() => handleViewDetails(tutor)}
                   >
-                    <FaEye size={21}/>
+                    <FaEye size={21} />
                   </button>
                   <button className="text-[#a30313] py-1 px-3 rounded-md ">
-                    <MdDelete size={21}/>
+                    <MdDelete size={21} />
                   </button>
                 </td>
               </tr>
@@ -113,7 +113,7 @@ const Tutors = () => {
         title="Tutor Details"
         centered
       >
-        {selectedBooking && <BookingDetail booking={selectedBooking} />}
+        <ViewDetails tutor={selectedBooking} />
       </Modal>
     </div>
   );

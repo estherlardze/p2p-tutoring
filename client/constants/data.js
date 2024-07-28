@@ -1,8 +1,4 @@
 import { step1, step2, step3, profile, verify , tutor} from "@/public";
-import { FaPlus } from "react-icons/fa6";
-import { TbUserPlus } from "react-icons/tb";
-import { MdDateRange } from "react-icons/md";
-import { CiVideoOn } from "react-icons/ci";
 import { FaHome, FaBook, FaUser } from "react-icons/fa";
 
 
@@ -12,7 +8,7 @@ export const howitworks = [
     image: step1,
     step: "step 1",
     title: "Register",
-    content: "Sign up with your student email and set up your profile either as a student or tutor",
+    content: "Sign up to search for tutors. If you are interested in becoming a tutor, visit the 'Become a Tutor' page to learn more.",
   },
   {
     id: 2,
@@ -28,7 +24,7 @@ export const howitworks = [
     image: step3,
     step: "step 3",
     title: "Payment",
-    content: "Pay for the lesson using your preferred payment method",
+    content: "Pay for the lesson using your preferred mobile money payment method.",
   },
 
   {
@@ -37,7 +33,7 @@ export const howitworks = [
     step: "step 4",
     title: "Review",
     content:
-      "After the tutoring sessions, students provide feedback and ratings based on their experience",
+      "After the tutoring sessions, students are encouraged to visit the platform and rate the tutors based on their experience.",
   },
 ];
 
@@ -55,7 +51,7 @@ export const whychooseus = [
     step: "step 2",
     title: "Profile Setup",
     content:
-      "Fill out your profile with detailed information about your academic background, courses of expertise, availability and current result",
+      "Fill out your profile with detailed information about your academic background, courses of expertise, availability and current academic result",
   },
 
   {
@@ -63,7 +59,7 @@ export const whychooseus = [
     image: verify,
     step: "step 3",
     title: "Verification",
-    content: "Your uploaded result will be reviewed if you pass the criteria to be a tutor",
+    content: "Your academic result will be reviewed shortly, note that you your current Average needs be 70 or above to be approved",
   },
 
   {
@@ -72,7 +68,7 @@ export const whychooseus = [
     step: "step 4",
     title: "Start Tutoring",
     content:
-      "Once approved, students can find and book sessions with you based on your availability",
+      "Once approved, students can book you for a lesson using our platform.",
   },
 ];
 

@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/config/firebase';
@@ -6,7 +6,6 @@ import { db } from '@/config/firebase';
 const Page = () => {
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const fetchIssues = async () => {
@@ -16,7 +15,7 @@ const Page = () => {
         ...doc.data()
       }));
       setIssues(issuesList);
-      setLoading(false)
+      setLoading(false);
     };
 
     fetchIssues();
@@ -33,33 +32,34 @@ const Page = () => {
   if (!issues.length) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        No tutors found...
+        No issues found...
       </div>
     );
   }
-  console.log(issues)
 
   return (
-    <div>
-      <h1>Issues</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>email</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {issues.map(issue => (
-            <tr key={issue.id}>
-              <td>{issue.studentId}</td>
-              <td>{issue.title || "title"}</td>
-              <td>{issue.issue}</td>
+    <div className="container mx-auto p-4 min-h-screen">
+      <h1 className="text-2xl font-bold mb-4">Issues</h1>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white">
+          <thead className="bg-blue-200">
+            <tr>
+              <th className="py-2 px-4 border-b border-gray-200">ID</th>
+              <th className="py-2 px-4 border-b border-gray-200">Email</th>
+              <th className="py-2 px-4 border-b border-gray-200">Description</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {issues.map(issue => (
+              <tr key={issue.id} className="bg-gray-50 hover:bg-gray-100">
+                <td className="py-2 px-4 border-b border-gray-200">{issue.studentId}</td>
+                <td className="py-2 px-4 border-b border-gray-200">{issue.title || "No title"}</td>
+                <td className="py-2 px-4 border-b border-gray-200">{issue.issue}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

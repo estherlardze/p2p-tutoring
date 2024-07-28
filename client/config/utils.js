@@ -24,7 +24,8 @@ export const uploadFileToFirebase = async (type, fileToUpload) => {
   return uploadedUrl;
 };
 
-const ENDPOINT = `http://localhost:4000/extract-text`;
+const endpoint = `http://localhost:4000/extract-text`;
+const ENDPOINT = `https://ptop.fibcghana.org/extract-text`;
 
 export const getCWA = async (resultToUpload) => {
   const formData = new FormData();

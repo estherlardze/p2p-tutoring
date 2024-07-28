@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { db } from "@/config/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { Reviews, Availability, Ratings } from "@/components";
+import { Availability, Ratings } from "@/components";
 import Image from "next/image";
 import Loader from "@/components/Loader";
 import Popup from "@/components/tutorpage/Modal";

@@ -6,21 +6,23 @@ import avater from "../../public/avater.png";
 import { IoMdMenu } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import cookies from "js-cookie";
+import { MdAccountCircle } from "react-icons/md";
+import { MdOutlineLogout } from "react-icons/md";
+import { PiStudentDuotone } from "react-icons/pi";
 
 const Navbar = ({ openMenu, userRole }) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
-
   const handleSignOut = () => {
-    router.push("/");
     cookies.remove("studentId");
+    router.push("/");  
   };
 
   return (
     <div className="w-full sticky top-0 left-0 z-20">
       <div className="bg-white shadow-md h-[70px] flex justify-between items-center px-4">
-        <h1 className="text-2xl font-bold hidden sm:block">Logo</h1>
+        <h1 className="text-2xl font-bold hidden sm:block">connected</h1>
 
         <div className="sm:hidden" onClick={openMenu}>
           {<IoMdMenu size={25} />}
@@ -34,14 +36,25 @@ const Navbar = ({ openMenu, userRole }) => {
             className="rounded-full"
           />
           {open && (
-            <div className="absolute right-0 mt-2 w-fit bg-white rounded-lg shadow-lg py-2">
-              <h1 className="text-lg hover: px-4 py-2">{userRole}</h1>
-              <button
-                onClick={handleSignOut}
-                className="text-lg  text-red-600 px-4 py-2 hover:bg-gray-100 w-full text-left"
-              >
-                Logout
-              </button>
+            <div className="absolute right-0 mt-2 w-fit bg-white rounded-lg shadow-lg py-2 px-2 text-blue font-bold">
+              <div className="items-center gap-1 flex my-2">
+                <PiStudentDuotone />
+                <h1 className="">{userRole}</h1>
+
+              </div>
+              <div className="flex items-center gap-1">
+                <MdAccountCircle />
+                <h1>account</h1>
+              </div>
+              <div className="items-center gap-1 flex my-3">
+                <MdOutlineLogout />
+                <button
+                  onClick={handleSignOut}
+                  className=""
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           )}
         </div>

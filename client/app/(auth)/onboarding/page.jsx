@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { db } from "@/config/firebase";
 import {
@@ -14,6 +14,8 @@ import { getCWA, uploadFileToFirebase } from "@/config/utils";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { StepOne, StepTwo, StepThree } from "@/components";
+import Modal from "@/components/apply-for-tutor/Modal";
+import Loader from "@/components/Loader";
 
 const TutorForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -21,6 +23,8 @@ const TutorForm = () => {
   const [complete, setComplete] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
   const [currentResult, setCurrentResult] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true); // Initial state set to true
   const steps = ["personal", "career", "finish"];
   const [formInfo, setFormInfo] = useState({
     bio: "",
@@ -87,9 +91,8 @@ const TutorForm = () => {
     // GET CWA
     const pattern = /Weighted Average:\s*([0-9]+\.[0-9]+)/;
     const result = await getCWA(resultToUpload);
-     console.log(result)
+    console.log(result)
     const cwaMatch = result.match(pattern);
-  
 
     if (!cwaMatch) {
       toast.error("Invalid result document. Please upload a valid result.");
@@ -105,9 +108,7 @@ const TutorForm = () => {
     setStudentCWA(weightedAverage);
 
     if (weightedAverage < 70) {
-      toast.error("Your average is below 70. You do not qualify to be a tutor.");
-      
-      router.push("/");
+      setShowModal(true);
       return;
     }
 
@@ -119,7 +120,7 @@ const TutorForm = () => {
       const studentSnapshot = await getDocs(studentQuery);
 
       if (studentSnapshot.empty) {
-        toast.error("Student ID does not exist");
+        toast.error("Student ID does not exist in our database");
         return;
       }
 
@@ -152,20 +153,36 @@ const TutorForm = () => {
 
       setComplete(true);
       toast.success("Onboarding Complete");
-    //  Cookies.set("studentId", studentId, {expires: 1/24});
       router.push("/login");
       
     } catch (err) {
       console.error(err.message);
-     // toast.error("Error submitting form, please try again");
+      toast.error("Error submitting form, please try again");
     }
   };
 
-  console.log("fggg",studentCWA)
+  const closeModal = () => {
+    setShowModal(false);
+    router.push("/");
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Simulating loading time
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <form onSubmit={handleFormSubmit}>
       <ToastContainer position="top-center" draggable />
-
+      <Modal showModal={showModal} closeModal={closeModal} />
+      
       {currentStep === 1 && (
         <StepOne
           onNext={handleNext}
