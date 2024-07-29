@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/config/firebase';
+import { ImSpinner8 } from "react-icons/im";
+
+
 
 const Page = () => {
   const [issues, setIssues] = useState([]);
@@ -24,7 +27,7 @@ const Page = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        Loading...
+        <ImSpinner8 className="animate-spin text-blue" />
       </div>
     );
   }
@@ -52,7 +55,7 @@ const Page = () => {
           <tbody>
             {issues.map(issue => (
               <tr key={issue.id} className="bg-gray-50 hover:bg-gray-100">
-                <td className="py-2 px-4 border-b border-gray-200">{issue.studentId}</td>
+                <td className="py-2 px-4 border-b border-gray-200">{issue.studentEmail}</td>
                 <td className="py-2 px-4 border-b border-gray-200">{issue.title || "No title"}</td>
                 <td className="py-2 px-4 border-b border-gray-200">{issue.issue}</td>
               </tr>

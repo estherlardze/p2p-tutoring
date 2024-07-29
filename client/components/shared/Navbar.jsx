@@ -56,7 +56,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${getNavBgColor()} fixed top-0 left-0 w-full transition-all duration-300 h-[68px]`}
+      className={`${getNavBgColor()} fixed top-0 left-0 w-full transition-all duration-300 h-[68px] z-[9999]`}
     >
       <section className="flex justify-between py-5 px-4 sm:px-8 2xl:w-[1500px] 2xl:mx-auto z-50">
         <h1 className={`text-2xl font-bold ${router === "/" ? (changebg ? "text-black" : "text-white") : "text-white"}`}>

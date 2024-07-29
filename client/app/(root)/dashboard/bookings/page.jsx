@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Modal, Select } from "@mantine/core";
+import { Modal } from "@mantine/core";
 import BookingDetail from "../../../../components/dashboard/BookingDetail";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import cookies from "js-cookie";
 import { query, where, collection, getDocs } from "firebase/firestore";
 import { ImSpinner8 } from "react-icons/im";
-
 
 const TutorDashboard = () => {
   const [tutorials, setTutorials] = useState([]);
@@ -20,23 +19,23 @@ const TutorDashboard = () => {
   useEffect(() => {
     const fetchTutorials = async () => {
       try {
-        const tutorId = cookies.get("studentId");
+        const tutorId = cookies.get("userId");
         if (!tutorId) {
-          toast.error("Tutor ID not found in cookies.");
-          setLoading(false);
+          toast.error("Tutor ID not found.");
           return;
         }
 
+        setLoading(true);
         const q = query(
           collection(db, "Students"),
-          where("studentId", "==", tutorId)
+          where("uid", "==", tutorId)
         );
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
           const userDoc = querySnapshot.docs[0];
           const userData = userDoc.data();
-          setTutorials(userData.tutorials);
+          setTutorials(userData.tutorials || []);
         } else {
           toast.error("Tutor not found or not authorized.");
         }
@@ -60,12 +59,12 @@ const TutorDashboard = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        <ImSpinner8 className="animate-spin text-blue"/>
+        <ImSpinner8 className="animate-spin text-blue" />
       </div>
     );
   }
 
-  if (!tutorials) {
+  if (tutorials.length === 0) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
         No bookings from students yet...
@@ -76,15 +75,8 @@ const TutorDashboard = () => {
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <ToastContainer position="top-center" draggable />
-      <h1 className=" mt-2 text-2xl font-bold">Requests from students</h1>
+      <h1 className="mt-2 text-2xl font-bold">Requests from students</h1>
 
-      <div className="w-[70%]">
-        <Select
-          label=""
-          placeholder="search by date"
-          data={["Today", "Yesterday"]}
-        />
-      </div>
       <div className="overflow-x-auto mt-4">
         <table className="min-w-full bg-white ">
           <thead className="bg-blue/20">
@@ -136,7 +128,7 @@ const TutorDashboard = () => {
         title="Booking Details"
         centered
       >
-        {selectedBooking && <BookingDetail tutor={selectedBooking} />}
+        {selectedBooking && <BookingDetail booking={selectedBooking} />}
       </Modal>
     </div>
   );

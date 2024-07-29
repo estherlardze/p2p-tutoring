@@ -85,7 +85,7 @@ const Tutors = () => {
                   {tutor.name}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200">
-                  {tutor.email}
+                  {tutor.studentEmail}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200">
                   {tutor.contact}

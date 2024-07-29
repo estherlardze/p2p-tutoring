@@ -44,8 +44,7 @@ const TutorDetail = () => {
   }, [tutorId]);
 
   if (loading) return <Loader />;
-  if (error) return <div>{error}</div>;
-  if (!tutor) return <div>Tutor not found</div>;
+  if (!tutor) return <div className="text-center font-bold text-2xl ">Tutor not found</div>;
 
   return (
     <main>

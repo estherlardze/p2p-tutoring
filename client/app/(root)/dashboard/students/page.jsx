@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaEye } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import Loader from "@/components/Loader";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -22,8 +21,7 @@ const Students = () => {
       try {
         const q = query(
           collection(db, "Students"),
-          where("isTutor", "==", false),
-          where("email", "!=", null)
+          where("isTutor", "==", false)
         );
         const querySnapshot = await getDocs(q);
 
@@ -86,13 +84,13 @@ const Students = () => {
                 className={index % 2 === 0 ? "bg-gray-200/20" : "bg-white"}
               >
                 <td className="py-2 px-4 border-b border-gray-200">
-                  {student.name}
+                  {student.firstName || 'N/A'}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200">
-                  {student.email}
+                  {student.studentEmail || 'N/A'}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200">
-                  {student.contact}
+                  {student.contact || 'N/A'}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200 text-center">
                   <button

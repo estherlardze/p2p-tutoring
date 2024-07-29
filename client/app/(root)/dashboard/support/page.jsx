@@ -8,9 +8,9 @@ import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 
 const ReportForm = () => {
   const [formData, setFormData] = useState({
-    studentId: "",
     email: "",
-    issue: "",
+    title: "",
+    description: "",
   });
 
   const handleChange = (e) => {
@@ -25,26 +25,26 @@ const ReportForm = () => {
     e.preventDefault();
 
     try {
-      const q = query(
-        collection(db, "Students"),
-        where("studentId", "==", formData.studentId)
-      );
+      const q = query(collection(db, "Students"), where("studentEmail", "==", formData.email));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
-        console.log(userData);
-        // if user exist continue to add it to their issues to the issues collection
-        await addDoc(collection(db, "Issues"), formData);
+        const reportData = {
+          ...formData,
+          userName: `${userData.firstName} ${userData.lastName}`,
+        };
+
+        await addDoc(collection(db, "Issues"), reportData);
         toast.success("Issue reported successfully!");
         setFormData({
-          studentId: "",
-          email: "",
-          issue: "",
+          studentEmail: "",
+          title: "",
+          description: "",
         });
       } else {
-        toast.error("Invalid student id!");
+        toast.error("Invalid student email!");
         return;
       }
     } catch (error) {
@@ -60,17 +60,17 @@ const ReportForm = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="studentEmail"
               className="block text-sm font-medium text-gray-500"
             >
               Email
             </label>
             <input
               type="text"
-              id="email"
-              name="email"
-              placeholder="your email"
-              value={formData.email}
+              id="studentEmail"
+              name="studentEmail"
+              placeholder="Your student email"
+              value={formData.studentEmail}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               required
@@ -78,17 +78,17 @@ const ReportForm = () => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="studentId"
+              htmlFor="title"
               className="block text-sm font-medium text-gray-700"
             >
-              Student Id
+              Title
             </label>
             <input
               type="text"
-              id="studentId"
-              name="studentId"
-              placeholder="your student email"
-              value={formData.studentId}
+              id="title"
+              name="title"
+              placeholder="Issue title"
+              value={formData.title}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               required
@@ -96,15 +96,15 @@ const ReportForm = () => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="issue"
+              htmlFor="description"
               className="block text-sm font-medium text-gray-700"
             >
-              Issue
+              Description
             </label>
             <textarea
-              id="issue"
-              name="issue"
-              value={formData.issue}
+              id="description"
+              name="description"
+              value={formData.description}
               onChange={handleChange}
               placeholder="Describe the issue"
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"

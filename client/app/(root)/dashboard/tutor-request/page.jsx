@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Modal, Select } from "@mantine/core";
+import { Modal } from "@mantine/core";
 import BookingDetail from "../../../../components/dashboard/BookingDetail";
 import { db } from "@/config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cookies from "js-cookie";
 import { query, where, collection, getDocs } from "firebase/firestore";
+import { ImSpinner8 } from "react-icons/im";
 
 const TutorRequest = () => {
   const [tutorials, setTutorials] = useState([]);
@@ -18,16 +19,15 @@ const TutorRequest = () => {
   useEffect(() => {
     const fetchTutorials = async () => {
       try {
-        const studentid = cookies.get("studentId", { expires: 1 / 24 });
-        if (!studentid) {
-          toast.error("student ID not found in cookies.");
-          setLoading(false);
+        const studentId = cookies.get("userId");
+        if (!studentId) {
+          toast.error("Student details not found in cookies.");
           return;
         }
-
+        setLoading(true);
         const q = query(
           collection(db, "Students"),
-          where("studentId", "==", studentid)
+          where("uid", "==", studentId)
         );
         const querySnapshot = await getDocs(q);
 
@@ -36,7 +36,7 @@ const TutorRequest = () => {
           const userData = userDoc.data();
           setTutorials(userData.tutorials);
         } else {
-          toast.error("Tutor not found or not authorized.");
+          toast.error("Student not found or not authorized.");
         }
       } catch (error) {
         toast.error(error.message);
@@ -54,19 +54,20 @@ const TutorRequest = () => {
   };
 
   console.log("tutorials", tutorials);
+  console.log("selectedBooking", selectedBooking);
 
   if (loading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        Loading...
+        <ImSpinner8 className="animate-spin text-blue" />
       </div>
     );
   }
 
-  if (!tutorials) {
+  if (!tutorials || tutorials.length === 0) {
     return (
-      <div className="flex justify-center items-center h-[70vh]">
-        No bookings for teachers
+      <div className="flex justify-center items-center text-2xl font-bold h-[70vh]">
+        You have not yet booked a tutor!
       </div>
     );
   }
@@ -74,47 +75,34 @@ const TutorRequest = () => {
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <ToastContainer position="top-center" draggable />
-      <h1 className=" mt-2 text-2xl font-bold">Request to tutors</h1>
+      <h1 className="mt-2 text-2xl font-bold">Request to tutors</h1>
 
-      <div className="w-[40%]">
-        <Select
-          label=""
-          placeholder="search by date"
-          data={["Today", "Yesterday"]}
-        />
-      </div>
       <div className="overflow-x-auto mt-4">
-        <table className="min-w-full bg-white ">
+        <table className="min-w-full bg-white">
           <thead className="bg-blue/20">
             <tr className="bg-gray-200">
-              <th className="py-2 px-4 border-b border-gray-2">Course</th>
-              <th className="py-2 px-4 border-b border-gray-2">Date</th>
-              <th className="py-2 px-4 border-b border-gray-2">Time</th>
-              <th className="py-2 px-4 border-b border-gray-2">Lesson Type</th>
-              <th className="py-2 px-4 border-b border-gray-2">Actions</th>
+              <th className="py-2 px-4 border-b border-gray-200">Course</th>
+              <th className="py-2 px-4 border-b border-gray-200">Date</th>
+              <th className="py-2 px-4 border-b border-gray-200">Time</th>
+              <th className="py-2 px-4 border-b border-gray-200">Lesson Type</th>
+              <th className="py-2 px-4 border-b border-gray-200">Actions</th>
             </tr>
           </thead>
           <tbody>
             {tutorials.map((booking, index) => (
               <tr
                 key={booking.id}
-                className={index % 2 === 0 ? "bg-gray-2/20" : "bg-white"}
+                className={index % 2 === 0 ? "bg-gray-200/20" : "bg-white"}
               >
-                <td className="py-2 px-4 border-b border-gray-2">
+                <td className="py-2 px-4 border-b border-gray-200">
                   {booking.course?.map((course, index) => (
                     <p key={index}>{course}</p>
                   ))}
                 </td>
-                <td className="py-2 px-4 border-b border-gray-2">
-                  {booking.date}
-                </td>
-                <td className="py-2 px-4 border-b border-gray-2">
-                  {booking.time}
-                </td>
-                <td className="py-2 px-4 border-b border-gray-2">
-                  {booking.tutorialType}
-                </td>
-                <td className="py-2 px-4 border-b border-gray-2 text-center">
+                <td className="py-2 px-4 border-b border-gray-200">{booking.date}</td>
+                <td className="py-2 px-4 border-b border-gray-200">{booking.time}</td>
+                <td className="py-2 px-4 border-b border-gray-200">{booking.tutorialType}</td>
+                <td className="py-2 px-4 border-b border-gray-200 text-center">
                   <button
                     className="bg-blue/70 text-white py-1 px-3 rounded-md hover:bg-blue-600"
                     onClick={() => handleViewDetails(booking)}

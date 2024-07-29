@@ -21,18 +21,18 @@ const StepOne = ({
       </div>
       <div className="my-1 w-full">
         <label
-          htmlFor="studentId"
+          htmlFor="studentEmail"
           className="block text-gray-2 font-medium mb-1"
         >
-          Student id
+          Student email
         </label>
         <input
           type="text"
-          id="studentId"
-          name="studentId"
-          value={formInfo.studentId}
+          id="studentEmail"
+          name="studentEmail"
+          value={formInfo.studentEmail}
           onChange={handleChange}
-          placeholder="Enter your student id"
+          placeholder="Enter your student email"
           className="w-full px-2 py-1 border border-gray-2/30 outline-blue/25 rounded-sm text-sm"
           required
         />

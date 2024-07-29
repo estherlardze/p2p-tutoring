@@ -33,7 +33,7 @@ const TutorForm = () => {
     amount: "",
     tutorialType: [],
     availability: [],
-    studentId: "",
+    studentEmail: "",
   });
 
   const {
@@ -43,7 +43,7 @@ const TutorForm = () => {
     amount,
     tutorialType,
     availability,
-    studentId,
+    studentEmail,
   } = formInfo;
   const router = useRouter();
 
@@ -62,7 +62,7 @@ const TutorForm = () => {
 
   const validateStep = () => {
     if (currentStep === 1) {
-      return bio && studentId && contact && courses.length && amount;
+      return bio && studentEmail && contact && courses.length && amount;
     } else if (currentStep === 2) {
       return (
         profileImage &&
@@ -115,7 +115,7 @@ const TutorForm = () => {
     try {
       const studentQuery = query(
         collection(db, "Students"),
-        where("studentId", "==", studentId)
+        where("studentEmail", "==", studentEmail)
       );
       const studentSnapshot = await getDocs(studentQuery);
 
@@ -127,10 +127,10 @@ const TutorForm = () => {
       const studentDoc = studentSnapshot.docs[0];
       const studentData = studentDoc.data();
 
-      const tutorEmail = studentData.email;
-      const tutorPassword = studentData.password;
+      const tutorEmail = studentData.studentEmail;
+      const tutorName = studentData.lastName;
 
-      if (!tutorEmail || !tutorPassword) {
+      if (!tutorEmail || !tutorName) {
         toast.error(
           "Make sure you complete sign up before starting onboarding"
         );
@@ -169,7 +169,7 @@ const TutorForm = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); // Simulating loading time
+    }, 2000); 
 
     return () => clearTimeout(timer);
   }, []);

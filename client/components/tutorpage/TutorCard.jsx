@@ -14,7 +14,7 @@ const TutorCard = ({ tutor }) => {
       />
 
       <div className="flex flex-col gap-2 py-2 pl-4 pr-4">
-        <h1 className="font-bold text-xl text-blue">{tutor.name}</h1>
+        <h1 className="font-bold text-xl text-blue">{`${tutor.firstName} ${tutor.lastName}`}</h1>
         <h3 className=" font-semibold text-blue/90"> <span>Department: </span>
         {tutor.department}</h3>
         <div className="flex flex-wrap items-center gap-2">
@@ -44,7 +44,7 @@ const TutorCard = ({ tutor }) => {
           
             <div className="flex items-center gap-2">
             <Link
-              href={`/tutors/${tutor.id}`}
+              href={`/tutors/${tutor.uid}`}
               className="bg-blue/90 text-white px-4 py-1 text-sm rounded-sm"
             >
               view profile

@@ -9,12 +9,13 @@ import { useState, useEffect } from 'react';
 import cookies from 'js-cookie';
 import { tokenProvider } from '@/actions/stream.actions';
 import { tuto1 } from '../public/index';
+import Loader from '@/components/Loader';
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
 
 const StreamVideoProvider = ({ children }) => {
   const [videoClient, setVideoClient] = useState(null);
-  const userId = cookies.get("studentId");
+  const userId = cookies.get("userId");
   console.log(userId)
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const StreamVideoProvider = ({ children }) => {
     setVideoClient(client);
   }, [userId]);
 
-  if (!videoClient) return <div>Loading...</div>;
+  if (!videoClient) return <Loader/>;
 
   return (
     <StreamVideo client={videoClient}>

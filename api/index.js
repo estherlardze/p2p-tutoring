@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.use(fileUpload())
 
-app.post("/extract-text", (request, response) => {
+app.post("/extract-text", (request, response) => {  
     if (!request.files && !request.files.pdfFile) {
         response.status(400)
         response.end()

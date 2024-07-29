@@ -11,7 +11,7 @@ const apiSecret = process.env.STREAM_SECRET_ID;
 export const tokenProvider =  () => {
  
     const cookieStore = cookies()
-    const { value } = cookieStore.get('studentId')   
+    const { value } = cookieStore.get('userId')   
     //console.log(value) 
 
     if (!value) {

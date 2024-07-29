@@ -4,8 +4,8 @@ const ViewDetails = ({ tutor }) => {
   console.log("tutor", tutor);
   return (
     <div>
-      <h1><span className='font-bold'>Name:</span> {tutor.name}</h1>
-      <p> <span className='font-bold'>Email:</span> {tutor.email}</p>
+      <h1><span className='font-bold'>Name:</span> {tutor.firstName}</h1>
+      <p> <span className='font-bold'>Email:</span> {tutor.studentEmail}</p>
       <p> <span className='font-bold'>Contact:</span> {tutor.contact}</p>
       <p> <span className='font-bold'>Department:</span> {tutor.department}</p>
       <div>

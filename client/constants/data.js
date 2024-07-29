@@ -133,11 +133,6 @@ export const studentLinks = [
     icon: <FaUser />,
   },
   {
-    name: "Ratings",
-    route: "/dashboard/ratings",
-    icon: <FaUser />,
-  },
-  {
     name: "Support",
     route: "/dashboard/support",
     icon: <FaBook />

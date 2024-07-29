@@ -14,26 +14,37 @@ const RootLayout = ({ children }) => {
   const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
-    const id = cookies.get("studentId");
+    const id = cookies.get("userId");
 
     const fetchUserRole = async () => {
-      const q = query(collection(db, "Students"), where("studentId", "==", id));
-      const querySnapshot = await getDocs(q);
+      if (!id) {
+        console.error("User ID not found in cookies.");
+        return;
+      }
 
-      if (!querySnapshot.empty) {
-        const userDoc = querySnapshot.docs[0];
-        const userData = userDoc.data();
+      try {
+        const q = query(collection(db, "Students"), where("uid", "==", id));
+        const querySnapshot = await getDocs(q);
 
-        if (userData.isAdmin === true) {
-          setSidebarLinks(adminLinks);
-          setUserRole("Admin");
-        } else if (userData.isTutor === true) {
-          setSidebarLinks(tutorLinks);
-          setUserRole("Tutor");
+        if (!querySnapshot.empty) {
+          const userDoc = querySnapshot.docs[0];
+          const userData = userDoc.data();
+
+          if (userData.isAdmin === true) {
+            setSidebarLinks(adminLinks);
+            setUserRole("Admin");
+          } else if (userData.isTutor === true) {
+            setSidebarLinks(tutorLinks);
+            setUserRole("Tutor");
+          } else {
+            setSidebarLinks(studentLinks);
+            setUserRole("Student");
+          }
         } else {
-          setSidebarLinks(studentLinks);
-          setUserRole("Student");
+          console.error("No user found with the given ID.");
         }
+      } catch (error) {
+        console.error("Error fetching user role:", error);
       }
     };
 

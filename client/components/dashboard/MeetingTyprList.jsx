@@ -22,7 +22,7 @@ const MeetingTypeList = () => {
     description: "",
   });
   const [callDetails, setCallDetails] = useState();
-  const userId = Cookies.get("studentId");
+  const userId = Cookies.get("userId");
   const client = useStreamVideoClient();
 
   const createMeeting = async () => {
