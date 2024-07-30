@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 
 const Ratings = ({tutor}) => {
   const starCounts = [5, 4, 3, 2, 1].map(
-    (star) => tutor?.ratings.filter((rate) => rate.rating === star).length
+    (star) => tutor?.ratings?.filter((rate) => rate.rating === star).length
   );
 
   const totalRatings = tutor?.ratings.length;

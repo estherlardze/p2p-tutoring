@@ -8,7 +8,7 @@ export const howitworks = [
     image: step1,
     step: "step 1",
     title: "Register",
-    content: "Sign up to search for tutors. If you are interested in becoming a tutor, visit the 'Become a Tutor' page to learn more.",
+    content: "Sign up with your knust studentemail, name and programe. If you are interested in becoming a tutor, visit the 'Become a Tutor' page to learn more.",
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ export const whychooseus = [
     image: profile,
     step: "step 1",
     title: "Sign up",
-    content: "Create an account on our platform by entering your student id to confirm you are a student",
+    content: "Create an account on our platform with your knust student email, name and programme",
   },
   {
     id: 2,
