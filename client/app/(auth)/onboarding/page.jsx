@@ -24,7 +24,7 @@ const TutorForm = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [currentResult, setCurrentResult] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(true); // Initial state set to true
+  const [loading, setLoading] = useState(true); 
   const steps = ["personal", "career", "finish"];
   const [formInfo, setFormInfo] = useState({
     bio: "",

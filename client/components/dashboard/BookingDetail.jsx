@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import cookies from "js-cookie";
+import { Modal, Rating } from "@mantine/core";
 
 const BookingDetail = ({ booking }) => {
   const [isStudent, setIsStudent] = useState(null);
-
-  console.log("booking in BookingDetail", booking);
+  const [ratingPopupOpen, setRatingPopupOpen] = useState(false);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     const id = cookies.get("userId");
@@ -17,11 +18,7 @@ const BookingDetail = ({ booking }) => {
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
-        if (userData.isTutor === false) {
-          setIsStudent(true);
-        } else {
-          setIsStudent(false);
-        }
+        setIsStudent(userData.isTutor === false);
       }
     };
     checkUser();
@@ -30,6 +27,26 @@ const BookingDetail = ({ booking }) => {
   if (!booking) {
     return <div>No booking details available</div>;
   }
+
+  const handleMarkLessonAsDone = () => {
+    setRatingPopupOpen(true);
+  };
+
+  const handleRateTutor = async () => {
+    const tutorQuery = query(collection(db, "Students"), where("studentEmail", "==", booking.tutorEmail));
+    const tutorSnapshot = await getDocs(tutorQuery);
+
+    if (!tutorSnapshot.empty) {
+      const tutorDoc = tutorSnapshot.docs[0];
+      const tutorRef = doc(db, "Students", tutorDoc.id);
+      await updateDoc(tutorRef, {
+        ratings: arrayUnion({ rating, date: new Date() }),
+      });
+      setRatingPopupOpen(false);
+    } else {
+      console.error("Tutor not found");
+    }
+  };
 
   return (
     <div>
@@ -62,15 +79,32 @@ const BookingDetail = ({ booking }) => {
         <strong>Learning Goals:</strong> {booking.message}
       </p>
 
-      {isStudent ? (
-        <button className="bg-[#b1353f] text-white mt-2 flex justify-center items-center rounded-sm text-sm px-2 py-1 font-semibold">
-          Cancel booking
-        </button>
-      ) : (
-        <button className="bg-[#b1353f] text-white rounded-sm text-sm px-2 py-1 mt-2 font-semibold">
+      {isStudent && (
+        <button
+          className="bg-[#b1353f] text-white mt-2 flex justify-center items-center rounded-sm text-sm px-2 py-1 font-semibold"
+          onClick={handleMarkLessonAsDone}
+        >
           Mark lesson as done
         </button>
       )}
+
+      <Modal
+        opened={ratingPopupOpen}
+        onClose={() => setRatingPopupOpen(false)}
+        title="Rate your tutor based on your experience"
+        centered
+      >
+        <div className="flex flex-col items-left">
+          <h1>On a scale of 1 to 5 rate the tutor</h1>
+          <Rating value={rating} onChange={setRating} className="text-2xl"/>
+          <button
+            className="mt-4 bg-blue text-white px-4 py-2 rounded-md"
+            onClick={handleRateTutor}
+          >
+            Submit Rating
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };

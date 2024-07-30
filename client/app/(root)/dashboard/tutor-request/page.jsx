@@ -91,7 +91,7 @@ const TutorRequest = () => {
           <tbody>
             {tutorials.map((booking, index) => (
               <tr
-                key={booking.id}
+                key={index}
                 className={index % 2 === 0 ? "bg-gray-200/20" : "bg-white"}
               >
                 <td className="py-2 px-4 border-b border-gray-200">

@@ -132,7 +132,7 @@ const SignUp = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="department" className="block text-gray-1 font-bold mb-1">
-              Department
+              Programme:
             </label>
             <input
               type="text"

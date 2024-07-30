@@ -2,27 +2,13 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 
 
-const ratings = [
-  {
-    id: 1,
-    star:5
-    },
-  {
-    id: 2,
-      star:4
-    },
-  {
-    id: 3,
-      star:5
-    },
-]
 
-const Ratings = () => {
-  const starCounts = [1, 2, 3, 4, 5].map(
-    (star) => ratings.filter((rating) => rating.star === star).length
+const Ratings = ({tutor}) => {
+  const starCounts = [5, 4, 3, 2, 1].map(
+    (star) => tutor?.ratings.filter((rate) => rate.rating === star).length
   );
 
-  const totalRatings = ratings.length;
+  const totalRatings = tutor?.ratings.length;
 
   return (
     <section>

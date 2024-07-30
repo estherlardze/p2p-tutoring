@@ -54,20 +54,19 @@ const TutorDetail = () => {
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-8">
             <Image
               src={tutor.profile}
-              alt={tutor.name}
+              alt={tutor.firstName}
               width={200}
               height={170}
             />
 
             <div>
-              <h1 className="font-bold text-2xl text-black">{tutor.name}</h1>
+              <h1 className="font-bold text-2xl text-black">{`${tutor.firstName} ${tutor.lastName}`}</h1>
               <h3 className="text-lg font-semibold  my-2">
-                <span>Department: </span>{" "}
                 <span className="">{tutor.department}</span>
               </h3>
               <div className="flex items-center gap-2 mtext-black/90t-2">
                 <p className="text-text/90 font-semibold">Tutoring Type:</p>{" "}
-                <div className="text-gray-1 flex gap-2 text-sm">
+                <div className="text-gray-1 items-center flex gap-2 text-sm">
                   {tutor.tutorialType?.map((item) => (
                     <h1 key={item.label}>{item.label}</h1>
                   ))}
@@ -75,7 +74,7 @@ const TutorDetail = () => {
               </div>
 
               <div className="flex items-center gap-2 mt-1">
-                <p className="text-text/90 font-semibold">Contact</p>{" "}
+                <p className="text-text/90 font-semibold">Contact: </p>{" "}
                 <p className="text-gray-1">{tutor.contact}</p>
               </div>
 
@@ -113,7 +112,7 @@ const TutorDetail = () => {
 
             <Availability tutor={tutor} />
             <div className="mt-8">
-              <Ratings />
+              <Ratings tutor={tutor}/>
             </div>
           </div>
         </div>
