@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Stepper from "./Stepper";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 
 
 const StepThree = ({ currentStep, complete, steps, onPrevious, onSubmit }) => {
+  
   return (
     <div className="flex flex-col justify-center items-center min-h-screen max-w-lg lg:max-w-2xl mx-auto ">
       <h1>User name</h1>

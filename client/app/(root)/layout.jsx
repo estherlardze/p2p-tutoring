@@ -1,6 +1,7 @@
 
 import StreamVideoProvider from '@/Provider/StreamClient';
 
+
 const RootLayout = ({ children }) => {
   return (
     <main>

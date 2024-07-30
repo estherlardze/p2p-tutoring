@@ -48,7 +48,6 @@ const Login = () => {
         return;
       }
 
-      toast.success("Login successful");
       Cookies.set("userId", user.uid); 
       setLoading(false);
       router.push("/dashboard");
