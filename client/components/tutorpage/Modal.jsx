@@ -17,9 +17,7 @@ import {
 const Popup = ({ tutor }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [bookingInfo, setBookingInfo] = useState({
-    studentId: "",
-    email: "",
-    name: "",
+    studentEmail: "",
     tutorialType: "",
     course: [],
     contact: "",
@@ -36,19 +34,19 @@ const Popup = ({ tutor }) => {
       [name]: value,
     }));
 
-    if (name === "studentId") {
+    if (name === "studentEmail") {
       try {
         const q = query(
           collection(db, "Students"),
-          where("studentId", "==", value)
+          where("studentEmail", "==", value)
         );
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
           const studentData = querySnapshot.docs[0].data();
           setBookingInfo((prev) => ({
             ...prev,
-            name: studentData.name || "",
-            email: studentData.email || "",
+            name: studentData.firstName + " " + studentData.lastName || "",
+            email: studentData.studentEmail || "",
           }));
         } else {
           setBookingInfo((prev) => ({
@@ -67,9 +65,7 @@ const Popup = ({ tutor }) => {
     e.preventDefault();
 
     const {
-      studentId,
-      email,
-      name,
+      studentEmail,
       tutorialType,
       course,
       date,
@@ -81,9 +77,7 @@ const Popup = ({ tutor }) => {
 
     try {
       if (
-        !studentId ||
-        !email ||
-        !name ||
+        !studentEmail ||
         !tutorialType ||
         !course.length ||
         !date ||
@@ -96,25 +90,40 @@ const Popup = ({ tutor }) => {
         return;
       }
 
-      const q = query(
+      const studentQuery = query(
         collection(db, "Students"),
-        where("studentId", "==", studentId)
+        where("studentEmail", "==", studentEmail)
       );
-      const querySnapshot = await getDocs(q);
-      if (querySnapshot.empty) {
-        toast.error("Student ID does not exist");
+      const studentSnapshot = await getDocs(studentQuery);
+
+      if (studentSnapshot.empty) {
+        toast.error("You need to sign up to book a tutor");
         return;
       }
-      const studentDoc = querySnapshot.docs[0];
 
+      const studentDoc = studentSnapshot.docs[0];
+      const studentData = studentDoc.data();
       const studentRef = doc(db, "Students", studentDoc.id);
+
+      await updateDoc(studentRef, {
+        tutorials: arrayUnion({
+          tutorName: tutor.firstName + " " + tutor.lastName,
+          tutorEmail: tutor.studentEmail,
+          tutorialType,
+          course,
+          date,
+          time,
+          contact,
+          message,
+          location,
+        }),
+      });
 
       const tutorRef = doc(db, "Students", tutor.id);
       await updateDoc(tutorRef, {
         tutorials: arrayUnion({
-          studentId,
-          email,
-          name,
+          studentName: studentData.firstName + " " + studentData.lastName,
+          studentEmail,
           tutorialType,
           course,
           contact,
@@ -125,20 +134,7 @@ const Popup = ({ tutor }) => {
         }),
       });
 
-      await updateDoc(studentRef, {
-        tutorials: arrayUnion({
-          tutorName: tutor.name,
-          tutorialType,
-          course,
-          date,
-          time,
-          contact,
-          message,
-          location,
-        }),
-      });
-
-      toast.success("Booking was successful, tutor will be in touch");
+      toast.success("Booking was successful, the tutor will be in touch");
       close();
     } catch (error) {
       console.error("Error submitting booking: ", error);
@@ -164,49 +160,17 @@ const Popup = ({ tutor }) => {
       >
         <form onSubmit={handleSubmit}>
           <div className="mb-2">
-            <label htmlFor="studentId" className="font-semibold">
-              Student id
-            </label>
-            <input
-              type="text"
-              name="studentId"
-              id="studentId"
-              placeholder="Enter your student id"
-              className="w-full px-3 py-1 border text-black/80 border-black/35 rounded-md outline-blue/40"
-              value={bookingInfo.studentId}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="">
-            <label htmlFor="name" className="font-semibold">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter your name"
-              className="w-full px-3 py-1 border text-black/80 border-black/35 rounded-md outline-blue/40"
-              value={bookingInfo.name}
-              onChange={handleChange}
-              readOnly
-            />
-          </div>
-
-          <div className="my-2">
-            <label htmlFor="email" className="font-semibold">
-              Email
+            <label htmlFor="studentEmail" className="font-semibold">
+              Student Email
             </label>
             <input
               type="email"
-              name="email"
-              id="email"
+              name="studentEmail"
+              id="studentEmail"
               placeholder="Enter your student email"
               className="w-full px-3 py-1 border text-black/80 border-black/35 rounded-md outline-blue/40"
-              value={bookingInfo.email}
+              value={bookingInfo.studentEmail}
               onChange={handleChange}
-              readOnly
             />
           </div>
 
@@ -219,8 +183,8 @@ const Popup = ({ tutor }) => {
               setBookingInfo({ ...bookingInfo, course: value })
             }
           />
-         
-         <div className="mt-2">
+
+          <div className="mt-2">
             <label htmlFor="contact" className="font-semibold">
               Contact
             </label>
@@ -262,10 +226,9 @@ const Popup = ({ tutor }) => {
               onChange={handleChange}
             />
           </div>
-           <div className="mt-4">
-            <h1 className="font-semibold">
-              How would you like to take a lesson?
-            </h1>
+
+          <div className="mt-4">
+            <h1 className="font-semibold">How would you like to take a lesson?</h1>
             <div className="text-gray-1 flex gap-2 text-sm">
               {tutor.tutorialType?.map((item, index) => (
                 <div key={index} className="flex gap-2">

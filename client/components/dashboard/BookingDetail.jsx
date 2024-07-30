@@ -17,9 +17,9 @@ const BookingDetail = ({ booking }) => {
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
-        if(userData.isTutor === false){
+        if (userData.isTutor === false) {
           setIsStudent(true);
-        }else{
+        } else {
           setIsStudent(false);
         }
       }
@@ -33,7 +33,7 @@ const BookingDetail = ({ booking }) => {
 
   return (
     <div>
-       <p className="font-bold">{booking.firstName}</p>
+      <p className="font-bold">{booking.firstName}</p>
       <p className="font-bold">{booking.studentEmail}</p>
       <p>
         <strong>Course:</strong>{" "}
@@ -68,7 +68,7 @@ const BookingDetail = ({ booking }) => {
         </button>
       ) : (
         <button className="bg-[#b1353f] text-white rounded-sm text-sm px-2 py-1 mt-2 font-semibold">
-          Mark offer as done
+          Mark lesson as done
         </button>
       )}
     </div>
