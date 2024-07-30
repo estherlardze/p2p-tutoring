@@ -8,7 +8,7 @@ const Ratings = ({tutor}) => {
     (star) => tutor?.ratings?.filter((rate) => rate.rating === star).length
   );
 
-  const totalRatings = tutor?.ratings.length;
+  const totalRatings = tutor?.ratings?.length;
 
   return (
     <section>
