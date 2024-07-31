@@ -3,6 +3,7 @@ import "./globals.css";
 import "@mantine/core/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import '@stream-io/video-react-sdk/dist/css/styles.css';
+import 'react-datepicker/dist/react-datepicker.css'
 
 const inter = Inter({ subsets: ["latin"] });
 

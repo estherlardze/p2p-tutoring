@@ -5,7 +5,7 @@ const MeetingCard = ({ title, content, color, icon: Icon, handleClick }) => {
     <div
       onClick={handleClick}
       style={{ backgroundColor: `${color}` }}
-      className="px-4 py-6 flex flex-col justify-between col-span-4 sm:col-span-2 lg:col-span-1 xl:max-w-[300px] min-h-[240px] rounded-[14px] cursor-pointer"
+      className="px-4 py-6 flex flex-col justify-between w-full xl:max-w-[300px] min-h-[240px] rounded-[14px] cursor-pointer"
     >
       <div className="text-center w-fit bg-white/20 p-2 rounded-[10px]">
         <Icon size={32} />
