@@ -68,7 +68,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="studentEmail" className="block text-gray-1 font-bold mb-2">
-              Email:
+              Student Email:
             </label>
             <input
               type="email"
@@ -76,7 +76,7 @@ const Login = () => {
               name="studentEmail"
               value={studentEmail}
               onChange={handleChange}
-              placeholder="Enter your student email"
+              placeholder="example@st.knust.edu.gh"
               className="w-full px-3 py-[6px] border border-black/35 rounded-md outline-blue/40"
               required
             />
@@ -94,7 +94,7 @@ const Login = () => {
                   name="password"
                   value={password}
                   onChange={handleChange}
-                  placeholder="password must be at least 6 characters"
+                  placeholder="enter your password"
                   className="focus:outline-none border-0"
                   required
                 />

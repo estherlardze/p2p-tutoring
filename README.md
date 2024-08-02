@@ -1,11 +1,11 @@
 # Peer-to-Peer Tutoring Platform
 
+![Alt Text](./home.png)
+<img src="./home.png">
+
 ## Project Overview
-This web application aims to alleviate academic challenges faced by students by connecting them with peer tutors within their faculty. The platform facilitates a peer-to-peer tutoring marketplace where students can:
-- Find Tutors: Search for tutors by subject, availability, and student ratings.
-- Request Help: Send personalized requests to tutors for specific courses and learning needs.
-- Schedule Sessions: Coordinate tutoring sessions directly with tutors through the platform.
-- Secure Payments: Utilize a secure payment system to manage tutoring fees.
+This web application aims to alleviate academic challenges faced by students by connecting them with peer tutors within their faculty. The platform facilitates a peer-to-peer tutoring marketplace where students can find Tutors and book them for turorials.
+
 
 ## Target Users
 - **Students seeking academic assistance**: Those who need help with specific courses.
@@ -16,29 +16,63 @@ This web application aims to alleviate academic challenges faced by students by 
 - **Tutors**: Earn income by sharing their knowledge and expertise with peers.
 
 ## Features
-1. **Find Tutors**: 
-   - Search by subject, availability, and ratings.
-   - View detailed profiles of tutors including their qualifications and reviews from other students.
+**User Registration**
 
-2. **Request Help**:
-   - Send personalized requests to tutors.
-   - Specify course details and learning needs.
+Students can create an account by providing their name, email, and password. A confirmation email is sent to verify the user's email address.
+Students who want to be tutors can complete their profiles with additional details like courses they want to tutor, their academic result etc.
 
-3. **Schedule Sessions**:
-   - Coordinate and book tutoring sessions through the platform.
-   - Manage calendar and availability.
+**Database**
 
-4. **Secure Payments**:
-   - Utilize an integrated payment system for handling tutoring fees.
-   - Ensure secure and transparent transactions.
+User Data: Stores user profiles and credentials securely.
+Tutoring Sessions: Keeps track of scheduled sessions and related details.
+Reviews: Stores reviews and ratings given by students to tutors.
+OCR Document Verification
+
+**OCR document verification**
+
+Tutors upload their academic documents during profile setup.
+The OCR technology reads and extracts text from these documents and checked against the database to ensure authenticity.
+
+**Video Conferencing**
+
+Tutors and students can schedule video sessions for tutorials on the platform.
+It has features like screen sharing and recording enhance the tutoring experience.
+<img src="./video.png">
 
 
 ## Technologies Used
 - **Front-end**: Next Js, TailwindCSS
 - **UI Library**: Mantine UI
-- **Back-end**: Firebase, NodeJS
+- **Video conferencing**: Stream API
+- **Database and auth**: Firebase
+- **OCR Library**: PDF parse
 
+Prerequisites
+- **Node.js**
+- **npm**
+- **firebase config for auth, database and storage** 
+- **Stream API and Secret key**
 
+## Installation
 
-## Current Status
-This project is currently ongoing. Some features may still be under development or subject to change.
+1. Clone the repository: 
+   ```bash
+   git clone https://github.com/estherlardze/p2p-tutoring
+   ```
+2. Navigate to the project directories:
+   ```bash
+   cd client
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+1. Start the development server:
+   ```bash
+   npm run dev
+   ```
+2. Open your browser and go to `http://localhost:3000/` to view the app.
+

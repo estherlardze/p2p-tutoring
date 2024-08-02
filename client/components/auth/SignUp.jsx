@@ -94,7 +94,7 @@ const SignUp = () => {
                 name="firstName"
                 value={firstName}
                 onChange={handleChange}
-                placeholder="Enter your first name"
+                placeholder="e.g Esther"
                 className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
                 required
               />
@@ -109,7 +109,7 @@ const SignUp = () => {
                 name="lastName"
                 value={lastName}
                 onChange={handleChange}
-                placeholder="Enter your last name"
+                placeholder="e.g Odzao"
                 className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
                 required
               />
@@ -117,7 +117,7 @@ const SignUp = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="studentEmail" className="block text-gray-1 font-bold mb-1">
-              Email:
+             Student Email:
             </label>
             <input
               type="text"
@@ -125,7 +125,7 @@ const SignUp = () => {
               name="studentEmail"
               value={studentEmail}
               onChange={handleChange}
-              placeholder="Enter your student email"
+              placeholder="e.g username@st.knust.edu.gh"
               className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
               required
             />
@@ -140,7 +140,7 @@ const SignUp = () => {
               name="department"
               value={department}
               onChange={handleChange}
-              placeholder="Enter your department"
+              placeholder="eg. Electrical Engineering"
               className="w-full px-3 py-1 border border-black/35 rounded-md outline-blue/40"
               required
             />
@@ -157,7 +157,7 @@ const SignUp = () => {
                   name="password"
                   value={password}
                   onChange={handleChange}
-                  placeholder="Enter your password"
+                  placeholder="min of 6 characters"
                   className="focus:outline-none border-0"
                   required
                 />
