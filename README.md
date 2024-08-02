@@ -1,11 +1,9 @@
 # Peer-to-Peer Tutoring Platform
 
-![Alt Text](./home.png)
-<img src="./home.png">
 
 ## Project Overview
 This web application aims to alleviate academic challenges faced by students by connecting them with peer tutors within their faculty. The platform facilitates a peer-to-peer tutoring marketplace where students can find Tutors and book them for turorials.
-
+<img src="./home.png">
 
 ## Target Users
 - **Students seeking academic assistance**: Those who need help with specific courses.
@@ -14,6 +12,9 @@ This web application aims to alleviate academic challenges faced by students by 
 ## Benefits
 - **Students**: Connect with qualified tutors at a potentially lower cost compared to external tutoring services.
 - **Tutors**: Earn income by sharing their knowledge and expertise with peers.
+
+**Dashboard**
+<img src="./dashboard.png">
 
 ## Features
 **User Registration**
@@ -37,6 +38,7 @@ The OCR technology reads and extracts text from these documents and checked agai
 
 Tutors and students can schedule video sessions for tutorials on the platform.
 It has features like screen sharing and recording enhance the tutoring experience.
+
 <img src="./video.png">
 
 
