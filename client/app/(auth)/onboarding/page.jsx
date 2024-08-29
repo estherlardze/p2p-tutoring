@@ -130,17 +130,6 @@ const TutorForm = () => {
       const studentDoc = studentSnapshot.docs[0];
       const studentData = studentDoc.data();
   
-      const studentName = `${studentData.lastName}, ${studentData.firstName}`.toLowerCase().trim();
-      const resultName = nameMatch[1].toLowerCase().trim();
-  
-      const sortName = (name) => {
-        return name.split(/\s*,\s*|\s+/).sort().join(" ");
-      };
-  
-      const sortedStudentName = sortName(studentName);
-      const sortedResultName = sortName(resultName);
-  
-      console.log(sortedStudentName, sortedResultName);
   
       if (!studentData.uid) {
         toast.error(
@@ -149,7 +138,6 @@ const TutorForm = () => {
         return;
       }
   
-      
   
       const tutorData = { ...formInfo, isTutor: true };
       const uploadedProfileUrl = await uploadFileToFirebase(
