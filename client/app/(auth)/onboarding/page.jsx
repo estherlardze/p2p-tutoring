@@ -149,10 +149,7 @@ const TutorForm = () => {
         return;
       }
   
-      if (sortedStudentName !== sortedResultName) {
-        toast.error("Name on the result does not match the student's name.");
-        return;
-      }
+      
   
       const tutorData = { ...formInfo, isTutor: true };
       const uploadedProfileUrl = await uploadFileToFirebase(
@@ -212,7 +209,7 @@ const TutorForm = () => {
           currentStep={currentStep}
           steps={steps}
         />
-      )}
+      )} 
       {currentStep === 2 && (
         <StepTwo
           onNext={handleNext}
